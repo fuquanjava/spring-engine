@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="mapper.DeptMapper">
+    
+    <resultMap id="deptMap" type="domain.Dept">
+        <result property="deptno" column="DEPTNO" jdbcType="INTEGER" javaType="int" />
+        <result property="dname" column="DNAME" jdbcType="VARCHAR" javaType="string" />
+        <result property="loc" column="LOC" jdbcType="VARCHAR" javaType="string" />
+    </resultMap>
+    
+    
+    <insert id="addDept"
+            parameterType="domain.Dept">
+        insert into DEPT (DEPTNO,DNAME,LOC)
+        values (#{deptno},#{dname},#{loc})
+    </insert>
+    <update id="updateDept" parameterType="domain.Dept">
+        update DEPT set DNAME=#{dname},LOC=#{loc} where
+        DEPTNO=#{deptno}
+    </update>
+
+    <select id="findById" parameterType="int"
+            resultType="domain.Dept">
+        select DEPTNO,DNAME,LOC from DEPT where DEPTNO=#{deptno}
+    </select>
+
+    <delete id="deleteById" parameterType="int">
+        delete from DEPT where DEPTNO=#{deptno}
+    </delete>
+    <select id="findAll" resultMap="deptMap">
+        select DEPTNO,DNAME,LOC from DEPT
+    </select>
+
+    <!-- 返回Map -->
+    <select id="findDept" parameterType="int"
+            resultType="java.util.HashMap">
+        select DEPTNO,DNAME from DEPT where DEPTNO=#{no}
+    </select>
+
+    <select id="findDepts" resultType="java.util.HashMap">
+        select DEPTNO,DNAME from DEPT
+    </select>
+
+
+
+
+</mapper>

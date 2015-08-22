@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>spring</groupId>
+    <artifactId>spring-engine</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>spring-orm</module>
+        <module>mybatis</module>
+        <module>spring-webmvc</module>
+        <module>spring-nosql</module>
+        <module>spring-jedis</module>
+        <module>web-core</module>
+        <module>web</module>
+        <module>spring</module>
+    </modules>
+
+    <properties>
+        <!-- 文件拷贝时的编码 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- 编译时的编码 -->
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+
+        <dev.spring.version>4.1.6.RELEASE</dev.spring.version>
+
+
+
+        <dev.cglib.version>2.2</dev.cglib.version>
+
+        <dev.slf4j.api.versoin>1.6.1</dev.slf4j.api.versoin>
+        <dev.jcl.over.slf4j>1.7.7</dev.jcl.over.slf4j>
+        <dev.log4j.version>1.2.16</dev.log4j.version>
+        <dev.slf4j.log4j12.version>1.7.5</dev.slf4j.log4j12.version>
+        <dev.logback.version>1.1.2</dev.logback.version>
+        <dev.servlet.api>2.5</dev.servlet.api>
+
+        <dev.jackson.version>2.4.4</dev.jackson.version> <!--spring 响应 json 会用到 -->
+
+        <dev.jsp.version>2.1</dev.jsp.version>
+        <dev.servlet.api.version>3.1.0</dev.servlet.api.version>
+
+        <!--spring -orm  -->
+        <dev.druid.version>1.0.8</dev.druid.version>
+        <dev.mysql.version>5.1.6</dev.mysql.version>
+        <dev.mybatis.version>3.2.3</dev.mybatis.version>
+        <dev.spring.mybatis.version>1.2.2</dev.spring.mybatis.version>
+        <dev.mybatis.pagehelper>3.7.4</dev.mybatis.pagehelper>
+
+        <!-- spring-nosql -->
+        <redis.clients.version>2.1.0</redis.clients.version>
+        <spring.data.redis.version>1.1.0.RELEASE</spring.data.redis.version>
+        <!-- spring webmvc -->
+        <dev.jstl.version>1.2</dev.jstl.version>
+        <dev.standard.version>1.1.2</dev.standard.version>
+
+        <dev.velocity.version>1.7</dev.velocity.version>
+        <dev.velocity.tools.version>2.0</dev.velocity.tools.version>
+        <dev.reflow.velocity.tools>1.0.0</dev.reflow.velocity.tools>
+        <dev.commons.digester>1.8</dev.commons.digester>
+        <dev.commons.collections>3.2.1</dev.commons.collections>
+
+    </properties>
+
+    <dependencies>
+<!--        <dependency>
+            <groupId>com.rrkd.systemframework</groupId>
+            <artifactId>se</artifactId>
+            <version>1.0.5</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
+
+        <!-- 不用指定version , 由 dependencyManagement 来管理-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <!-- spring mvc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!--数据访问 db -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+        </dependency>
+
+
+
+        <!--log start-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${dev.slf4j.api.versoin}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${dev.jcl.over.slf4j}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${dev.log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${dev.slf4j.log4j12.version}</version>
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>ch.qos.logback</groupId>-->
+            <!--<artifactId>logback-core</artifactId>-->
+            <!--<version>${dev.logback.version}</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>ch.qos.logback</groupId>-->
+            <!--<artifactId>logback-classic</artifactId>-->
+            <!--<version>${dev.logback.version}</version>-->
+        <!--</dependency>-->
+
+        <!--log end-->
+
+        <!--jackson json需要的jar  -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${dev.jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${dev.jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${dev.jackson.version}</version>
+        </dependency>
+
+
+        <!--jdbc Driver -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${dev.mysql.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>${dev.jsp.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${dev.servlet.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+    </dependencies>
+    <dependencyManagement>
+        <!-- 管理 spring 其它jar的版本-->
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${dev.spring.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+
+    <build>
+        <plugins>
+            <!-- 设置resouce目录下的所有文件编码，否则如果配置xml文件中有中文字符，部署后可能会引起运行失败 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!--指定编译文件的编码-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>utf-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

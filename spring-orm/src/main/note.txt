@@ -1,0 +1,96 @@
+
+整合的逻辑
+
+
+首先，我们需要从Mybatis官网上下载Mybatis-Spring的jar包添加到我们项目的类路径下
+
+我们知道在Mybatis的所有操作都是基于一个SqlSession的
+而SqlSession是由SqlSessionFactory来产生的
+SqlSessionFactory又是由SqlSessionFactoryBuilder来生成的。
+
+        // SqlSessionFactoryBuilder
+        SqlSessionFactoryBuilder sfb = new SqlSessionFactoryBuilder();
+        // SqlSessionFactory
+        SqlSessionFactory sf = sfb.build(reader);
+        // SqlSession
+        SqlSession session = sf.openSession();
+
+
+但是Mybatis-Spring是基于SqlSessionFactoryBean的。
+
+在使用Mybatis-Spring的时候，我们也需要SqlSession，而且这个SqlSession是内嵌在程序中的，一般不需要我们直接访问。
+SqlSession也是由SqlSessionFactory来产生的
+但是Mybatis-Spring给我们封装了一个SqlSessionFactoryBean
+在这个bean里面还是通过SqlSessionFactoryBuilder来建立对应的SqlSessionFactory，进而获取到对应的SqlSession。
+
+通过SqlSessionFactoryBean我们可以通过对其指定一些属性来提供Mybatis的一些配置信息。
+
+
+接下来就是在Spring的applicationContext文件中定义我们想要的Mapper对象对应的MapperFactoryBean了。
+通过MapperFactoryBean可以获取到我们想要的Mapper对象。
+MapperFactoryBean实现了Spring的FactoryBean接口，
+所以MapperFactoryBean是通过FactoryBean接口中定义的getObject方法来获取对应的Mapper对象的。
+
+在定义一个MapperFactoryBean的时候有两个属性需要我们注入，
+    一个是Mybatis-Spring用来生成实现了SqlSession接口的SqlSessionTemplate对象的sqlSessionFactory；
+    另一个就是我们所要返回的对应的Mapper接口了。
+
+定义好相应Mapper接口对应的MapperFactoryBean之后，我们就可以把我们对应的Mapper接口注入到由Spring管理的bean对象中了
+
+比如Service bean对象。这样当我们需要使用到相应的Mapper接口时，MapperFactoryBean会从它的getObject方法中获取对应的Mapper接口，
+
+而getObject内部还是通过我们注入的属性调用SqlSession接口的getMapper(Mapper接口)方法来返回对应的Mapper接口的。
+这样就通过把SqlSessionFactory和相应的Mapper接口交给Spring管理实现了Mybatis跟Spring的整合。
+
+
+
+
+2.1 问题
+
+如何批量扫描MyBatis中的Mapper接口，可以简化一个Mapper接口一个MapperFactoryBean的定义方法？
+
+2.2 方案
+
+MapperScannerConfigurer可以批量扫描MyBatis的Mapper接口，并为每个接口生成一个MapperFactoryBean实例。
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="spring.mybatis"/>
+    </bean>
+
+
+3.1 问题
+
+上述扫描会扫描指定包里面的全部mapper , 如何扫描指定的mapper呢 ，也就是需要将某个包中带有指定注解标记的Mapper接口扫描，转化成MapperFactoryBean对象。
+3.2 方案
+
+可以先自定义一个注解标记，然后在MapperScannerConfigurer配置中将其指定给annotationClass属性。
+这样在Mapper接口中带有自定义注解标记的就可以扫描生成MapperFactoryBean；不带有注解标记的就不进行处理。
+
+3.3 步骤
+    定义 annotations
+    用 annotations 指定需要扫描的 mapper
+    在application.xml 配置 annotationClass
+
+
+
+4 通过SqlSessionTemplate实现对Dept表的Map类型查询操作案例
+4.1 问题
+
+在Spring和MyBatis整合应用中，除了使用Mapper接口注入外，还可以使用SqlSessionTemplate注入。
+4.2 方案
+
+首先在Spring容器中定义一个SqlSessionTemplate对象，然后将它给DAO注入，在DAO中
+
+
+
+
+
+
+
+
+
+
+
+
+
+

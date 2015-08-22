@@ -1,0 +1,10 @@
+  velocity.properties 的一些配置项
+
+velocimcro.library属性：指定自己的模板库，多个模板库以逗号分隔。默认情况下，velocity查找唯一的一个库：VM_global_library.vm
+velocimacro.permissions.allow.inline属性：是否允许开发者在普通模板内定义Velocity宏。ho
+velocimacro.permissions.allow.inline.replace.global属性: 是否允许设计者使用本地的inline的 宏替代全局的宏（全局的宏是指在velocimacro.library属性中指定的文件内定义的宏）。默认情况下，此值为false。这样就阻止本地的宏覆盖全局的。
+velocimacro.permissions.allow.inline.local.scale属性： inline定义的宏是否仅仅在被定义的template内可见.  默认是false。 换句话说，如果这个属性设置为true，一个inline定义的宏只能在定义它的template内使用。
+velocimacro.context.localscope属性:  默认值为false。当设置为true时，任何在宏内通过#set()对context的修改被认为是针对此宏的本地设置，而不会永久的影响内容。
+velocimacro.library.autoreload属性: 控制宏库的自动加载。默认是false。当设置为ture时，对于一个宏的调用将自动检查原始库是否发生了变化，如果变化将重新加载它。这个属性使得你可以不用重新启动servlet容器而达到重新加载的效果，就像你使用regular模板一样。这个属性可以使用的前提就是resource loader缓存是off状态（file.resource.loader.cache = false）。注意这个属性实际上是针对开发而非产品的。
+    Velocity宏的一些说明
+        Velocity宏必须定义在它们被使用之前，也就是说，你的#macro()声明应该出现在使用宏之前。特别要注意的是，当你试图#parse()一个包含#macro()的模板时候。因为#parse()发生在运行期，但是解析器在parsetiem决定一个看似VM元素的元素是否是一个VM元素，这样#parse()-ing一组VM声明将不按照预期的样子工作。为了得到预期的结果，只需要你简单的使用velocimacro.library使得Velocity在启动时加载你的VMs。

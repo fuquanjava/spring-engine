@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="spring.mybatis.mapper.UserMapper">
+    <insert id="addUser" parameterType="User" >
+        insert into t_user values (#{id} , #{name},#{password},#{email},#{lastlogintime});
+    </insert>
+
+    <update id="updateUser" parameterType="User" >
+        update t_user set name = #{name} , email=#{email} , password=#{password} ,lastLoginTime =#{lastLoginTime}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer" >
+        delete from t_user where id = #{id}
+    </delete>
+
+    <select id="findById" parameterType="long" resultType="User" >
+        select id , name , email , password ,lastLoginTime from t_user where id =  #{ userId};
+    </select>
+
+    <select id="findAll" resultType="User" >
+        select  id , name , email , password ,lastloginTime from t_user
+    </select>
+
+    <!-- 返回map-->
+    <select id="getUser" resultType="java.util.HashMap" parameterType="int" >
+                select id , name , email , password ,lastLoginTime from t_user where id =  #{ userId};
+    </select>
+
+    <select id="listUser" resultMap="userMap" >
+        select  id , name , email , password ,lastloginTime from t_user
+    </select>
+
+    <!-- 表字段跟 属性对不上 采用的映射 -->
+    <resultMap id="userMap" type="User" >
+        <result column="id" property="id" javaType="long" jdbcType="INTEGER" />
+        <result column="name" property="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result column="email" property="email" javaType="String" jdbcType="VARCHAR" />
+        <result column="password" property="password" javaType="String" jdbcType="VARCHAR" />
+        <result column="lastLoginTime" property="lastlogintime" jdbcType="DATE" javaType="java.util.Date" />
+    </resultMap>
+</mapper>

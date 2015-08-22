@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+
+    <!--<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxIdle" value="2"/>
+        <property name="maxTotal" value="3"/>
+        <property name="maxWaitMillis" value="10" />
+    </bean>
+
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="poolConfig" ref="jedisPoolConfig"/>
+        <property name="hostName" value="192.168.184.129"/>
+        <property name="database" value="0" />
+    </bean>
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+    </bean>-->
+    <!--<bean id="cacheClient" class="session.impl.cache.RedisCacheClientImpl">
+        <property name="redisTemplate" ref="redisTemplate"/>
+    </bean>
+
+    <bean id="sessionManager" class="session.impl.SessionManager">
+        <property name="cacheClient" ref="cacheClient"/>
+    </bean>
+-->
+    <bean id="redisClient" class="util.RedisClient" >
+        <constructor-arg index="0" value="192.168.184.129"  />
+        <constructor-arg index="1" value="6379"  />
+    </bean>
+    <bean id="cacheClient" class="session.impl.cache.RedisCacheImpl" >
+        <property name="redisClient" ref="redisClient" />
+    </bean>
+    <bean id="sessionManager" class="session.impl.SessionManager">
+        <property name="cacheClient" ref="cacheClient"/>
+    </bean>
+
+</beans>
