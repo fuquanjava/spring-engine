@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean name="memcachedClient" factory-bean="clientBuilder"
+          factory-method="build" destroy-method="shutdown"/>
+
+
+    <bean id="crc32Hash" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="net.rubyeye.xmemcached.HashAlgorithm.CRC32_HASH" />
+    </bean>
+
+    <bean id="clientBuilder" class="net.rubyeye.xmemcached.XMemcachedClientBuilder" destroy-method="">
+        <constructor-arg>
+            <list>
+                <bean class="java.net.InetSocketAddress">
+                    <constructor-arg>
+                        <value>${memcache1.host.unit}</value>
+                    </constructor-arg>
+                    <constructor-arg>
+                        <value>${memcache1.port.unit}</value>
+                    </constructor-arg>
+                </bean>
+                <bean class="java.net.InetSocketAddress">
+                    <constructor-arg>
+                        <value>${memcache2.host.unit}</value>
+                    </constructor-arg>
+                    <constructor-arg>
+                        <value>${memcache2.port.unit}</value>
+                    </constructor-arg>
+                </bean>
+            </list>
+        </constructor-arg>
+        <constructor-arg>
+            <list>
+                <value>${memcache1.weight.unit}</value>
+                <value>${memcache2.weight.unit}</value>
+            </list>
+        </constructor-arg>
+
+        <property name="connectionPoolSize" value="${memcache.connectionPoolSize.unit}" />
+
+        <!-- Use binary protocol,default is TextCommandFactory -->
+        <property name="commandFactory">
+            <bean class="net.rubyeye.xmemcached.command.BinaryCommandFactory"></bean>
+        </property>
+        <!--分布策略，一致性哈希-->
+        <property name="sessionLocator">
+            <bean class="net.rubyeye.xmemcached.impl.KetamaMemcachedSessionLocator">
+                <constructor-arg index="0">
+                    <ref bean="crc32Hash" />
+                </constructor-arg>
+                <constructor-arg index="1">
+                    <value>true</value>
+                </constructor-arg>
+            </bean>
+        </property>
+        <!--序列化转换器，默认使用net.rubyeye.xmemcached.transcoders.SerializingTranscoder-->
+        <property name="transcoder">
+            <bean class="net.rubyeye.xmemcached.transcoders.SerializingTranscoder">
+                <property name="compressionThreshold" value="${memcache.compression.threshold.unit}"></property>
+            </bean>
+        </property>
+
+        <!--是否启用failure模式，true为启用，默认不启用-->
+        <property name="failureMode" value="${memcache.failureMode.unit}"></property>
+    </bean>
+</beans>

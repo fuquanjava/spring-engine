@@ -54,6 +54,8 @@
         <!-- spring-nosql -->
         <redis.clients.version>2.1.0</redis.clients.version>
         <spring.data.redis.version>1.1.0.RELEASE</spring.data.redis.version>
+        <dep.xmemcached.version>2.0.0</dep.xmemcached.version>
+
         <!-- spring webmvc -->
         <dev.jstl.version>1.2</dev.jstl.version>
         <dev.standard.version>1.1.2</dev.standard.version>
@@ -70,7 +72,7 @@
 <!--        <dependency>
             <groupId>com.rrkd.systemframework</groupId>
             <artifactId>se</artifactId>
-            <version>1.0.5</version>
+            <version>1.0.4</version>
         </dependency>-->
 
         <dependency>

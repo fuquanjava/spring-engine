@@ -15,6 +15,13 @@
 
     </properties>
     <dependencies>
+        <!-- memcached -->
+        <dependency>
+            <groupId>com.googlecode.xmemcached</groupId>
+            <artifactId>xmemcached</artifactId>
+            <version>${dep.xmemcached.version}</version>
+        </dependency>
+
         <dependency>
             <!--spring 对 jedis的封装(jedisTemplate) -->
             <groupId>org.springframework.data</groupId>

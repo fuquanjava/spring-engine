@@ -9,6 +9,7 @@
 		<property name="locations">
 			<list>
 				<value>classpath:config/redis_unit.properties</value>
+				<value>classpath:config/memcache_unit.properties</value>
 			</list>
 		</property>
 		<property name="fileEncoding">

@@ -3,11 +3,12 @@
         "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="spring.mybatis.domain.User" alias="User" />
+        <typeAlias type="mybatis.dao.domain.DeptDO" alias="deptDO" />
+        <typeAlias type="mybatis.dao.domain.UserDO" alias="userDO" />
     </typeAliases>
-
     <mappers>
-        <mapper resource="config/mybatis/user.xml"  />
+<!--        <mapper resource="config/mybatis/dept.xml"  />
+        <mapper resource="config/mybatis/user.xml"  />-->
     </mappers>
 
 </configuration>
