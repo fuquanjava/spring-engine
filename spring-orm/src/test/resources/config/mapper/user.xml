@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="mybatis.dao.IUserDAO">
-    <select id="getUserDO" resultType="userDO" >
+    <select id="getUserDO" resultType="mybatis.dao.domain.UserDO" >
         SELECT id, name, password,lastLoginTime FROM USER where id = #{id}
     </select>
 </mapper>

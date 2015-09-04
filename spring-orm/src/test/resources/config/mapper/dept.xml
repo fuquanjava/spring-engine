@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="mybatis.dao.IDeptDAO">
-    <select id="getDeptDO" resultType="deptDO" >
+
+    <select id="getDeptDO" resultType="mybatis.dao.domain.DeptDO" >
         SELECT id,deptno,dname,loc FROM dept where id = #{id}
     </select>
 </mapper>
