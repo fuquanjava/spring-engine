@@ -29,6 +29,9 @@ public class HelloController2 {
         mv.addObject("message", "Hello World  man !");
         //设置逻辑视图名，视图解析器会根据该名字解析到具体的视图页面
         mv.setViewName("hello");
+        Thread.sleep(1000);
+        System.out.println(HelloController2.this.hashCode());
+        System.out.println(Thread.currentThread().getName());
 
         return mv;
     }

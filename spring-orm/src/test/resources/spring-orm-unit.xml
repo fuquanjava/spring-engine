@@ -7,5 +7,6 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <import resource="spring/spring-mybatis-unit.xml" />
+    <import resource="spring/spring-mybatis-unit.xml"/>
+
 </beans>

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import session.impl.SessionManager;
 import util.CoreContextHolder;
-import vo.StaffVo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +20,10 @@ public class HelloController extends BaseController {
 
     @RequestMapping(value = "/login")
     public String login(HttpServletRequest request , HttpServletResponse response){
-        String name= getParam("name");
+        System.out.println(Thread.currentThread().getName());
+
+
+        /*String name= getParam("name");
         String pwd = getParam("pwd");
         if("admin".equals(name) && "123".equals(pwd)){
             //存入session
@@ -32,7 +34,7 @@ public class HelloController extends BaseController {
             request.getSession().setAttribute(STAFFVO, staffVo);
             addStaffCookie(request, response , name);
             return "main";
-        }
+        }*/
         return "login";
     }
     public static void addStaffCookie(HttpServletRequest request, HttpServletResponse response,String staffId){

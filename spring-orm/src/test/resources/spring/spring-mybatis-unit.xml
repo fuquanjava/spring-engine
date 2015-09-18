@@ -85,7 +85,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations">
             <array>
-                <value>classpath:config/mapper/**.xml</value>
+                <value>classpath:config/mapper/*.xml</value>
             </array>
         </property>
         <property name="configLocation" value="classpath:config/sqlmap.xml"/>
