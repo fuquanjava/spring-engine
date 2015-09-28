@@ -19,8 +19,8 @@
     <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
 
     <!-- 处理器 -->
-    <bean name="/hello" class="webapp.controller.HelloController"/>
-   <!-- 无效的 : <bean name="hello2" class="webapp.controller.HelloController"/>-->
+    <bean name="/hello" class="webapp.HelloController"/>
+   <!-- 无效的 : <bean name="hello2" class="webapp.HelloController"/>-->
 
     <!-- 拦截器 -->
     <bean name = "handlerInterceptor1" class="webapp.controller.interceptor.HandlerInterceptor1" />

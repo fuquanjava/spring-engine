@@ -1,4 +1,4 @@
-package controller.base;
+package webmvc.controller.base;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

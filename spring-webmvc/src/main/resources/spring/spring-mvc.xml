@@ -1,63 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
-
-    <!-- Spring3.1之前的注解 HandlerMapping
-    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>-->
-    <!-- Spring3.1之前的注解 HandlerAdapter
-    <bean  class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/> -->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.1.xsd
 
 
-    <!--Spring3.1开始的注解 HandlerMapping -->
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
-    <!--Spring3.1开始的注解 HandlerAdapter -->
-    <bean  class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
 
-    <!-- 处理器  只 需 要 将 处 理 器 实 现 类 注 册 到 spring 配 置 文 件 即 可 ， spring 的 DefaultAnnotationHandlerMapping 或
-RequestMappingHandlerMapping 能根据注解@Controller 或@RequestMapping 自动发现 -->
+	<!-- 自动扫描的包名 -->
+	<context:component-scan base-package="webmvc.controller.*" />
 
-    <bean class="webapp.controller.HelloController2" />
-    <bean class="webapp.controller.IndexController" />
+	<!-- 默认的注解映射的支持 -->
+	<mvc:annotation-driven>
+		<mvc:return-value-handlers>
+			<!-- 添加统一返回值的处理器 -->
+			<bean class="handler.CommonMethodReturnValueHandler" />
+		</mvc:return-value-handlers>
+	</mvc:annotation-driven>
+	
+	<!-- 添加统一异常处理器
+	<bean class="Common">
+	</bean>-->
 
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<!-- export interceptor -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.sztx.demo.web.interceptor.ExportInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
-    <bean id="velocityConfigurer"
-          class="org.springframework.web.servlet.view.velocity.VelocityConfigurer" >
-        <property name="configLocation">
-            <value>classpath:velocity.properties</value>
-        </property>
-    </bean>
+	<!-- defaultServlet负责对静态资源文件的访问 -->
+	<mvc:default-servlet-handler />
 
-    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-        <property name="viewResolvers" >
-            <list>
-                <bean id="velocityLayoutViewResolver"
-                      class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
-                    <property name="cache" value="false" />
-                    <property name="order" value="1" />
-                    <property name="layoutUrl" value="layout.vm" />
-                    <property name="suffix" value=".vm" />
-                    <property name="contentType" value="text/html;charset=UTF-8" />
-                    <property name="dateToolAttribute" value="date" />
-                    <property name="exposeSpringMacroHelpers" value="true" /><!--是否使用spring对宏定义的支持-->
-                    <property name="exposeRequestAttributes" value="true" /><!--是否开放request属性-->
-                    <property name="requestContextAttribute" value="rc"/><!--request属性引用名称-->
-                    <property name="screenContentKey" value="screen_content" />
-                </bean>
-                <bean id="resourceViewResolver"
-                      class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-                    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-                    <property name="prefix" value="/WEB-INF/jsp/"/>
-                    <property name="suffix" value=".jsp"/>
-                </bean>
-            </list>
+	<!-- 配置文件上传支持 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		p:defaultEncoding="utf-8" />
 
-        </property>
-        <property name="defaultViews">
-            <list>
-                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
-            </list>
-        </property>
-    </bean>
+	<!-- velocity视图解析配置 -->
+	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="configLocation">
+			<value>classpath:velocity.properties</value>
+		</property>
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+				<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+					<property name="cache" value="false" />
+					<property name="layoutUrl" value="layout/layout.vm" />
+					<property name="suffix" value=".vm" />
+					<property name="contentType" value="text/html;charset=UTF-8" />
+					<property name="dateToolAttribute">
+						<value>dateTool</value>
+					</property>
+					<property name="attributesMap">
+						<map>
+							<!--Velocity Escape Tool -->
+							<entry key="escapeTool">
+								<bean class="org.apache.velocity.tools.generic.EscapeTool" />
+							</entry>
+							<entry key="dateTool">
+								<bean class="org.apache.velocity.tools.generic.DateTool" />
+							</entry>
+						</map>
+					</property>
+				</bean>
+			</list>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+			</list>
+		</property>
+	</bean>
+
+	<import resource="spring-aop.xml" />
+	<import resource="spring-login.xml" />
 </beans>
