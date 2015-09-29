@@ -18,6 +18,7 @@
         <module>web</module>
         <module>spring</module>
         <module>dubbo</module>
+        <module>spring-quartz</module>
     </modules>
 
     <properties>
@@ -74,6 +75,8 @@
         <dev.zookeeper.version>3.4.6</dev.zookeeper.version>
         <dev.zkclient.version>0.1</dev.zkclient.version>
 
+        <dep.quartz.version>2.2.1</dep.quartz.version>
+
     </properties>
 
     <dependencies>
@@ -82,6 +85,19 @@
             <artifactId>se</artifactId>
             <version>1.0.4</version>
         </dependency>-->
+
+        <!-- quartz -->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>${dep.quartz.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-jobs</artifactId>
+            <version>${dep.quartz.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.apache.velocity</groupId>
