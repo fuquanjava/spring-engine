@@ -17,6 +17,6 @@
 
 	<!-- 自动扫描的包名 -->
 
-	<import resource="spring/spring-mvc.xml" />
+	<import resource="spring/spring-mvc.xml.bak" />
 
 </beans>

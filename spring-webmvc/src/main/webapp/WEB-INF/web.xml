@@ -38,12 +38,11 @@
         <!--
         自此请求已交给 Spring Web MVC 框架处理，因此我们需要配置 Spring 的配置文件，默认 DispatcherServlet 会加
 载 WEB-INF/[DispatcherServlet 的 Servlet 名 字 ]-servlet.xml 配 置 文 件 。 -->
-        <load-on-startup>1</load-on-startup>
         <init-param>
             <param-name>contextConfigLocation</param-name> <!--指定配置文件的路径-->
-            <param-value>classpath:spring/spring-mvc.xml</param-value>
+            <param-value>classpath:spring/spring-mvc.xml.bak</param-value>
         </init-param>
-
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>

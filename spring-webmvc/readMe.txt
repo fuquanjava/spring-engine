@@ -5,7 +5,7 @@ spring-config.xml 配置内容说明:
 BeanNameUrlHandlerMapping：
         表示将请求的 URL 和 Bean 名字映射，如 URL 为 “上下文/hello” ，则 Spring 配置文件
 必须有一个名字为“/hello”的 Bean，上下文默认忽略 , beanName 必须以 / 开头.
-    <bean name="/hello" class="webapp.controller.HelloController"/>
+    <bean name="/hello" class="webapp.HelloController"/>
 
 
 

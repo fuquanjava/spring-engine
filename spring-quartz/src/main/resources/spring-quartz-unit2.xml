@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.quartz.task"/>
+
+    <!-- 属性文件读入 -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 数据源定义,使用c3p0 连接池 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="initialPoolSize" value="5"/>
+        <property name="minPoolSize" value="5"/>
+        <property name="maxPoolSize" value="20"/>
+        <property name="acquireIncrement" value="2"/>
+        <property name="maxIdleTime" value="3600"/>
+        <property name="idleConnectionTestPeriod" value="180"/>
+        <property name="automaticTestTable" value="C3P0TESTTABLE"/>
+    </bean>
+
+    <bean name="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="applicationContextSchedulerContextKey" value="applicationContextKey"/>
+        <property name="configLocation" value="classpath:quartz.properties.bak"/>
+        <property name="triggers">
+            <list>
+                <ref bean="trigger1"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="jobDetail1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="printMsgTask"/>
+        <property name="targetMethod" value="printMsg"/>
+    </bean>
+    <bean id="trigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail1"/>
+        <property name="cronExpression" value="0/3 * * * * ?"/>
+    </bean>
+</beans>
