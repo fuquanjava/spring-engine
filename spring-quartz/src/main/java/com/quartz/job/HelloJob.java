@@ -23,6 +23,14 @@ public class HelloJob implements Job{
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        LOG.info(DateUtil.getNow());
+        LOG.info("==========start =============="+DateUtil.getNow());
+        LOG.info(context.getTrigger().toString());
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        LOG.info("==========end =============="+DateUtil.getNow());
     }
 }
