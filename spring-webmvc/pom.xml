@@ -27,7 +27,7 @@
             <artifactId>commons-collections</artifactId>
             <version>${dev.commons.collections}</version>
         </dependency>
-        <!-- velocity -->
+        <!-- velocity
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
@@ -40,7 +40,7 @@
             <groupId>lt.velykis.maven.skins</groupId>
             <artifactId>reflow-velocity-tools</artifactId>
         </dependency>
-
+-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>

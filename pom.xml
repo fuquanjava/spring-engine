@@ -15,10 +15,10 @@
         <module>spring-nosql</module>
         <module>spring-jedis</module>
         <module>web-core</module>
-        <module>web</module>
         <module>spring</module>
         <module>dubbo</module>
         <module>spring-quartz</module>
+        <module>schedule</module>
     </modules>
 
     <properties>
@@ -48,7 +48,7 @@
 
         <!--spring -orm  -->
         <dev.druid.version>1.0.8</dev.druid.version>
-        <dev.mysql.version>5.1.6</dev.mysql.version>
+        <dev.mysql.version>5.1.36</dev.mysql.version>
         <dev.mybatis.version>3.2.3</dev.mybatis.version>
         <dev.spring.mybatis.version>1.2.2</dev.spring.mybatis.version>
         <dev.mybatis.pagehelper>3.7.4</dev.mybatis.pagehelper>
@@ -76,6 +76,8 @@
         <dev.zkclient.version>0.1</dev.zkclient.version>
 
         <dep.quartz.version>2.2.1</dep.quartz.version>
+        <dep.tbschedule.version>3.2.18</dep.tbschedule.version>
+        <dep.zkclient.version>0.4</dep.zkclient.version>
 
     </properties>
 
@@ -85,6 +87,18 @@
             <artifactId>se</artifactId>
             <version>1.0.4</version>
         </dependency>-->
+        <!-- zkclient -->
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>${dep.zkclient.version}</version>
+        </dependency>
+        <!-- tbschedule -->
+        <dependency>
+            <groupId>com.taobao.pamirs.schedule</groupId>
+            <artifactId>tbschedule</artifactId>
+            <version>${dep.tbschedule.version}</version>
+        </dependency>
 
         <!-- quartz -->
         <dependency>

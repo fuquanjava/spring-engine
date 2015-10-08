@@ -25,6 +25,18 @@
             <artifactId>quartz-jobs</artifactId>
             <version>${dep.quartz.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${dev.mybatis.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${dev.spring.mybatis.version}</version>
+        </dependency>
+
     </dependencies>
 
 
