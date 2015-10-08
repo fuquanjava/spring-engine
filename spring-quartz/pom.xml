@@ -9,22 +9,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-tbschedule</artifactId>
+    <artifactId>spring-quartz</artifactId>
+
     <dependencies>
-        <!-- zkclient -->
         <dependency>
-            <groupId>com.101tec</groupId>
-            <artifactId>zkclient</artifactId>
-        </dependency>
-        <!-- tbschedule -->
-        <dependency>
-            <groupId>com.taobao.pamirs.schedule</groupId>
-            <artifactId>tbschedule</artifactId>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-jobs</artifactId>
         </dependency>
     </dependencies>
-
 </project>

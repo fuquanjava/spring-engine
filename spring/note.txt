@@ -1,0 +1,40 @@
+
+InitializingBean
+
+   Spirng的InitializingBean为bean提供了定义初始化方法的方式。InitializingBean是一个接口，它仅仅包含一个方法：afterPropertiesSet()。
+Bean实现这个接口，在afterPropertiesSet()中编写初始化代码, 需要将这个bean配置到spring的容器即可，不需要额外其他的配置.
+
+init-method
+    Spring虽然可以通过InitializingBean完成一个bean初始化后对这个bean的回调，
+    但是这种方式要求bean实现 InitializingBean接口, 一但bean实现了InitializingBean接口，那么这个bean的代码就和Spring耦合到一起了。
+    通常情况下我不鼓励bean直接实现InitializingBean，可以使用Spring提供的init-method的功能来执行一个bean 子定义的初始化方法。
+    这种实现需要配置bean的 init-method="xxx", 同时xxx 方法必须是无参数的,否则抛出异常
+如果一个bean配置了如上的两个，那么将先执行 InitializingBean , 再执行 init-method 配置项.
+
+
+
+ApplicationContextAware
+
+        加载Spring配置文件时，如果Spring配置文件中所定义的Bean类实现了ApplicationContextAware 接口，
+        那么在加载Spring配置文件时，会自动调用ApplicationContextAware 接口中的
+           public void setApplicationContext(ApplicationContext context) throws BeansException方法，获得ApplicationContext 对象。
+        注意，一定要将此bean纳入spring管理之中.
+
+ApplicationContext的事件机制
+
+        ApplicationContext的事件机制是观察者设计模式的实现，通过 ApplicationEvent 类和 ApplicationListener 接口，
+        可以实现 ApplicationContext 的事件处理。如果容器中有一个 ApplicationListener Bean 每当 ApplicationContext 发布 ApplicationEvent时，ApplicationListener Bean将自动触发。
+        ApplicationContext的事件机制是观察者设计模式的实现，通过 ApplicationEvent 类和 ApplicationListener 接口，可以实现 ApplicationContext 的事件处理。
+        如果容器中有一个 ApplicationListener Bean 每当 ApplicationContext 发布 ApplicationEvent时，ApplicationListener Bean将自动触发。
+
+        Spring提供如下几个内置事件:
+
+        　　》ContextRefreshEvent: ApplicationContext容器初始化或刷新触发该事件。此处的初始化是指，所有Bean 被成功装载，后处理Bean被检测并激发，所有Singleton Bean被预实例化，ApplicationContext容器已就绪可用。
+
+        　　》ContextStartedEvent: 当使用ConfigurableApplicationContext(ApplicationContext的子接口)接口的start()方法启动ApplicationContext容器时触发该事件。容器管理生命周期的Bean实例将获得一个指定的启动信号，这在经常需要停止后重新启动的场合比较常见。
+
+        　　》ContextClosedEvent:当使用ConfigurableApplicationContext接口的close()方法关闭ApplicationContext容器时触发该事件。
+
+        　　》ContextStoppedEvent:当使用ConfigurableApplicationContext接口的stop()方法使ApplicationContext停止时触发该事件。此处的“停止”意味着容器管理生命周期的Bean实例将获得一个指定的停止信号，被停止的Spring容器可在此调用start()方法重新启动。
+
+        　　》RequestHandledEvent:Web相关的事件，只能运用于使用DispatcherServlet的Web运用。在使用Spring作为前端的MVC控制器时，当Spring处理用户请求结束后，系统会自动触发该事件。

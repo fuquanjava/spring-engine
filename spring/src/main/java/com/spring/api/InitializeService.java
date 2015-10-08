@@ -1,11 +1,8 @@
 package com.spring.api;
 
-import com.spring.api.bean.Bean;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 /**
  * fuquanemail@gmail.com
@@ -15,8 +12,7 @@ import java.util.Map;
 public class InitializeService implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        Map<String , Bean> map =
-                SpringContextHolder.applicationContext.getBeansOfType(Bean.class);
-        System.out.println(map);
+        // 所有的bean都实例化完毕之后会调用
+        System.out.println("InitializeService onApplicationEvent,事件源:"+contextRefreshedEvent.getSource());
     }
 }

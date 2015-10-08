@@ -22,12 +22,12 @@ public class Test {
 
     @org.junit.Test
     public void test(){
-        CacheManager cacheManager = new CacheManager();
+/*        CacheManager cacheManager = new CacheManager();
         AccountService service = new AccountService(cacheManager);
         Account a1 = service.getAccountByName("a1");
         Account aa1 = service.getAccountByName("a1");
 
         System.out.println(a1);
-        System.out.println(aa1);
+        System.out.println(aa1);*/
     }
 }

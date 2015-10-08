@@ -17,4 +17,9 @@ public class SpringContextHolder implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         SpringContextHolder.applicationContext = applicationContext;
     }
+
+
+    public static <T> T getBean (String name){
+        return (T) applicationContext.getBean(name);
+    }
 }
