@@ -11,30 +11,25 @@
 
     <artifactId>spring-quartz</artifactId>
     <properties>
-        <dep.quartz.version>2.2.1</dep.quartz.version>
+
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
-            <version>${dep.quartz.version}</version>
         </dependency>
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz-jobs</artifactId>
-            <version>${dep.quartz.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>${dev.mybatis.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
-            <version>${dev.spring.mybatis.version}</version>
         </dependency>
 
     </dependencies>

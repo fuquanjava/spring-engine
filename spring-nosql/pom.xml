@@ -16,23 +16,20 @@
     </properties>
     <dependencies>
         <!-- memcached -->
-        <dependency>
+<!--        <dependency>
             <groupId>com.googlecode.xmemcached</groupId>
             <artifactId>xmemcached</artifactId>
-            <version>${dep.xmemcached.version}</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <!--spring 对 jedis的封装(jedisTemplate) -->
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
-            <version>${spring.data.redis.version}</version>
         </dependency>
         <!-- jedis 是 redis的客户端封装 -->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
-            <version>${redis.clients.version}</version>
         </dependency>
     </dependencies>
 
