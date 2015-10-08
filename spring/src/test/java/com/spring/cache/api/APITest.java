@@ -5,7 +5,6 @@ import com.spring.api.eventlistener.MyEvent;
 import com.spring.api.eventlistener.MyListener;
 import com.spring.cache.BaseTest;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

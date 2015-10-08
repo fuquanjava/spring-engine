@@ -38,3 +38,8 @@ ApplicationContext的事件机制
         　　》ContextStoppedEvent:当使用ConfigurableApplicationContext接口的stop()方法使ApplicationContext停止时触发该事件。此处的“停止”意味着容器管理生命周期的Bean实例将获得一个指定的停止信号，被停止的Spring容器可在此调用start()方法重新启动。
 
         　　》RequestHandledEvent:Web相关的事件，只能运用于使用DispatcherServlet的Web运用。在使用Spring作为前端的MVC控制器时，当Spring处理用户请求结束后，系统会自动触发该事件。
+
+    注意:
+        applicationontext和使用MVC之后的webApplicationontext会两次调用上面的方法，如何区分这个两种容器呢？
+        但是这个时候，会存在一个问题，在web 项目中（spring mvc），系统会存在两个容器，一个是root application context ,
+        另一个就是我们自己的 projectName-servlet context（作为root application context的子容器）,这种情况下，就会造成onApplicationEvent方法被执行两次
