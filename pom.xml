@@ -16,6 +16,7 @@
         <module>web-core</module>
         <module>spring</module>
         <module>dubbo</module>
+        <module>spring-quartz</module>
     </modules>
 
     <properties>
