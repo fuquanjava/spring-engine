@@ -16,7 +16,6 @@
         <module>web-core</module>
         <module>spring</module>
         <module>dubbo</module>
-        <module>spring-quartz</module>
     </modules>
 
     <properties>
@@ -87,26 +86,25 @@
             <dependency>
                 <groupId>com.101tec</groupId>
                 <artifactId>zkclient</artifactId>
-                <version>${dep.zkclient.version}</version>
+                <version>${dev.zkclient.version}</version>
             </dependency>
             <!-- tbschedule -->
             <dependency>
                 <groupId>com.taobao.pamirs.schedule</groupId>
                 <artifactId>tbschedule</artifactId>
-                <version>${dep.tbschedule.version}</version>
+                <version>${dev.tbschedule.version}</version>
             </dependency>
             <!-- quartz -->
             <dependency>
                 <groupId>org.quartz-scheduler</groupId>
                 <artifactId>quartz</artifactId>
-                <version>${dep.quartz.version}</version>
+                <version>${dev.quartz.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.quartz-scheduler</groupId>
                 <artifactId>quartz-jobs</artifactId>
-                <version>${dep.quartz.version}</version>
+                <version>${dev.quartz.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity</artifactId>
@@ -156,31 +154,6 @@
                         <groupId>commons-logging</groupId>
                     </exclusion>
                 </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-web</artifactId>
-            </dependency>
-            <!-- spring mvc -->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context-support</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-test</artifactId>
-                <scope>test</scope>
-            </dependency>
-
-            <!--数据访问 db -->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-orm</artifactId>
             </dependency>
 
             <dependency>
