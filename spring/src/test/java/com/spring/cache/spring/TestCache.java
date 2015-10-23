@@ -1,7 +1,6 @@
 package com.spring.cache.spring;
 
-import com.spring.cache.BaseTest;
-import com.spring.cache.common.Account;
+import spring.bean.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

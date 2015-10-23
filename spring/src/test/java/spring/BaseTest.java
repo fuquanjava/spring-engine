@@ -1,4 +1,4 @@
-package com.spring.cache;
+package spring;
 
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
@@ -14,7 +14,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
  */
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:spring-unit.xml" })
+@ContextConfiguration(locations = {"classpath:spring.xml"})
 @WebAppConfiguration
 public class BaseTest {
     public Logger logger = LoggerFactory.getLogger(this.getClass());

@@ -1,7 +1,7 @@
 package com.spring.cache.aop;
 
 import com.service.UserService;
-import com.spring.cache.BaseTest;
+import spring.bean.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

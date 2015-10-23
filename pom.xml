@@ -28,22 +28,15 @@
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
         <dev.spring.version>4.1.6.RELEASE</dev.spring.version>
-
         <dev.cglib.version>2.2</dev.cglib.version>
+
+        <!--spring aop-->
+        <dev.aspectj.version>1.7.4</dev.aspectj.version>
         <dev.org.aspectj.version>1.6.8</dev.org.aspectj.version>
         <dev.aopalliance.verison>1.0</dev.aopalliance.verison>
 
-        <dev.slf4j.api.versoin>1.6.1</dev.slf4j.api.versoin>
-        <dev.jcl.over.slf4j>1.7.7</dev.jcl.over.slf4j>
-        <dev.log4j.version>1.2.16</dev.log4j.version>
-        <dev.slf4j.log4j12.version>1.7.5</dev.slf4j.log4j12.version>
-        <dev.logback.version>1.1.2</dev.logback.version>
-        <dev.servlet.api>2.5</dev.servlet.api>
-
-        <dev.jackson.version>2.4.4</dev.jackson.version> <!--spring 响应 json 会用到 -->
-
-        <dev.jsp.version>2.1</dev.jsp.version>
-        <dev.servlet.api.version>3.1.0</dev.servlet.api.version>
+        <!--spring 响应 json 会用到 -->
+        <dev.jackson.version>2.4.4</dev.jackson.version>
 
         <!--spring -orm  -->
         <dev.druid.version>1.0.8</dev.druid.version>
@@ -58,9 +51,6 @@
         <dev.spring.data.redis.version>1.5.1.RELEASE</dev.spring.data.redis.version>
         <dev.redis.clients.version>2.7.2</dev.redis.clients.version>
 
-        <!--spring aop-->
-        <dev.aspectj.version>1.7.4</dev.aspectj.version>
-        <dev.org.aopalliance.version>1.0.0</dev.org.aopalliance.version>
 
         <!-- spring webmvc -->
         <dev.jstl.version>1.2</dev.jstl.version>
@@ -71,6 +61,18 @@
         <dev.reflow.velocity.tools>1.0.0</dev.reflow.velocity.tools>
         <dev.commons.digester>1.8</dev.commons.digester>
         <dev.commons.collections>3.2.1</dev.commons.collections>
+
+
+        <!--log-->
+        <dev.slf4j.api.versoin>1.6.1</dev.slf4j.api.versoin>
+        <dev.jcl.over.slf4j>1.7.7</dev.jcl.over.slf4j>
+        <dev.log4j.version>1.2.16</dev.log4j.version>
+        <dev.slf4j.log4j12.version>1.7.5</dev.slf4j.log4j12.version>
+        <dev.logback.version>1.1.2</dev.logback.version>
+
+
+        <dev.servlet.api.version>2.5</dev.servlet.api.version>
+        <dev.jsp.version>2.1</dev.jsp.version>
 
         <!--tools -->
         <dev.mybatis.generator.core>1.3.2</dev.mybatis.generator.core>
@@ -84,6 +86,7 @@
         <dev.quartz.version>2.2.1</dev.quartz.version>
         <dev.tbschedule.version>3.2.18</dev.tbschedule.version>
         <dev.zkclient.version>0.4</dev.zkclient.version>
+        <dev.zookeeper.version>3.4.6</dev.zookeeper.version>
 
     </properties>
 
@@ -169,7 +172,6 @@
                 <version>${dev.aopalliance.verison}</version>
             </dependency>
 
-
             <!-- spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -249,11 +251,6 @@
                 <version>${dev.spring.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.aopalliance</groupId>
-                <artifactId>com.springsource.org.aopalliance</artifactId>
-                <version>${dev.org.aopalliance.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjrt</artifactId>
                 <version>${dev.aspectj.version}</version>
@@ -289,13 +286,13 @@
             <dependency>
                 <groupId>org.apache.zookeeper</groupId>
                 <artifactId>zookeeper</artifactId>
-                <version>3.4.6</version>
+                <version>${dev.zookeeper.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.sgroschupf</groupId>
                 <artifactId>zkclient</artifactId>
-                <version>0.1</version>
+                <version>${dev.zkclient.version}</version>
             </dependency>
 
             <!--nosql-->
