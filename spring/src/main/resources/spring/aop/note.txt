@@ -1,0 +1,82 @@
+
+beforeAdvice
+
+1）切入点匹配：
+
+    在配置中使用“execution(* spring.aop.service..*(..))) ”匹配目标方法sayBefore，
+    且使用“args(param)”匹配目标方法只有一个参数且传入的参数类型为通知实现方法中同名的参数类型；
+    也就是 method="beforeAdvice(java.lang.Integer)"中指定的类型.
+    如果 目前方法时string,此时配置的是Integer,将不会匹配.
+
+2）目标方法定义：
+
+    使用method=" beforeAdvice(java.lang.String) "指定前置通知实现方法，
+    且该通知有一个参数类型为java.lang.String参数；
+
+3）目标方法参数命名：
+    其中使用arg-names=" param "指定通知实现方法参数名为“param”，
+    切入点中使用“args(param)”匹配的目标方法参数将自动传递给通知实现方法同名参数。
+    这里的意思是将 args(param)中的参数传递给 arg-names="param"参数，通过byName的方式.
+
+
+
+
+afterReturning
+
+<aop:after-returning pointcut="切入点表达式"  pointcut-ref="切入点Bean引用"
+    method="后置返回通知实现方法名"
+    arg-names="后置返回通知实现方法参数列表参数名字"
+    returning="目标方法返回值对应的后置返回通知实现方法参数名"
+/>
+ returning：定义一个名字，该名字用于匹配通知实现方法的一个参数名，当目标方法执行正常返回后，
+ 将把目标方法返回值传给通知方法；
+ returning限定了只有目标方法返回值匹配与通知方法相应参数类型时才能执行后置返回通知，
+ 否则不执行，对于returning对应的通知方法参数为Object类型将匹配任何目标返回值
+
+
+
+afterThrowing
+
+ <aop:after-throwing pointcut="切入点表达式"  pointcut-ref="切入点Bean引用"
+ method="后置异常通知实现方法名"
+ arg-names="后置异常通知实现方法参数列表参数名字"
+ throwing="目标方法将抛出的异常赋值给的通知实现方法参数名"/>
+
+throwing：定义一个名字，该名字用于匹配通知实现方法的一个参数名，当目标方法抛出异常返回后，
+将把目标方法抛出的异常传给通知方法；
+throwing限定了只有目标方法抛出的异常匹配与通知方法相应参数异常类型时才能执行后置异常通知，
+否则不执行，对于throwing对应的通知方法参数为Throwable类型将匹配任何异常。
+
+
+后置最终通知
+afterFinalReturning
+
+<aop:after pointcut="切入点表达式"  pointcut-ref="切入点Bean引用"
+method="后置最终通知实现方法名"
+ arg-names="后置最终通知实现方法参数列表参数名字"/>
+
+
+环绕通知：
+环绕着在切入点选择的连接点处的方法所执行的通知，环绕通知非常强大，
+可以决定目标方法是否执行，什么时候执行，执行时是否需要替换方法参数，
+执行完毕是否需要替换返回值，可通过<aop:aspect>标签下的<aop:around >标签声明：
+
+
+
+6.3.5 Advisor
+
+Advisor表示只有一个通知和一个切入点的切面，由于Spring AOP都是基于AOP联盟的拦截器模型的环绕通知的，
+所以引入Advisor来支持各种通知类型（如前置通知等5种），Advisor概念来自于Spring1.2对AOP的支持，在AspectJ中没有相应的概念对应。
+Advisor可以使用<aop:config>标签下的<aop:advisor>标签定义：
+
+<aop:advisor pointcut="切入点表达式" pointcut-ref="切入点Bean引用"
+                     advice-ref="自定义实现某个通知的bean"/
+
+pointcut和pointcut-ref：二者选一，指定切入点表达式；
+advice-ref：引用通知API实现Bean，如前置通知接口为MethodBeforeAdvice；
+
+在此我们只介绍了前置通知API，其他类型的在后边章节介绍。
+    不推荐使用Advisor，除了在进行事务控制的情况下，其他情况一般不推荐使用该方式，该方式属于侵入式设计，必须实现通知API。
+
+
+arg-names：指定通知实现方法的参数名字，多个用“，”分隔，可选，类似于【3.1.2 构造器注入】中的参数名注入限制：在class文件中没生成变量调试信息是获取不到方法参数名字的，因此只有在类没生成变量调试信息时才需要使用arg-names属性来指定参数名，如arg-names="param"表示通知实现方法的参数列表的第一个参数名字为“param”。
