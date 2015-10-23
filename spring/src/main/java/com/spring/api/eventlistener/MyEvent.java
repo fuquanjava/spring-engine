@@ -12,7 +12,7 @@ public class MyEvent extends ApplicationEvent {
 
     public MyEvent(Object source) {
         super(source);
-        this.eventName = "自定义事件";
+        this.eventName = "aa";
     }
     public String getEventName() {
         return eventName;

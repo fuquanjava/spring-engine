@@ -30,6 +30,8 @@
         <dev.spring.version>4.1.6.RELEASE</dev.spring.version>
 
         <dev.cglib.version>2.2</dev.cglib.version>
+        <dev.org.aspectj.version>1.6.8</dev.org.aspectj.version>
+        <dev.aopalliance.verison>1.0</dev.aopalliance.verison>
 
         <dev.slf4j.api.versoin>1.6.1</dev.slf4j.api.versoin>
         <dev.jcl.over.slf4j>1.7.7</dev.jcl.over.slf4j>
@@ -149,6 +151,25 @@
                 <artifactId>commons-collections</artifactId>
                 <version>3.2.1</version>
             </dependency>
+
+            <!--aop-->
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib-nodep</artifactId>
+                <version>${dev.cglib.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${dev.org.aspectj.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>aopalliance</groupId>
+                <artifactId>aopalliance</artifactId>
+                <version>${dev.aopalliance.verison}</version>
+            </dependency>
+
+
             <!-- spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
