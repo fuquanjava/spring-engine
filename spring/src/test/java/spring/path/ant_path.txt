@@ -1,0 +1,14 @@
+
+  前面介绍的资源路径都是非常简单的一个路径匹配一个资源，Spring还提供了一种更强大的Ant模式通配符匹配，从能一个路径匹配一批资源。
+
+       Ant路径通配符支持“？”、“*”、“**”，注意通配符匹配不包括目录分隔符“/”：
+
+         “?”：匹配一个字符，如“config?.xml”将匹配“config1.xml”；
+         “*”：匹配零个或多个字符串，如“cn/*/config.xml”将匹配“cn/javass/config.xml”，但不匹配匹配“cn/config.xml”；而“cn/config-*.xml”将匹配“cn/config-dao.xml”；
+         “**”：匹配路径中的零个或多个目录，如“cn/**/config.xml”将匹配“cn /config.xml”，也匹配“cn/javass/spring/config.xml”；而“cn/javass/config-**.xml”将匹配“cn/javass/config-dao.xml”，即把“**”当做两个“*”处理。
+
+Spring提供AntPathMatcher来进行Ant风格的路径匹配。具体测试请参考cn.javass.spring.chapter4. AntPathMatcherTest。
+
+Spring在加载类路径资源时除了提供前缀“classpath:”的来支持加载一个Resource，还提供一个前缀“classpath*:”来支持加载所有匹配的类路径Resource。
+
+Spring提供ResourcePatternResolver接口来加载多个Resource，该接口继承了ResourceLoader并添加了“Resource[] getResources(String locationPattern)”用来加载多个Resource：
