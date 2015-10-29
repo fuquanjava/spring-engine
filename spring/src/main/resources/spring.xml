@@ -14,5 +14,7 @@
 
     <import resource="spring/bean/bean.xml" />
 
-    <import resource="spring/aop/aop-annotation.xml" />
+    <!--<import resource="spring/aop/aop-annotation.xml" />-->
+
+    <import resource="spring/thread/spring-threadpool.xml" />
 </beans>
