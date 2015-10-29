@@ -14,5 +14,5 @@
 
     <import resource="spring/bean/bean.xml" />
 
-    <import resource="spring/aop/aop-xml.xml" />
+    <import resource="spring/aop/aop-annotation.xml" />
 </beans>

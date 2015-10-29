@@ -16,4 +16,8 @@ public interface UserService {
 
     void sayAfterReturning();
 
+    void after(String str);
+
+
+
 }

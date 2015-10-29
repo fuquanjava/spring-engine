@@ -17,6 +17,16 @@ public class LogTest extends BaseTest {
     @Test
     public void beforeAdvice(){
         userService.sayBefore("hello spring");
-        userService.sayAfterReturning();
     }
+    @Test
+    public void after(){
+        userService.save();
+        userService.after("hello spring");
+    }
+
+    @Test
+    public void within(){
+        userService.save();
+    }
+
 }
