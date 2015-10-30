@@ -40,7 +40,7 @@
 载 WEB-INF/[DispatcherServlet 的 Servlet 名 字 ]-servlet.xml 配 置 文 件 。 -->
         <init-param>
             <param-name>contextConfigLocation</param-name> <!--指定配置文件的路径-->
-            <param-value>classpath:spring/spring-mvc.xml.bak</param-value>
+            <param-value>classpath:spring-mvc.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>

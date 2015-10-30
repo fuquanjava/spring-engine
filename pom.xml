@@ -116,6 +116,21 @@
                 <artifactId>quartz-jobs</artifactId>
                 <version>${dev.quartz.version}</version>
             </dependency>
+
+            <!--jstl-->
+            <dependency>
+                <groupId>jstl</groupId>
+                <artifactId>jstl</artifactId>
+                <version>${dev.jstl.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>taglibs</groupId>
+                <artifactId>standard</artifactId>
+                <version>${dev.standard.version}</version>
+            </dependency>
+
+            <!--velocity-->
             <dependency>
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity</artifactId>
@@ -130,6 +145,12 @@
                 <groupId>lt.velykis.maven.skins</groupId>
                 <artifactId>reflow-velocity-tools</artifactId>
                 <version>${dev.reflow.velocity.tools}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-digester</groupId>
+                <artifactId>commons-digester</artifactId>
+                <version>${dev.commons.digester}</version>
             </dependency>
 
             <dependency>

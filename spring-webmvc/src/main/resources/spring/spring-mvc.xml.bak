@@ -18,8 +18,8 @@
     <!-- 处理器  只 需 要 将 处 理 器 实 现 类 注 册 到 spring 配 置 文 件 即 可 ， spring 的 DefaultAnnotationHandlerMapping 或
 RequestMappingHandlerMapping 能根据注解@Controller 或@RequestMapping 自动发现 -->
 
-    <bean class="webapp.controller.HelloController2" />
-    <bean class="webapp.controller.IndexController" />
+    <bean class="HelloController2" />
+    <bean class="IndexController" />
 
 
     <bean id="velocityConfigurer"

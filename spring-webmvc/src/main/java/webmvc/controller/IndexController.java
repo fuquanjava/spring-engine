@@ -1,4 +1,4 @@
-package webapp.controller;
+package webmvc.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
