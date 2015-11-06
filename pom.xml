@@ -13,11 +13,11 @@
         <module>mybatis</module>
         <module>spring-webmvc</module>
         <module>spring-nosql</module>
-        <module>web-core</module>
         <module>spring</module>
         <module>dubbo</module>
         <module>spring-quartz</module>
         <module>spring-tbschedule</module>
+        <module>log</module>
     </modules>
 
     <properties>
@@ -77,16 +77,14 @@
         <!--tools -->
         <dev.mybatis.generator.core>1.3.2</dev.mybatis.generator.core>
         <dev.fastjson.version>1.1.36</dev.fastjson.version>
+        <dev.zkclient.version>0.4</dev.zkclient.version>
 
         <dev.dubbo.version>2.5.3</dev.dubbo.version>
         <dev.zookeeper.version>3.4.6</dev.zookeeper.version>
-        <dev.zkclient.version>0.1</dev.zkclient.version>
 
         <!--quartz tbschedule -->
         <dev.quartz.version>2.2.1</dev.quartz.version>
         <dev.tbschedule.version>3.2.18</dev.tbschedule.version>
-        <dev.zkclient.version>0.4</dev.zkclient.version>
-        <dev.zookeeper.version>3.4.6</dev.zookeeper.version>
 
     </properties>
 
@@ -251,11 +249,7 @@
                 <artifactId>spring-aop</artifactId>
                 <version>${dev.spring.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.amqp</groupId>
-                <artifactId>spring-rabbit</artifactId>
-                <version>${dev.spring.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-orm</artifactId>
@@ -310,11 +304,6 @@
                 <version>${dev.zookeeper.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.github.sgroschupf</groupId>
-                <artifactId>zkclient</artifactId>
-                <version>${dev.zkclient.version}</version>
-            </dependency>
 
             <!--nosql-->
             <dependency>
@@ -328,6 +317,13 @@
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
                 <version>${dev.redis.clients.version}</version>
+            </dependency>
+
+            <!--memcached 客户端-->
+            <dependency>
+                <groupId>com.googlecode.xmemcached</groupId>
+                <artifactId>xmemcached</artifactId>
+                <version>${dev.xmemcached.version}</version>
             </dependency>
 
             <!--log start-->
@@ -355,17 +351,27 @@
                 <version>${dev.slf4j.log4j12.version}</version>
             </dependency>
 
-            <!--<dependency>-->
-            <!--<groupId>ch.qos.logback</groupId>-->
-            <!--<artifactId>logback-core</artifactId>-->
-            <!--<version>${dev.logback.version}</version>-->
-            <!--</dependency>-->
 
-            <!--<dependency>-->
-            <!--<groupId>ch.qos.logback</groupId>-->
-            <!--<artifactId>logback-classic</artifactId>-->
-            <!--<version>${dev.logback.version}</version>-->
-            <!--</dependency>-->
+            <!--logback-->
+
+            <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${dev.logback.version}</version>
+            </dependency>
+
+            <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${dev.logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-access</artifactId>
+                <version>${dev.logback.version}</version>
+            </dependency>
+
 
             <!--log end-->
 
@@ -438,25 +444,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
         </dependency>
 
     </dependencies>

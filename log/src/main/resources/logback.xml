@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--scan="true" 自动扫描, 60秒1次. 是否打印logback的信息-->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+<!-- 每个logger都关联到logger上下文，默认上下文名称为“default”。
+    但可以使用<contextName>设置成其他名字，用于区分不同应用程序的记录。一旦设置，不能修改-->
+    <contextName>log</contextName>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoder 默认配置为PatternLayoutEncoder -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 将控制com包下的所有类的日志的打印，但是并没用设置打印级别，所以继承他的上级<root>的日志级别 DEBUG -->
+    <!--没有设置addtivity，默认为true，将此loger的打印信息向上级传递；
+    没有设置appender，此loger本身不打印任何信息, 打印的信息 是传递给 root 的 appender 打印-->
+    <logger name="com"/>
+
+    <!--com.info.Log 全路径 -->
+    <logger name="com.info.log" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+
+    <root level="debug"><!--也是<loger>元素，但是它是根loger。只有一个level属性，应为已经被命名为"root".-->
+        <appender-ref ref="STDOUT" /> <!--<appender-ref>元素，标识这个appender将会添加到这个loger-->
+    </root>
+
+</configuration>

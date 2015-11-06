@@ -23,8 +23,17 @@ public class Consumer {
     }
     public static void consumerBySpring(){
         HelloService helloService = (HelloService) context.getBean("helloService");
-        String ss = helloService.sayHello("dubbo");
-        System.out.println(ss);
+
+        while (true){
+            String ss = helloService.sayHello("dubbo");
+            System.out.println(ss);
+
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
     public static void consumerByAPI(){
         // 当前应用配置
