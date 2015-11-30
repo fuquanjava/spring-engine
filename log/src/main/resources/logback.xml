@@ -11,21 +11,73 @@
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
+        <target>System.err</target>
     </appender>
 
-    <!-- 将控制com包下的所有类的日志的打印，但是并没用设置打印级别，所以继承他的上级<root>的日志级别 DEBUG -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>./testFile.txt</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10</maxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+
+    <appender name="filterConsole" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>error</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>
+                %-4relative [%thread] %-5level %logger{30} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+
+        <appender name="thresholdfilterConsole"
+                  class="ch.qos.logback.core.ConsoleAppender">
+            <!-- 过滤掉 TRACE 和 DEBUG 级别的日志-->
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>INFO</level>
+            </filter>
+            <encoder>
+                <pattern>
+                    %-4relative [%thread] %-5level %logger{30} - %msg%n
+                </pattern>
+            </encoder>
+        </appender>
+
+
+        <!-- 将控制com包下的所有类的日志的打印，但是并没用设置打印级别，所以继承他的上级<root>的日志级别 DEBUG -->
     <!--没有设置addtivity，默认为true，将此loger的打印信息向上级传递；
     没有设置appender，此loger本身不打印任何信息, 打印的信息 是传递给 root 的 appender 打印-->
     <logger name="com"/>
 
     <!--com.info.Log 全路径 -->
-    <logger name="com.info.log" level="INFO" additivity="false">
-        <appender-ref ref="STDOUT"/>
-    </logger>
+ <!--   <logger name="com.info.log" level="INFO" additivity="false">
+        <appender-ref ref="RollingFile"/>
+    </logger>-->
 
 
     <root level="debug"><!--也是<loger>元素，但是它是根loger。只有一个level属性，应为已经被命名为"root".-->
-        <appender-ref ref="STDOUT" /> <!--<appender-ref>元素，标识这个appender将会添加到这个loger-->
+        <appender-ref ref="thresholdfilterConsole" /> <!--<appender-ref>元素，标识这个appender将会添加到这个loger-->
     </root>
 
 </configuration>

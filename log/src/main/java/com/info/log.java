@@ -14,13 +14,14 @@ public class log {
     public static void main(String[] args) throws InterruptedException {
 
         System.err.println("log class" + log.getClass().getSimpleName());
-        log.trace("======trace");
-        log.debug("======debug");
-        log.info("======info");
-        log.warn("======warn");
-        log.error("======error");
-
-
+        while (true){
+            log.trace("======trace");
+            log.debug("======debug");
+            log.info("======info");
+            log.warn("======warn");
+            log.error("======error");
+            Thread.sleep(500);
+        }
 
     }
 
