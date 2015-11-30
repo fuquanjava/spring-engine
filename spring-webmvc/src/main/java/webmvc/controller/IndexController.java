@@ -28,23 +28,25 @@ public class IndexController {
         System.out.println(request.getParameterValues("f"));
         return mv;
     }
-}
-class MyBinder extends PropertyEditorSupport {
-    @Override
-    public void setAsText(String text) throws IllegalArgumentException {
-        if (text == null || text.equals("")) {
-            text = "0";
+
+    static class MyBinder extends PropertyEditorSupport {
+        @Override
+        public void setAsText(String text) throws IllegalArgumentException {
+            if (text == null || text.equals("")) {
+                text = "0";
+            }
+            setValue(Long.parseLong(text));
         }
-        setValue(Long.parseLong(text));
+
+        @Override
+        public String getAsText() {
+            return getValue().toString();
+        }
+
+        @Override
+        public Object getValue() {
+            return super.getValue();
+        }
     }
 
-    @Override
-    public String getAsText() {
-        return getValue().toString();
-    }
-
-    @Override
-    public Object getValue() {
-        return super.getValue();
-    }
 }

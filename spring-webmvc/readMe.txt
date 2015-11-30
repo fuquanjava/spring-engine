@@ -67,10 +67,22 @@ controller的演变过程
 
 
 
+=========================请求参数映射=========================
+@RequestBody : 接收的是一个Json对象的字符串，而不是一个Json对象。然而在ajax请求往往传的都是Json对象，
+后来发现用 JSON.stringify(data)的方式就能将对象变成字符串。
+同时ajax请求的时候也要指定dataType: "json",contentType:"application/json" 这样就可以轻易的将一个对象或者List传到Java端，使用@RequestBody即可绑定对象或者List.
+
+    该注解常用来处理Content-Type: 不是application/x-www-form-urlencoded编码的内容，例如application/json, application/xml等；
+它是通过使用HandlerAdapter 配置的HttpMessageConverters来解析post data body，然后绑定到相应的bean上的。
+因为配置有FormHttpMessageConverter，所以也可以用来处理 application/x-www-form-urlencoded的内容，处理完的结果放在一个MultiValueMap<String, String>里，这种情况在某些特殊需求下使用
 
 
 
-
+@RequestParam
+A） 常用来处理简单类型的绑定，通过Request.getParameter() 获取的String可直接转换为简单类型的情况（ String--> 简单类型的转换操作由ConversionService配置的转换器来完成）；
+因为使用request.getParameter()方式获取参数，所以可以处理get 方式中queryString的值，也可以处理post方式中 body data的值；
+B）用来处理Content-Type: 为 application/x-www-form-urlencoded编码的内容，提交方式GET、POST；
+C) 该注解有两个属性： value、required； value用来指定要传入值的id名称，required用来指示参数是否必须绑定
 
 
 
