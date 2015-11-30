@@ -1,0 +1,41 @@
+
+
+
+    日志选择.
+       slf4j-api , Commons-logging 都是日志的门面框架（只定义接口)
+       spring 默认采用的是Commons-logging，如果使用Commons-logging的话，只需要添加log4j作为实现即可.
+       对此我的选择是 slf4j-api 替换Commons-logging.
+
+       需要的jar :
+       slf4j-api 日志门面
+       jcl-over-slf4j.jar 用slf4j-api 替换 Commons-logging
+       log4j.jar  具体的日志实现
+       slf4j.log4j12.jar 用来绑定log4j到slf4j
+
+
+       Logback 分为三个模块：logback-core，logback-classic，logback-access
+
+       logback-core 是核心；
+
+       logback-classic 改善了 log4j，且自身实现了 SLF4J API，所以即使用 Logback 你仍然可以使用其他的日志实现，如原始的 Log4J，java.util.logging 等；
+
+       logback-access 让你方便的访问日志信息，如通过 http 的方式
+
+
+
+ =============================================================================
+加载配置文件的位置
+
+ 1.logback首先会试着查找logback.groovy文件;
+ 2.当没有找到时，继续试着查找logback-test.xml文件;
+ 3.当没有找到时，继续试着查找logback.xml文件;
+ 4.如果仍然没有找到，则使用默认配置（打印到控制台）。
+
+ ===============================================================================
+
+
+ <appender>：
+ <appender>是<configuration>的子节点，是负责写日志的组件。
+ <appender>有两个必要属性name和class。name指定appender名称，class指定appender的全限定名
+
+ ===============================================================================

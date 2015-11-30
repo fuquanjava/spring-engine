@@ -16,10 +16,10 @@
     </properties>
     <dependencies>
         <!-- memcached -->
-<!--        <dependency>
+       <dependency>
             <groupId>com.googlecode.xmemcached</groupId>
             <artifactId>xmemcached</artifactId>
-        </dependency>-->
+        </dependency>
 
         <dependency>
             <!--spring 对 jedis的封装(jedisTemplate) -->

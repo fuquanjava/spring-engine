@@ -2,12 +2,12 @@
 
 
     日志选择.
-    slf4j-api , Commons-logging 都是日志的门面框架（只定义接口)
-    spring 默认采用的是Commons-logging，如果使用Commons-logging的话，只需要添加log4j作为实现即可.
-    对此我的选择是 slf4j-api 替换Commons-logging.
+       slf4j-api , Commons-logging 都是日志的门面框架（只定义接口)
+       spring 默认采用的是Commons-logging，如果使用Commons-logging的话，只需要添加log4j作为实现即可.
+       对此我的选择是 slf4j-api 替换Commons-logging.
 
-    需要的jar :
-    slf4j-api 日志门面
-    jcl-over-slf4j.jar 用slf4j-api 替换 Commons-logging
-    log4j.jar  具体的日志实现
-    slf4j.log4j12.jar 用来绑定log4j到slf4j
+       需要的jar :
+       slf4j-api 日志门面
+       jcl-over-slf4j.jar 用slf4j-api 替换 Commons-logging
+       log4j.jar  具体的日志实现
+       slf4j.log4j12.jar 用来绑定log4j到slf4j

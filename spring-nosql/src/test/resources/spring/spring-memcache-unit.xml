@@ -16,7 +16,7 @@
         <property name="staticField" value="net.rubyeye.xmemcached.HashAlgorithm.CRC32_HASH" />
     </bean>
 
-    <bean id="clientBuilder" class="net.rubyeye.xmemcached.XMemcachedClientBuilder" destroy-method="">
+    <bean id="clientBuilder" class="net.rubyeye.xmemcached.XMemcachedClientBuilder" >
         <constructor-arg>
             <list>
                 <bean class="java.net.InetSocketAddress">
