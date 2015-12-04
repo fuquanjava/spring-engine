@@ -1,11 +1,31 @@
 $(function(){
     $("#bt1").click(function(){
         //bt1();
-        // requestBody();
-        requestBody2();
+        //requestBody();
+        //requestBody2();
 
         //requestParam();
+
+        requestParam2();
     });
+
+    function requestParam2(){
+        $.ajax({
+            type:"POST",
+            url:"request/requestParam2",
+            dataType:"json",
+            data:"id=1&requestId=2&arg=[1,2,3]",
+            success:function(data){
+                alert(data.code);
+            },
+            error:function(data){
+                alert("error");
+            }
+        });
+
+
+    }
+
 
     function requestParam(){
         var data = {"id":1,"requestId":2};
@@ -13,7 +33,6 @@ $(function(){
             type:"POST",
             url:"request/requestParam",
             dataType:"json",
-            contentType:"application/json",
             data:data,
             success:function(data){
                 alert(data);

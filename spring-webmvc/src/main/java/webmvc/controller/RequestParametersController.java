@@ -5,6 +5,8 @@ import domain.ResultCode;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -69,10 +71,37 @@ public class RequestParametersController {
         return r;
     }
 
+    @RequestMapping(value = "requestParam2")
+    public R requestParam2(User user , HttpServletRequest request) {
+        System.err.println("id:"+user.id);
+        String rip = request.getParameter("requestId");
+
+        String ids = request.getParameter("arg");
+        System.err.println(ids);
+
+        System.err.println("requestId:"+rip);
+        R r = new R(ResultCode.COMMON_SUCCESS, true);
+        r.setProperty("id", user.id);
+        r.setProperty("rip", rip);
+        return r;
+    }
+
+
+
     static class User{
         Integer id;
         String name;
         String desc;
+
+        private List<Integer> ids;
+
+        public List<Integer> getIds() {
+            return ids;
+        }
+
+        public void setIds(List<Integer> ids) {
+            this.ids = ids;
+        }
 
         public Integer getId() {
             return id;
