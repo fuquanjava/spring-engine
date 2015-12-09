@@ -1,1 +1,7 @@
+#parse( 'header.vm' )
+
+页面返回的结果将会展示在这里.
 $screen_content
+
+#parse( 'footer.vm' )
+

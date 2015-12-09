@@ -23,7 +23,10 @@ public class velocityTest {
             //进行初始化操作  //velocity.properties directive.properties
             ve.init();
             //加载模板，设定模板编码
-            Template template = ve.getTemplate("velocity/test.vm", "UTF-8");
+            Template layout = ve.getTemplate("velocity/layout.vm", "UTF-8");
+
+
+            Template template = ve.getTemplate("velocity/index.vm", "UTF-8");
             //设置初始化数据
             VelocityContext context = new VelocityContext();
             context.put("name", "张三");
@@ -32,13 +35,17 @@ public class velocityTest {
             StringWriter writer = new StringWriter();
             //将环境数据转化输出
             template.merge(context, writer);
+
             //简化操作
-            //ve.mergeTemplate("test/velocity/simple1.vm", "gbk", context, writer );
+            layout.merge(context, writer);//mergeTemplate("test/velocity/simple1.vm", "gbk", context, writer );
+
+
+
+
             System.out.println(writer.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
     }
 }

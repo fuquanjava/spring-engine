@@ -1,0 +1,10 @@
+
+#parse( 'velocity/header.vm' )
+
+ 欢迎：$!name
+
+
+页面返回的结果将会展示在这里.
+$screen_content
+
+#parse( 'velocity/footer.vm' )
