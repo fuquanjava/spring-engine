@@ -1,0 +1,19 @@
+velocity test
+
+ 欢迎：$!name
+
+#if( $XHTML )
+ #set( $br = "<br />" )
+#else
+ #set( $br = "<br>" )
+#end
+
+$br
+$br
+
+Here we use a custom tool: $toytool.message
+
+$br
+$br
+
+Here we get the date from the DateTool:  $date.medium
