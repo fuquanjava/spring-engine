@@ -18,6 +18,7 @@
         <module>spring-quartz</module>
         <module>spring-tbschedule</module>
         <module>log</module>
+        <module>spring-mq</module>
     </modules>
 
     <properties>
@@ -91,6 +92,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--rabbitmq-->
+            <dependency>
+                <groupId>com.rabbitmq</groupId>
+                <artifactId>amqp-client</artifactId>
+                <version>3.5.6</version>
+            </dependency>
+
             <!-- zkclient -->
             <dependency>
                 <groupId>com.101tec</groupId>
