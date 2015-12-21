@@ -32,17 +32,16 @@ public class RecvMsg {
         }
         Channel channel = connection.createChannel();
         //声明队列，主要为了防止消息接收者先运行此程序，队列还不存在时创建队列。
-
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
         /// 可选：指定预取个数。默认rabbit将队列中的消息均分成n份分发给n个consumer，而不管consumer有多少消息是否被ack。
         // 指定预取为1了表示rabbit一次只需要推一条消息，直到该消息ack了一个再推下一条
         channel.basicQos(1);
 
 
-
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
-
         //创建队列消费者
+//        QueueingConsumer里面会创建一个缓存队列(LinkedBlockingQueue , 默认是 int的最大值)用于保存服务器推过来的消息，这样可以异步的实现推送和消费，
+//    当然你可以在构造函数中自己传入用于buffer的queue
         QueueingConsumer consumer = new QueueingConsumer(channel);
         //指定消费队列  basicConsume(队列名字, 是否自动应答, 消费者队列);
 //        channel.basicConsume(QUEUE_NAME, true, consumer);
@@ -56,6 +55,11 @@ public class RecvMsg {
             if( result){
                 //发送应答
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+                // POISON 毒丸对象，用毒丸对象来标记是否shutdown or cancel
+
+                //delivery 传输
+
+                //Envelope 信封
             }
             //System.out.println(" [x] Received '" + message + "'");
         }
