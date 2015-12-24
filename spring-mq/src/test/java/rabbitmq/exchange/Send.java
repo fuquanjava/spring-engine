@@ -14,31 +14,33 @@ import java.util.concurrent.TimeoutException;
  */
 public class Send {
     private final static String EXCHANGE_NAME = "ex_log";
+    private final static String QUEUE_NAME="log";
 
     public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
         // 创建连接和频道
         ConnectionFactory factory = new ConnectionFactory();
-
         factory.setHost("127.0.0.1");
-
         Connection connection = factory.newConnection();
-        Channel channel = connection.createChannel();
 
-        // 声明转发器和类型
-        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 
-        int i = 1 ;
-        while (i< 100){
-            String message = "hello " + i;
-            i ++;
-            // 往转发器上发送消息
-            channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
-            System.out.println(" [x] Sent '" + message + "'");
-            Thread.sleep(1000);
+
+    }
+    static class SendThread extends Thread{
+        private Connection connection;
+        public SendThread(Connection connection){
+            this.connection = connection;
         }
-        channel.close();
-        connection.close();
+        @Override
+        public void run() {
+            try {
+                Channel channel =
+                        this.connection.createChannel();
 
 
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 }

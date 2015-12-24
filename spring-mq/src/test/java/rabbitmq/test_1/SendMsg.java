@@ -40,7 +40,6 @@ public class SendMsg {
         // 如果多线程公用channel 会导致不正确的 frame 在传递
         //  As such, applications need to use a {@link Channel} per thread.
 
-
         try {
             channel = connection.createChannel();
         } catch (IOException e) {
@@ -58,7 +57,7 @@ public class SendMsg {
 
         //往队列中发出一条消息
         try {
-            int i = 100000;
+            int i = 10000;
             while (i > 0) {
                 //发送的消息
                 String message = "hello , " + i;
@@ -66,7 +65,6 @@ public class SendMsg {
                 //信息的内容是字节数组，也就意味着你可以传递任何数据
                 // //参数1指定exchange，参数2指定routingKey,这里可以理解为队列名，参数3消息类型
                 channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
-
 
                 i--;
                 Thread.sleep(1000);

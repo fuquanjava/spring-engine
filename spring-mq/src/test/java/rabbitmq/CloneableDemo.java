@@ -31,6 +31,9 @@ public class CloneableDemo {
     }
 
     public static void main(String[] args) {
+        int i = (1 << 16) - 1;
+        System.err.println(i);
+
         A a = new A();
         A a1 =  a.clone();
 
