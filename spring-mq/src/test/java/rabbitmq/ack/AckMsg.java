@@ -54,13 +54,20 @@ public class AckMsg {
                 QueueingConsumer consumer = new QueueingConsumer(channel);
 
                 // 指定接收者，第二个参数为自动应答，无需手动应答
-                channel.basicConsume(queueName, true, consumer);
+                //channel.basicConsume(queueName, true, consumer);
+
+                //不会自动应答
+                channel.basicConsume(queueName,false,consumer);
 
                 while (true) {
                     QueueingConsumer.Delivery delivery = consumer.nextDelivery();
                     String message = new String(delivery.getBody());
                     System.err.println(threaName + " msg ," + message);
                     Thread.sleep(1000);
+
+                    // delivery 配送类 .
+                    // Envelope 信封 (信封包装了 tag, _exchange, _routingKey _redeliver)
+                    channel.basicAck(delivery.getEnvelope().getDeliveryTag(),false);
                 }
 
             } catch (Exception e) {
