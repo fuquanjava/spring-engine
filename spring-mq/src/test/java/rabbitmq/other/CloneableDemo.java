@@ -1,4 +1,4 @@
-package rabbitmq;
+package rabbitmq.other;
 
 /**
  * fuquanemail@gmail.com 2015/12/21 9:27

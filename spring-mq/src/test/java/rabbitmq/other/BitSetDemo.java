@@ -1,4 +1,4 @@
-package rabbitmq;
+package rabbitmq.other;
 
 import java.util.Arrays;
 import java.util.BitSet;

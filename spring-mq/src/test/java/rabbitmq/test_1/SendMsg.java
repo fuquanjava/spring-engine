@@ -3,6 +3,7 @@ package rabbitmq.test_1;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.MessageProperties;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +16,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class SendMsg {
     //队列名称
-    private final static String QUEUE_NAME = "hello";
+    private final static String QUEUE_NAME = "hello2";
 
     public static void main(String[] argv) {
         /**
@@ -49,7 +50,7 @@ public class SendMsg {
         //值得注意的是队列只会在它不存在的时候创建，多次声明并不会重复创建。
         try {
             // //定义队列类型，这是一个幂等的操作，它只有在该queue不存在的时候才起作用。无论在生产和消费都要定义，而且生产和消费的定义需要一致
-            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+            channel.queueDeclare(QUEUE_NAME, true, false, false, null);
             // //参数1队列名，参数2是否支持持久化，参数3是否为excluse队列（仅连接者可见且一旦断开就自动删除），参数4是否自动删除（没有任何消费者的话便队列便删除），参数5其他属性
         } catch (IOException e) {
             e.printStackTrace();
@@ -64,7 +65,8 @@ public class SendMsg {
                 System.out.println(" [x] Sent " + message);
                 //信息的内容是字节数组，也就意味着你可以传递任何数据
                 // //参数1指定exchange，参数2指定routingKey,这里可以理解为队列名，参数3消息类型
-                channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+                //channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+                channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes("UTF-8"));
 
                 i--;
                 Thread.sleep(1000);
