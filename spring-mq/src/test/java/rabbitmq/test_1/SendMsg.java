@@ -16,7 +16,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class SendMsg {
     //队列名称
-    private final static String QUEUE_NAME = "hello2";
+    private final static String QUEUE_NAME = "hello";
 
     public static void main(String[] argv) {
         /**
