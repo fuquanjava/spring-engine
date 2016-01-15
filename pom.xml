@@ -64,6 +64,9 @@
         <dev.commons.collections>3.2.1</dev.commons.collections>
 
 
+        <!--spring MQ-->
+        <spring-rabbit.version>1.5.3.RELEASE</spring-rabbit.version>
+
         <!--log-->
         <dev.slf4j.api.versoin>1.6.1</dev.slf4j.api.versoin>
         <dev.jcl.over.slf4j>1.7.7</dev.jcl.over.slf4j>
@@ -283,6 +286,30 @@
                 <artifactId>aspectjweaver</artifactId>
                 <version>${dev.aspectj.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.amqp</groupId>
+                <artifactId>spring-rabbit</artifactId>
+                <version>${spring-rabbit.version}</version>
+            </dependency>
+
+            <!--spring web security-->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-web</artifactId>
+                <version>${dev.spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-config</artifactId>
+                <version>${dev.spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-core</artifactId>
+                <version>${dev.spring.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>

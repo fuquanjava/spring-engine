@@ -22,8 +22,10 @@ public class UserDAOImpl implements UserDAO {
         redisTemplate.execute(new RedisCallback<Boolean>() {
             @Override
             public Boolean doInRedis(RedisConnection redisConnection) throws DataAccessException {
-                redisConnection.set(redisTemplate.getStringSerializer().serialize(user.getUserId()),
-                        redisTemplate.getStringSerializer().serialize(user) );
+
+                redisConnection.set(redisTemplate.getKeySerializer().serialize(user.getUserId()),
+                        redisTemplate.getValueSerializer().serialize(user) );
+
                 return true;
             }
         });

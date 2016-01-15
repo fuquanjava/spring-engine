@@ -13,9 +13,17 @@
     <artifactId>spring-mq</artifactId>
 
     <dependencies>
+            <!--rabbitmq java client-->
         <dependency>
             <groupId>com.rabbitmq</groupId>
             <artifactId>amqp-client</artifactId>
         </dependency>
+
+            <!--spring rabbitmq-->
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+        </dependency>
+
     </dependencies>
 </project>

@@ -38,7 +38,7 @@
 
 
     <appender name="filterConsole" class="ch.qos.logback.core.ConsoleAppender">
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+        <filter class="ch.qos.logback.classic.web.filter.LevelFilter">
             <level>error</level>
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
@@ -54,7 +54,7 @@
         <appender name="thresholdfilterConsole"
                   class="ch.qos.logback.core.ConsoleAppender">
             <!-- 过滤掉 TRACE 和 DEBUG 级别的日志-->
-            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <filter class="ch.qos.logback.classic.web.filter.ThresholdFilter">
                 <level>INFO</level>
             </filter>
             <encoder>
