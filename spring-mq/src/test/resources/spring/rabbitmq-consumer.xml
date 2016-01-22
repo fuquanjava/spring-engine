@@ -27,7 +27,7 @@
              <rabbit:binding queue="queue_one" key="queue_one_key"/>
          </rabbit:bindings>
      </rabbit:direct-exchange>-->
-    <bean id="consumerMessage" class="rabbitmq.spring.ConsumeMessage"/>
+    <bean id="consumerMessage" class="rabbitmq.spring.xml.ConsumeMessage"/>
     <!-- 配置线程池 -->
     <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
         <!-- 线程池维护线程的最少数量 -->
@@ -42,6 +42,6 @@
     <!-- queue litener  观察 监听模式 当有消息到达时会通知监听在对应的队列上的监听对象-->
     <rabbit:listener-container connection-factory="connectionFactory" message-converter="myMessageConverter"
                                acknowledge="auto" task-executor="taskExecutor">
-        <rabbit:listener queues="direct_queue" ref="consumerMessage" />
+        <rabbit:listener queues="direct_queue" ref="consumerMessage"/>
     </rabbit:listener-container>
 </beans>

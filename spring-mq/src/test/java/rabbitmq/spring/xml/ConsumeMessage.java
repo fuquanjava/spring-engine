@@ -1,4 +1,4 @@
-package rabbitmq.spring;
+package rabbitmq.spring.xml;
 
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;

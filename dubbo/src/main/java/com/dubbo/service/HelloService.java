@@ -7,7 +7,7 @@ import com.dubbo.domain.B;
  * fuquanemail@gmail.com
  */
 public interface HelloService {
-    public String sayHello(String name);
-
+    String sayHello(String name);
+    
     B getB();
 }

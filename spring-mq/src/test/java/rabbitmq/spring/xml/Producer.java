@@ -1,4 +1,4 @@
-package rabbitmq.spring;
+package rabbitmq.spring.xml;
 
 import org.apache.http.client.utils.DateUtils;
 import org.springframework.amqp.core.AmqpTemplate;

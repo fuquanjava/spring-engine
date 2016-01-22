@@ -32,7 +32,6 @@
     <!--</rabbit:fanout-exchange>-->
 
 
-
     <!-- spring template声明-->
     <!--direct-->
     <!--<rabbit:template exchange="my-mq-exchange" id="amqpTemplate"  connection-factory="connectionFactory" message-converter="jsonMessageConverter"/>-->
