@@ -31,7 +31,7 @@ public class RabbitUtil {
             return connection.createChannel();
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException("异常啦啦啊");
+            throw new RuntimeException("aaaa");
         }
     }
 

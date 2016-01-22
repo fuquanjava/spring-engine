@@ -3,6 +3,7 @@ package com.dubbo.consumer;
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ReferenceConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
+import com.dubbo.domain.B;
 import com.dubbo.service.HelloService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -27,6 +28,9 @@ public class Consumer {
         while (true){
             String ss = helloService.sayHello("dubbo");
             System.out.println(ss);
+
+            B b = helloService.getB();
+            System.err.println(b);
 
             try {
                 Thread.sleep(3000);

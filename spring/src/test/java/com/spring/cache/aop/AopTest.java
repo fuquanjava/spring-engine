@@ -3,8 +3,8 @@ package com.spring.cache.aop;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import spring.BaseTest;
-import spring.aop.service.UserService;
+import rabbitmq.spring.BaseTest;
+import rabbitmq.spring.aop.service.UserService;
 
 /**
  * @author: fuquanemail@gmail.com 2015/10/16 15:40

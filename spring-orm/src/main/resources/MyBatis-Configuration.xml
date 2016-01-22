@@ -3,7 +3,7 @@
         "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="spring.mybatis.domain.User" alias="User" />
+        <typeAlias type="rabbitmq.spring.mybatis.domain.User" alias="User" />
     </typeAliases>
 
     <mappers>

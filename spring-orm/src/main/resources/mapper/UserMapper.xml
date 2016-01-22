@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
-<mapper namespace="spring.mybatis.mapper.UserMapper">
+<mapper namespace="rabbitmq.spring.mybatis.mapper.UserMapper">
     <insert id="addUser" parameterType="User" >
         insert into t_user values (#{id} , #{name},#{password},#{email},#{lastlogintime});
     </insert>

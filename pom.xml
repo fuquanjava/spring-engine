@@ -81,6 +81,7 @@
         <!--tools -->
         <dev.mybatis.generator.core>1.3.2</dev.mybatis.generator.core>
         <dev.fastjson.version>1.1.36</dev.fastjson.version>
+        <dev.gson.version>2.5</dev.gson.version>
         <dev.zkclient.version>0.4</dev.zkclient.version>
 
         <dev.dubbo.version>2.5.3</dev.dubbo.version>
@@ -432,6 +433,13 @@
                 <artifactId>fastjson</artifactId>
                 <version>${dev.fastjson.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${dev.gson.version}</version>
+            </dependency>
+
             <!--jdbc Driver -->
             <dependency>
                 <groupId>mysql</groupId>

@@ -64,8 +64,8 @@
     <!--MapperScannerConfigurer 的方式,简化 Mapper的映射-->
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="spring.mybatis"/>
-        <property name="annotationClass" value="spring.mybatis.annotation.MyBatisMapper"/>
+        <property name="basePackage" value="rabbitmq.spring.mybatis"/>
+        <property name="annotationClass" value="rabbitmq.spring.mybatis.annotation.MyBatisMapper"/>
     </bean>
 
 

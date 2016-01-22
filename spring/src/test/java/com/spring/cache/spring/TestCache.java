@@ -1,6 +1,6 @@
 package com.spring.cache.spring;
 
-import spring.bean.BaseTest;
+import rabbitmq.spring.bean.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -9,7 +9,7 @@
 
     <context:component-scan base-package="dao.*" />
 
-    <import resource="spring/spring-properties-unit.xml" />
-    <import resource="spring/spring-redis-unit.xml" />
-    <import resource="spring/spring-memcache-unit.xml" />
+    <import resource="../../../../spring-mq/src/test/java/rabbitmq/spring/spring-properties-unit.xml" />
+    <import resource="../../../../spring-mq/src/test/java/rabbitmq/spring/spring-redis-unit.xml" />
+    <import resource="../../../../spring-mq/src/test/java/rabbitmq/spring/spring-memcache-unit.xml" />
 </beans>

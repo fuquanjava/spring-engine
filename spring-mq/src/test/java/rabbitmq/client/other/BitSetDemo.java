@@ -156,7 +156,7 @@ public class BitSetDemo {
 
     public static void main(String args[]) {
         //BitSet使用示例
-        BitSetDemo.containChars("How do you do? 你好呀");
+        BitSetDemo.containChars("How do you do? ");
         BitSetDemo.computePrime();
         BitSetDemo.sortArray();
         BitSetDemo.simpleExample();
