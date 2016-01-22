@@ -40,7 +40,7 @@ public class SpringInJava {
                 new SimpleMessageListenerContainer(cf);
         Object listener = new Object() {
             public void handleMessage(String foo) {
-                System.out.println(foo);
+                System.out.println(" handleMessage " + foo);
             }
         };
         MessageListenerAdapter adapter = new MessageListenerAdapter(listener);
