@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context.xsd
-
 		http://www.springframework.org/schema/mvc
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
-    <mvc:annotation-driven/>
 
     <!-- 自动扫描的包名 -->
     <context:component-scan base-package="web.controller"/>
 
+    <!-- 默认的注解映射的支持 -->
+    <mvc:annotation-driven>
+        <mvc:return-value-handlers>
+            <bean class="web.handler.CommonMethodReturnValueHandler"/>
+        </mvc:return-value-handlers>
+    </mvc:annotation-driven>
+
+    <!--  统一的异常 处理器 -->
+    <bean class="web.handler.CommonExceptionHandler" />
 
     <!-- defaultServlet负责对静态资源文件的访问 -->
     <mvc:default-servlet-handler/>
+
+    <!-- 配置文件上传支持 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+          p:defaultEncoding="utf-8"/>
 
     <!-- velocity视图解析配置 -->
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
@@ -59,5 +71,4 @@
             </list>
         </property>
     </bean>
-    <import resource="../../../../spring-orm/src/test/resources/rabbitmq/spring/spring-filter.xml"/>
 </beans>

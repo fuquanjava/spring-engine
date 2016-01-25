@@ -17,12 +17,9 @@ import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
  */
 public class SpringInJava {
     public static void main(String[] args) throws InterruptedException {
-        com.rabbitmq.client.ConnectionFactory factory = new com.rabbitmq.client.ConnectionFactory();
-        factory.setUsername("guest");
-        factory.setPassword("guest");
-
-        ConnectionFactory cf = new CachingConnectionFactory(factory);
-
+        CachingConnectionFactory cf = new CachingConnectionFactory();
+        cf.setPassword("guest");
+        cf.setUsername("guest");
 
         // set up the queue, exchange, binding on the broker
         RabbitAdmin admin = new RabbitAdmin(cf);

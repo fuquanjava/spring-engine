@@ -6,6 +6,15 @@
     但可以使用<contextName>设置成其他名字，用于区分不同应用程序的记录。一旦设置，不能修改-->
     <contextName>log</contextName>
 
+
+    <appender name="myAppender" class="ext.MyAppender">
+        <!-- encoder 默认配置为PatternLayoutEncoder -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <target>System.err</target>
+    </appender>
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoder 默认配置为PatternLayoutEncoder -->
         <encoder>
@@ -37,7 +46,7 @@
     </appender>
 
 
-    <appender name="filterConsole" class="ch.qos.logback.core.ConsoleAppender">
+    <!--<appender name="filterConsole" class="ch.qos.logback.core.ConsoleAppender">
         <filter class="ch.qos.logback.classic.web.filter.LevelFilter">
             <level>error</level>
             <onMatch>ACCEPT</onMatch>
@@ -49,11 +58,11 @@
             </pattern>
         </encoder>
     </appender>
+-->
 
-
-        <appender name="thresholdfilterConsole"
+    <!--    <appender name="thresholdfilterConsole"
                   class="ch.qos.logback.core.ConsoleAppender">
-            <!-- 过滤掉 TRACE 和 DEBUG 级别的日志-->
+            &lt;!&ndash; 过滤掉 TRACE 和 DEBUG 级别的日志&ndash;&gt;
             <filter class="ch.qos.logback.classic.web.filter.ThresholdFilter">
                 <level>INFO</level>
             </filter>
@@ -62,7 +71,7 @@
                     %-4relative [%thread] %-5level %logger{30} - %msg%n
                 </pattern>
             </encoder>
-        </appender>
+        </appender>-->
 
 
         <!-- 将控制com包下的所有类的日志的打印，但是并没用设置打印级别，所以继承他的上级<root>的日志级别 DEBUG -->
@@ -77,7 +86,7 @@
 
 
     <root level="debug"><!--也是<loger>元素，但是它是根loger。只有一个level属性，应为已经被命名为"root".-->
-        <appender-ref ref="thresholdfilterConsole" /> <!--<appender-ref>元素，标识这个appender将会添加到这个loger-->
+        <appender-ref ref="myAppender" /> <!--<appender-ref>元素，标识这个appender将会添加到这个loger-->
     </root>
 
 </configuration>

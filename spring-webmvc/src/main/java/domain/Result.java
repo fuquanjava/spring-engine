@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by cdtx on 2015/9/28.
  */
-public class R implements Serializable {
+public class Result implements Serializable {
 
     private static final long serialVersionUID = 1998428067166208629L;
 
@@ -46,16 +46,16 @@ public class R implements Serializable {
     @JSONField(serialize=false)
     private String dateFormat = "yyyy-MM-dd HH:mm:ss";
 
-    public R() {
+    public Result() {
 
     }
 
-    public R(ResultCode resultCode) {
+    public Result(ResultCode resultCode) {
         this.code = resultCode.getCode();
         this.description = resultCode.getDescription();
     }
 
-    public R(ResultCode resultCode, boolean isSuccess) {
+    public Result(ResultCode resultCode, boolean isSuccess) {
         this.code = resultCode.getCode();
         this.description = resultCode.getDescription();
         this.isSuccess = isSuccess;

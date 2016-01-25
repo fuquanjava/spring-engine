@@ -1,6 +1,6 @@
 package web.controller;
 
-import domain.R;
+import domain.Result;
 import domain.ResultCode;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +23,9 @@ public class RequestParametersController {
      * @return
      */
     @RequestMapping("/uri/{id}")
-    public R pathUri(@PathVariable String id) {
+    public Result pathUri(@PathVariable String id) {
         System.err.println("id-->" + id);
-        R r = new R(ResultCode.COMMON_SUCCESS, true);
+        Result r = new Result(ResultCode.COMMON_SUCCESS, true);
         r.setProperty("id", id);
         return r;
     }
@@ -37,41 +37,41 @@ public class RequestParametersController {
      * @return
      */
     @RequestMapping("requestHeader")
-    public R requestHeader(@RequestHeader("Accept-Encoding") String encoding){
+    public Result requestHeader(@RequestHeader("Accept-Encoding") String encoding){
         System.err.println("encoding-->" + encoding);
-        R r = new R(ResultCode.COMMON_SUCCESS, true);
+        Result r = new Result(ResultCode.COMMON_SUCCESS, true);
         r.setProperty("encoding", encoding);
         return r;
     }
 
     @RequestMapping(value = "requestBody")
-    public R requestBody(@RequestBody List<User> users){
-        R r = new R(ResultCode.COMMON_SUCCESS, true);
+    public Result requestBody(@RequestBody List<User> users){
+        Result r = new Result(ResultCode.COMMON_SUCCESS, true);
         r.setProperty("users", users);
         return r;
     }
 
     @RequestMapping(value = "requestBody2")
-    public R requestBody2(@RequestBody List<Long> ids){
-        R r = new R(ResultCode.COMMON_SUCCESS, true);
+    public Result requestBody2(@RequestBody List<Long> ids){
+        Result r = new Result(ResultCode.COMMON_SUCCESS, true);
         r.setProperty("ids", ids);
         return r;
     }
 
     @RequestMapping(value = "requestParam")
-    public R requestParam(@RequestParam("id") String id,
+    public Result requestParam(@RequestParam("id") String id,
                           @RequestParam("requestId") Integer rid) {
         System.err.println("id:"+id);
         System.err.println("requestId:"+rid);
 
-        R r = new R(ResultCode.COMMON_SUCCESS, true);
+        Result r = new Result(ResultCode.COMMON_SUCCESS, true);
         r.setProperty("id", id);
         r.setProperty("requestId", rid);
         return r;
     }
 
     @RequestMapping(value = "requestParam2")
-    public R requestParam2(User user , HttpServletRequest request) {
+    public Result requestParam2(User user , HttpServletRequest request) {
         System.err.println("id:"+user.id);
         String rip = request.getParameter("requestId");
 
@@ -79,7 +79,7 @@ public class RequestParametersController {
         System.err.println(ids);
 
         System.err.println("requestId:"+rip);
-        R r = new R(ResultCode.COMMON_SUCCESS, true);
+        Result r = new Result(ResultCode.COMMON_SUCCESS, true);
         r.setProperty("id", user.id);
         r.setProperty("rip", rip);
         return r;

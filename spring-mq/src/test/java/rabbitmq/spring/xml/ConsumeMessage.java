@@ -2,6 +2,7 @@ package rabbitmq.spring.xml;
 
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
+import org.springframework.amqp.core.MessageProperties;
 
 import java.io.UnsupportedEncodingException;
 
@@ -15,7 +16,12 @@ public class ConsumeMessage implements MessageListener {
     @Override
     public void onMessage(Message message) {
         try {
-            System.err.println("message:" + (new String(message.getBody(),"utf-8")));
+            byte [] bytes = message.getBody();
+            String msg = new String(bytes,"UTF-8");
+            System.out.println("msg:" + msg);
+
+            MessageProperties messageProperties = message.getMessageProperties();
+            System.err.println("messageProperties" + messageProperties);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
