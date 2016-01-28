@@ -27,7 +27,7 @@
              <rabbit:binding queue="queue_one" key="queue_one_key"/>
          </rabbit:bindings>
      </rabbit:direct-exchange>-->
-    <bean id="consumerMessage" class="rabbitmq.spring.xml.ConsumeMessage"/>
+    <bean id="consumerMessage" class="spring.xml.ConsumeMessage"/>
     <!-- 配置线程池 -->
     <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
         <!-- 线程池维护线程的最少数量 -->

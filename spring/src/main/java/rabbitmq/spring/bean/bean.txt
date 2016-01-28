@@ -1,7 +1,0 @@
-
-在Spring Ioc容器的代表就是org.springframework.beans包中的BeanFactory接口，BeanFactory接口提供了IoC容器
-最基本功能；而org.springframework.context包下的ApplicationContext接口扩展了BeanFactory，还提供了与
-Spring AOP集成、国际化处理、事件传播及提供不同层次的context实现 (如针对web应用的
-WebApplicationContext)。简单说， BeanFactory提供了IoC容器最基本功能，而 ApplicationContext 则增加了更多
-支持企业级功能支持。ApplicationContext完全继承BeanFactory，因而BeanFactory所具有的语义也适用于
-ApplicationContext

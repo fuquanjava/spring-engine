@@ -18,7 +18,7 @@
     <rabbit:queue id="direct_queue" durable="false" auto-delete="true" exclusive="false" name="direct_queue"/>
 
     <!-- spring amqp默认的是jackson 的一个插件,目的将生产者生产的数据转换为json存入消息队列-->
-    <bean id="myMessageConverter" class="rabbitmq.spring.ext.MyMessageConverter"/>
+    <bean id="myMessageConverter" class="spring.ext.MyMessageConverter"/>
 
 
     <!-- 消息转换器 -->
