@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--scan="true" 自动扫描, 60秒1次. 是否打印logback的信息-->
+<configuration scan="true" scanPeriod="3 seconds" debug="true">
+
+    <contextName>log</contextName>
+
+    <appender name="all_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <File>./log/logs/all_error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>./log/logs/all_error.%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%date [%thread] %-5level %logger{80} - %msg%n</Pattern>
+        </layout>
+    </appender>
+
+
+    <appender name="all_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <File>./log/logs/all_info.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>./log/logs/all_info.%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%date [%thread] %-5level %logger{80} - %msg%n</Pattern>
+        </layout>
+    </appender>
+
+    <appender name="all_debug" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <File>./log/logs/all_debug.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>./log/logs/all_debug.%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%date [%thread] %-5level %logger{80} - %msg%n</Pattern>
+        </layout>
+    </appender>
+
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{15} - %msg%n%throwable{10}</pattern>
+        </encoder>
+        <target>System.err</target>
+    </appender>
+
+    <!--com.debug 包 用 all_debug 这个  appender -->
+    <!--  <logger name="com.debug" level="debug">
+          <appender-ref ref="all_debug"/>
+      </logger>
+
+      <logger name="com.info" level="info">
+          <appender-ref ref="all_info"/>
+      </logger>
+
+      <logger name="com.error" level="error">
+          <appender-ref ref="all_error"/>
+      </logger>
+      -->
+
+   <!-- 没有设置addtivity，默认为true，将此loger的打印信息向上级传递, 采用 root的appender-->
+   <logger name="com.debug.DebugMain" level="debug"/>
+
+    <logger name="com.info.InfoMain" level="info" />
+
+    <logger name="com.error.ErrorMain" level="error"/>
+
+    <!-- 将控制com包下的所有类的日志的打印，但是并没用设置打印级别，所以继承他的上级<root>的日志级别 DEBUG -->
+    <!--没有设置addtivity，默认为true，将此loger的打印信息向上级传递；
+    没有设置appender，此loger本身不打印任何信息, 打印的信息 是传递给 root 的 appender 打印-->
+
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="all_info" />
+    </root>
+
+</configuration>
