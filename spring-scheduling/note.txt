@@ -1,0 +1,78 @@
+
+@DisallowConcurrentExecution：
+将该注解加到job类上，告诉Quartz不要并发地执行同一个job定义（这里指特定的job类）的多个实例。
+请注意这里的用词。
+拿前一小节的例子来说，如果“SalesReportJob”类上有该注解，
+则同一时刻仅允许执行一个“SalesReportForJoe”实例，
+但可以并发地执行“SalesReportForMike”类的一个实例。
+所以该限制是针对JobDetail的，而不是job类的。
+但是我们认为（在设计Quartz的时候）应该将该注解放在job类上，因为job类的改变经常会导致其行为发生变化。
+
+或者说：
+当Job(任务)的执行时间[比如需要10秒]大于任务的时间间隔 [Interval（5秒)],
+那么默认情况下,调度框架为了能让 任务按照我们预定的时间间隔执行,会马上启用新的线程执行任务。
+否则的话会等待任务执行完毕以后 再重新执行！（这样会导致任务的执行不是按照我们预先定义的时间间隔执行）
+
+说明：
+你可以只创建一个job类，然后创建多个与该job关联的JobDetail实例，
+每一个实例都有自己的属性集和JobDataMap，最后，将所有的实例都加到scheduler中。
+
+
+            // 下面就是同1个job类的两个实例
+
+            JobDetail job1 = JobBuilder.newJob(SalesReportJob.class)
+                    .withIdentity("job1", "group1")
+                    .usingJobData("name", "zs")
+                    .usingJobData("counter", "1")
+                    .build();
+
+            JobDetail job2 = JobBuilder.newJob(SalesReportJob.class)
+                    .withIdentity("job2", "group1")
+                    .usingJobData("name", "ls")
+                    .usingJobData("counter", "1")
+                    .build();
+
+eg:
+job 的 execute 执行需要 10秒，输出 hello Job.我们的触发器是 每秒触发1次/10次，比如 12:00 开始触发.
+
+没有 DisallowConcurrentExecution的效果:
+12:00 hello job
+12:01 hello job
+12:02 hello job
+12:03 hello job
+12:04 hello job
+.....
+也就是连续的10次触发.相当于并行。
+
+有 DisallowConcurrentExecution的效果:
+12:00 hello job
+12:10 hello job
+12:20 hello job
+12:30 hello job
+12:40 hello job
+.....
+也就是执行完上1次之后，才会执行下一次.
+
+
+@PersistJobDataAfterExecution：
+
+将该注解加在job类上，告诉Quartz在成功执行了job类的execute方法后（没有发生任何异常），
+更新JobDetail中JobDataMap的数据，使得该job（即JobDetail）在下一次执行的时候，JobDataMap中是更新后的数据，
+而不是更新前的旧数据。和 @DisallowConcurrentExecution注解一样，
+尽管注解是加在job类上的，但其限制作用是针对job实例的，而不是job类的。
+由job类来承载注解，是因为job类的内容经常会影响其行为状态（比如，job类的execute方法需要显式地“理解”其”状态“）。
+
+
+
+如果你使用了@PersistJobDataAfterExecution注解，我们强烈建议你同时使用@DisallowConcurrentExecution注解，
+因为当同一个job（JobDetail）的两个实例被并发执行时，由于竞争，JobDataMap中存储的数据很可能是不确定的。
+
+
+==================JobExecutionException ======================
+job excute 过程中出现异常.
+
+// 取消所有的 triggers.
+e2.setUnscheduleAllTriggers(true);
+
+// 立即触发,会造成死循环
+e2.setRefireImmediately(true);
