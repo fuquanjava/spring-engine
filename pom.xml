@@ -7,7 +7,7 @@
     <groupId>spring</groupId>
     <artifactId>spring-engine</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>spring-orm</module>
         <module>mybatis</module>
@@ -15,10 +15,9 @@
         <module>spring-nosql</module>
         <module>spring</module>
         <module>dubbo</module>
-        <module>spring-quartz</module>
-        <module>spring-tbschedule</module>
         <module>log</module>
         <module>spring-mq</module>
+        <module>spring-scheduling</module>
     </modules>
 
     <properties>
