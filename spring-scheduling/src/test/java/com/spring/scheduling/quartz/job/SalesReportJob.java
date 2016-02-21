@@ -31,7 +31,7 @@ public class SalesReportJob implements Job {
         Date now = new Date();
         System.err.println(jobKey + " ," + DateFormatUtils.format(now, HelloJob.DATA_FORMAT) + name + " 执行 ,结果" + counter);
 
-        if (2 > 1) {
+        /*if (2 > 1) {
             try {
                 int i = 1 / 0;
             } catch (Exception e) {
@@ -47,7 +47,7 @@ public class SalesReportJob implements Job {
                 throw e2;
             }
 
-        }
+        }*/
 
         try {
             Thread.sleep(5000);

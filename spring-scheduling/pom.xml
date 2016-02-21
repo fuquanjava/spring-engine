@@ -57,6 +57,12 @@
             <artifactId>quartz-jobs</artifactId>
         </dependency>
 
+        <!--jdbc Driver -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

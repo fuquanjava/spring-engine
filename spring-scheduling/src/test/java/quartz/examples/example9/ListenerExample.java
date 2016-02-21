@@ -42,15 +42,15 @@ public class ListenerExample {
   public void run() throws Exception {
     Logger log = LoggerFactory.getLogger(ListenerExample.class);
 
-    log.info("------- Initializing ----------------------");
+    //log.info("------- Initializing ----------------------");
 
     // First we must get a reference to a scheduler
     SchedulerFactory sf = new StdSchedulerFactory();
     Scheduler sched = sf.getScheduler();
 
-    log.info("------- Initialization Complete -----------");
+    //log.info("------- Initialization Complete -----------");
 
-    log.info("------- Scheduling Jobs -------------------");
+    //log.info("------- Scheduling Jobs -------------------");
 
     // schedule a job to run immediately
 
@@ -62,6 +62,7 @@ public class ListenerExample {
     JobListener listener = new Job1Listener();
     Matcher<JobKey> matcher = KeyMatcher.keyEquals(job.getKey());
     sched.getListenerManager().addJobListener(listener, matcher);
+
 
     // schedule the job to run
     sched.scheduleJob(job, trigger);
