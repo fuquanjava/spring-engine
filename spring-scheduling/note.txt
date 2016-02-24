@@ -76,3 +76,40 @@ e2.setUnscheduleAllTriggers(true);
 
 // 立即触发,会造成死循环
 e2.setRefireImmediately(true);
+
+
+======================================================================================================
+            spring +  quartz
+======================================================================================================
+
+1. Configure Jobs in Quartz Scheduler (2 种方式)
+
+A. Using MethodInvokingJobDetailFactoryBean
+    Really handy when you just need to invoke a method on a specific bean. This is the simplest among two.
+
+    targetObject 要执行的类
+    targetMethod 要执行类当中的方法
+    concurrent 是否立即马上执行（当，类实例化后）
+
+
+B : Using JobDetailFactoryBean
+    When you need more advanced setup, need to pass data to job, being more flexible.
+
+    jobClass 配置任务要执行的类
+    jobDataMap 配置执行类当中的参数设置
+
+    jobClass refers to a class which extends QuartzJobBean, an implementation of Quartz job interface. On invocation of this job, it’s executeInternal method gets called.
+    jobDataMap provides opportunity to pass some data to underlying job bean. In this case, we are passing a bean ‘anotherBean’ which will be used by ScheduledJob.
+
+
+2. trigger (simple, cron)
+
+A.Simple Trigger , using SimpleTriggerFactoryBean
+    You can specify start time, delay between triggers and repeatInterval(frequency) to run the job.
+
+B: Cron Trigger , using CronTriggerFactoryBean
+    It’s more flexible and allows you to choose scheduled job at specific instance (time, day, date,..) and frequency in future.
+
+
+3: Configure SchedulerFactoryBean that creates and configures Quartz Scheduler
+SchedulerFactoryBean glues together jobDetails and triggers to Configure Quartz Scheduler.
