@@ -90,7 +90,7 @@ A. Using MethodInvokingJobDetailFactoryBean
     targetObject 要执行的类
     targetMethod 要执行类当中的方法
     concurrent 是否立即马上执行（当，类实例化后）
-
+concurrent 表示 执行时间超过5秒，在执行完之前即使时间已经超过了5秒下一个定时计划执行任务仍不会被开启，如果是true，则不管是否执行完，时间到了都将开启
 
 B : Using JobDetailFactoryBean
     When you need more advanced setup, need to pass data to job, being more flexible.

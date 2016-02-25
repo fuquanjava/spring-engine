@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--job-->
+    <bean name="complexJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="spring.quartz.job.ScheduledJob"/>
+        <property name="durability" value="true"/>
+        <property name="name" value="job1" />
+        <property name="group" value="group1" />
+    </bean>
+
+    <!--trigger-->
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="complexJobDetail"/>
+        <property name="cronExpression" value="0/3 * * ? * * *"/>
+        <property name="name" value="cronTrigger1" />
+        <property name="group" value="group1" />
+    </bean>
+
+    <!--scheduler-->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="autoStartup" value="true" />
+        <property name="configLocation" value="classpath:quartz.properties" />
+        <property name="schedulerName" value="scheduler1"/>
+
+        <property name="jobDetails">
+            <list>
+                <ref bean="complexJobDetail"/>
+            </list>
+        </property>
+
+        <property name="triggers">
+            <list>
+                <ref bean="cronTrigger"/>
+            </list>
+        </property>
+
+    </bean>
+</beans>

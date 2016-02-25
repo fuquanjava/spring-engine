@@ -9,7 +9,7 @@
     <!-- For times when you just need to invoke a method on a specific object -->
     <bean id="simpleJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="scheduledJob" />
-        <property name="concurrent" value="true" />
+        <property name="concurrent" value="false" />
         <property name="targetMethod" value="printMessage" />
     </bean>
 

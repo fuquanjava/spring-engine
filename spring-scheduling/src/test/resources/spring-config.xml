@@ -10,8 +10,10 @@
     <!-- 自动扫描的包名 -->
     <context:component-scan base-package="spring.quartz"/>
 
-    <!--<import resource="quartz/spring-quartz-1.xml" />-->
+<!--    <import resource="quartz/spring-quartz-1.xml" />-->
    <!-- <import resource="quartz/spring-quartz-2.xml" />-->
 
-    <import resource="quartz/spring-quartz-3.xml" />
+   <!-- <import resource="quartz/spring-quartz-3.xml" />-->
+
+    <import resource="quartz/spring-quartz-5.xml" />
 </beans>
