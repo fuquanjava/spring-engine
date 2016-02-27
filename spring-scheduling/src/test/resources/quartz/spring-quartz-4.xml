@@ -6,7 +6,7 @@
 
     <!--job-->
     <bean name="complexJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-        <property name="jobClass" value="spring.quartz.job.ScheduledJob"/>
+        <property name="jobClass" value="com.spring.quartz.job.ScheduledJob"/>
         <property name="durability" value="true"/>
         <property name="name" value="job1" />
         <property name="group" value="group1" />

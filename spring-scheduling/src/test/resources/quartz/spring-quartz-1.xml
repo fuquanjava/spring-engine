@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="scheduledJob" class="spring.quartz.job.HelloJob"/>
+    <bean id="scheduledJob" class="com.spring.quartz.job.HelloJob"/>
 
     <!-- For times when you just need to invoke a method on a specific object -->
     <bean id="simpleJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
