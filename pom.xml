@@ -18,6 +18,7 @@
         <module>log</module>
         <module>spring-mq</module>
         <module>spring-scheduling</module>
+        <module>spring-core</module>
     </modules>
 
     <properties>
@@ -27,39 +28,40 @@
         <!-- 编译时的编码 -->
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
-        <dev.spring.version>4.1.6.RELEASE</dev.spring.version>
-        <dev.cglib.version>2.2</dev.cglib.version>
+        <spring.version>4.1.6.RELEASE</spring.version>
+        <spring-security.version>4.0.0.RELEASE</spring-security.version>
+        <cglib.version>2.2</cglib.version>
 
         <!--spring aop-->
-        <dev.aspectj.version>1.7.4</dev.aspectj.version>
-        <dev.org.aspectj.version>1.6.8</dev.org.aspectj.version>
-        <dev.aopalliance.verison>1.0</dev.aopalliance.verison>
+        <aspectj.version>1.7.4</aspectj.version>
+        <org.aspectj.version>1.6.8</org.aspectj.version>
+        <aopalliance.verison>1.0</aopalliance.verison>
 
         <!--spring 响应 json 会用到 -->
-        <dev.jackson.version>2.4.4</dev.jackson.version>
+        <jackson.version>2.4.4</jackson.version>
 
         <!--spring -orm  -->
-        <dev.druid.version>1.0.8</dev.druid.version>
-        <dev.mysql.version>5.1.36</dev.mysql.version>
-        <dev.mybatis.version>3.2.3</dev.mybatis.version>
-        <dev.spring.mybatis.version>1.2.2</dev.spring.mybatis.version>
-        <dev.mybatis.pagehelper>3.7.4</dev.mybatis.pagehelper>
+        <druid.version>1.0.8</druid.version>
+        <mysql.version>5.1.36</mysql.version>
+        <mybatis.version>3.2.3</mybatis.version>
+        <spring.mybatis.version>1.2.2</spring.mybatis.version>
+        <mybatis.pagehelper>3.7.4</mybatis.pagehelper>
 
         <!-- spring-nosql -->
         <redis.clients.version>2.1.0</redis.clients.version>
-        <dev.xmemcached.version>2.0.0</dev.xmemcached.version>
-        <dev.spring.data.redis.version>1.5.1.RELEASE</dev.spring.data.redis.version>
-        <dev.redis.clients.version>2.7.2</dev.redis.clients.version>
+        <xmemcached.version>2.0.0</xmemcached.version>
+        <spring.data.redis.version>1.5.1.RELEASE</spring.data.redis.version>
+        <redis.clients.version>2.7.2</redis.clients.version>
 
 
         <!-- spring webmvc -->
-        <dev.jstl.version>1.2</dev.jstl.version>
-        <dev.standard.version>1.1.2</dev.standard.version>
+        <jstl.version>1.2</jstl.version>
+        <standard.version>1.1.2</standard.version>
 
-        <dev.velocity.version>1.7</dev.velocity.version>
-        <dev.velocity.tools.version>2.0</dev.velocity.tools.version>
-        <dev.reflow.velocity.tools>1.0.0</dev.reflow.velocity.tools>
-        <dev.commons.digester>1.8</dev.commons.digester>
+        <velocity.version>1.7</velocity.version>
+        <velocity.tools.version>2.0</velocity.tools.version>
+        <reflow.velocity.tools.version>1.0.0</reflow.velocity.tools.version>
+        <commons.digester.version>1.8</commons.digester.version>
         <dev.commons.collections>3.2.1</dev.commons.collections>
 
 
@@ -87,8 +89,8 @@
         <dev.zookeeper.version>3.4.6</dev.zookeeper.version>
 
         <!--quartz tbschedule -->
-        <dev.quartz.version>2.2.1</dev.quartz.version>
-        <dev.tbschedule.version>3.2.18</dev.tbschedule.version>
+        <quartz.version>2.2.1</quartz.version>
+        <tbschedule.version>3.2.18</tbschedule.version>
 
     </properties>
 
@@ -112,54 +114,54 @@
             <dependency>
                 <groupId>com.taobao.pamirs.schedule</groupId>
                 <artifactId>tbschedule</artifactId>
-                <version>${dev.tbschedule.version}</version>
+                <version>${tbschedule.version}</version>
             </dependency>
             <!-- quartz -->
             <dependency>
                 <groupId>org.quartz-scheduler</groupId>
                 <artifactId>quartz</artifactId>
-                <version>${dev.quartz.version}</version>
+                <version>${quartz.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.quartz-scheduler</groupId>
                 <artifactId>quartz-jobs</artifactId>
-                <version>${dev.quartz.version}</version>
+                <version>${quartz.version}</version>
             </dependency>
 
             <!--jstl-->
             <dependency>
                 <groupId>jstl</groupId>
                 <artifactId>jstl</artifactId>
-                <version>${dev.jstl.version}</version>
+                <version>${jstl.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>taglibs</groupId>
                 <artifactId>standard</artifactId>
-                <version>${dev.standard.version}</version>
+                <version>${standard.version}</version>
             </dependency>
 
             <!--velocity-->
             <dependency>
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity</artifactId>
-                <version>${dev.velocity.version}</version>
+                <version>${velocity.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-tools</artifactId>
-                <version>${dev.velocity.tools.version}</version>
+                <version>${velocity.tools.version}</version>
             </dependency>
             <dependency>
                 <groupId>lt.velykis.maven.skins</groupId>
                 <artifactId>reflow-velocity-tools</artifactId>
-                <version>${dev.reflow.velocity.tools}</version>
+                <version>${reflow.velocity.tools.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>commons-digester</groupId>
                 <artifactId>commons-digester</artifactId>
-                <version>${dev.commons.digester}</version>
+                <version>${commons.digester.version}</version>
             </dependency>
 
             <dependency>
@@ -197,24 +199,24 @@
             <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib-nodep</artifactId>
-                <version>${dev.cglib.version}</version>
+                <version>${cglib.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>
-                <version>${dev.org.aspectj.version}</version>
+                <version>${org.aspectj.version}</version>
             </dependency>
             <dependency>
                 <groupId>aopalliance</groupId>
                 <artifactId>aopalliance</artifactId>
-                <version>${dev.aopalliance.verison}</version>
+                <version>${aopalliance.verison}</version>
             </dependency>
 
             <!-- spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring.version}</version>
                 <exclusions>
                     <exclusion>
                         <artifactId>commons-logging</artifactId>
@@ -225,32 +227,32 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-web</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context-support</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-expression</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jms</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring.version}</version>
                 <exclusions>
                     <exclusion>
                         <artifactId>commons-logging</artifactId>
@@ -261,44 +263,44 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-orm</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jdbc</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-tx</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjrt</artifactId>
-                <version>${dev.aspectj.version}</version>
+                <version>${aspectj.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>
-                <version>${dev.aspectj.version}</version>
+                <version>${aspectj.version}</version>
             </dependency>
 
             <dependency>
@@ -311,40 +313,40 @@
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-web</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring-security.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-config</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring-security.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-core</artifactId>
-                <version>${dev.spring.version}</version>
+                <version>${spring-security.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
-                <version>${dev.mybatis.version}</version>
+                <version>${mybatis.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-spring</artifactId>
-                <version>${dev.spring.mybatis.version}</version>
+                <version>${spring.mybatis.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper</artifactId>
-                <version>${dev.mybatis.pagehelper}</version>
+                <version>${mybatis.pagehelper}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
-                <version>${dev.druid.version}</version>
+                <version>${druid.version}</version>
             </dependency>
 
             <dependency>
@@ -359,20 +361,20 @@
                 <!--spring 对 jedis的封装(jedisTemplate) -->
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-redis</artifactId>
-                <version>${dev.spring.data.redis.version}</version>
+                <version>${spring.data.redis.version}</version>
             </dependency>
             <!-- jedis 是 redis的客户端封装 -->
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
-                <version>${dev.redis.clients.version}</version>
+                <version>${redis.clients.version}</version>
             </dependency>
 
             <!--memcached 客户端-->
             <dependency>
                 <groupId>com.googlecode.xmemcached</groupId>
                 <artifactId>xmemcached</artifactId>
-                <version>${dev.xmemcached.version}</version>
+                <version>${xmemcached.version}</version>
             </dependency>
 
             <!--log start-->
@@ -428,17 +430,17 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
-                <version>${dev.jackson.version}</version>
+                <version>${jackson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
-                <version>${dev.jackson.version}</version>
+                <version>${jackson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
-                <version>${dev.jackson.version}</version>
+                <version>${jackson.version}</version>
             </dependency>
 
             <dependency>
@@ -457,7 +459,7 @@
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>${dev.mysql.version}</version>
+                <version>${mysql.version}</version>
             </dependency>
 
             <dependency>

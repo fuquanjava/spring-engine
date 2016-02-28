@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/rabbit
+        http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+
+    <!-- 连接服务配置  -->
+    <rabbit:connection-factory id="connectionFactory" host="127.0.0.1" username="guest"
+                               password="guest" port="5672" virtual-host="/"/>
+
+    <rabbit:admin connection-factory="connectionFactory"/>
+
+    <!-- queue 队列声明-->
+    <rabbit:queue id="direct_queue" durable="false" auto-delete="true" exclusive="false" name="direct_queue"/>
+
+    <!-- spring amqp默认的是jackson 的一个插件,目的将生产者生产的数据转换为json存入消息队列-->
+    <bean id="myMessageConverter" class="com.spring.ext.MyMessageConverter"/>
+
+
+    <!-- 消息转换器 -->
+    <bean id="simpleMessageConverter" class="org.springframework.amqp.support.converter.SimpleMessageConverter"/>
+
+    <import resource="classpath:com/spring/rabbitmq-producer.xml"/>
+    <import resource="classpath:com/spring/rabbitmq-consumer.xml"/>
+
+</beans>

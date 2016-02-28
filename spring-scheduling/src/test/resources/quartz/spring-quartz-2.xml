@@ -7,7 +7,7 @@
 
     <!-- For times when you need more complex processing, passing data to the scheduled job -->
     <bean name="complexJobDetail"    class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-        <property name="jobClass" value="spring.quartz.job.ScheduledJob" />
+        <property name="jobClass" value="com.spring.quartz.job.ScheduledJob" />
 <!--        <property name="jobDataMap">
             <map>
                 <entry key="anotherBean" value-ref="anotherBean" />
