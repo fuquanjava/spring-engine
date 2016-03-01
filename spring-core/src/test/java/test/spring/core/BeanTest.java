@@ -1,10 +1,8 @@
 package test.spring.core;
 
 import org.junit.Test;
-import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
@@ -42,4 +40,11 @@ public class BeanTest {
         System.err.println(path);
     }
 
+    @Test
+    public void beanNameAware(){
+        AbstractXmlApplicationContext context =
+                new ClassPathXmlApplicationContext("spring-config.xml");
+        //MyBeanNameAware beanNameAware = context.getBean(MyBeanNameAware.class);
+        //beanNameAware.sayName();
+    }
 }

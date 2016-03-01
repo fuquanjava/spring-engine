@@ -1,4 +1,4 @@
-package com.spring.api;
+package spring.core.bean;
 
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.stereotype.Component;
@@ -13,6 +13,12 @@ public class MyBeanNameAware implements BeanNameAware {
 
     private String beanName = null;
 
+    @Override
+    public void setBeanName(String name) {
+        System.err.println("MyBeanNameAware setBeanName, 参数name:" + name);
+        this.beanName = name;
+    }
+
     public MyBeanNameAware() {
         System.err.println("MyBeanNameAware MyBeanNameAware, 无构造器");
     }
@@ -22,12 +28,12 @@ public class MyBeanNameAware implements BeanNameAware {
         this.beanName = beanName;
     }
 
-    @Override
-    public void setBeanName(String name) {
-        System.err.println("MyBeanNameAware setBeanName, 参数name:" + name);
-        this.beanName = name;
-    }
+
     public String getBeanName() {
         return beanName;
+    }
+
+    public void sayName(){
+        System.err.println("我在 BeanFactory 中的名字是：" + beanName);
     }
 }
