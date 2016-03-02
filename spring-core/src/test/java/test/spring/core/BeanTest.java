@@ -1,8 +1,11 @@
 package test.spring.core;
 
 import org.junit.Test;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 import spring.core.bean.HelloBean;
 
 /**
@@ -17,6 +20,31 @@ public class BeanTest {
         AbstractXmlApplicationContext context =
                 new ClassPathXmlApplicationContext("spring-config.xml");
         HelloBean helloBean = (HelloBean) context.getBean("helloBean");
-        System.err.println("helloBean:" + helloBean);
+        Class<?> clazz = context.getType("helloBean");
+        System.err.println(clazz.getSimpleName());
+    }
+
+    @Test
+    public void beanFactory(){
+        ClassPathResource resource = new ClassPathResource("spring-config.xml");
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
+        reader.loadBeanDefinitions(resource);
+        HelloBean helloBean = (HelloBean) beanFactory.getBean("helloBean");
+    }
+
+    @Test
+    public void StringTest(){
+        String path = "/string";
+        path = path.substring(1);
+        System.err.println(path);
+    }
+
+    @Test
+    public void beanNameAware(){
+        AbstractXmlApplicationContext context =
+                new ClassPathXmlApplicationContext("spring-config.xml");
+        //MyBeanNameAware beanNameAware = context.getBean(MyBeanNameAware.class);
+        //beanNameAware.sayName();
     }
 }

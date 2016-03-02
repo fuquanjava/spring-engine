@@ -1,5 +1,7 @@
 package spring.core.bean;
 
+import org.springframework.stereotype.Component;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +9,7 @@ import java.io.Serializable;
  * description:
  * 1.0.0
  */
+@Component
 public class HelloBean implements Serializable{
 
     private String name;
