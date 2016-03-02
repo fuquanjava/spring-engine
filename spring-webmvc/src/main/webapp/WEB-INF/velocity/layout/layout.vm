@@ -4,4 +4,3 @@
 $screen_content
 
 #parse( 'footer.vm' )
-

@@ -1,0 +1,2 @@
+
+user :　$request.getAttribute("user")
