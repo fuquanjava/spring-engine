@@ -47,4 +47,10 @@ public class BeanTest {
         //MyBeanNameAware beanNameAware = context.getBean(MyBeanNameAware.class);
         //beanNameAware.sayName();
     }
+
+    @Test
+    public void applicationListener(){
+        AbstractXmlApplicationContext context =
+                new ClassPathXmlApplicationContext("spring-config.xml");
+    }
 }

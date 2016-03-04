@@ -15,12 +15,12 @@ public class InitializeService implements ApplicationListener<ContextRefreshedEv
 
     @Override
     public synchronized void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-           //防止容器初始化多次
+           //防止容器初始化多次, BeanFactory有子父容器的特性
         if(contextRefreshedEvent.getApplicationContext().getParent() == null && !initFlag){
             initFlag = true;
             // 所有的bean都实例化完毕之后会调用
-            System.out.println("InitializeService onApplicationEvent,事件源:"+contextRefreshedEvent.getSource());
-            System.out.println("容器名称:"+contextRefreshedEvent.getApplicationContext().getDisplayName());
+            System.err.println("InitializeService onApplicationEvent,事件源:"+contextRefreshedEvent.getSource());
+            System.err.println("容器名称:"+contextRefreshedEvent.getApplicationContext().getDisplayName());
 
         }
 
