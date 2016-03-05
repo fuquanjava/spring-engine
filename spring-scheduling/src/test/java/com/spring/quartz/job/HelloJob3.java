@@ -25,10 +25,6 @@ public class HelloJob3 extends QuartzJobBean {
 
         JobDataMap jobDataMap = context.getMergedJobDataMap();
 
-        JobInfo jobInfo = (JobInfo) context.getMergedJobDataMap().get("scheduleJob");
-
-        System.err.println(jobInfo);
-
         System.err.println(" 执行完毕 ScheduledJob");
 
     }

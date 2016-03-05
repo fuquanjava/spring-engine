@@ -69,7 +69,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <version>${dev.spring.version}</version>
         </dependency>
 
         <!--jdbc Driver -->

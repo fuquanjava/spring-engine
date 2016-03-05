@@ -1,4 +1,4 @@
-package com.spring.quartz.job;
+package com.spring.quartz.core;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import java.io.Serializable;
  * spring-engine 2016/2/25 21:32
  * fuquanemail@gmail.com
  */
-public class JobInfo implements Serializable {
+public class ScheduleJob implements Serializable {
 
     /**
      * 任务id

@@ -1,8 +1,7 @@
 package com.spring.quartz.core;
 
-import com.spring.quartz.job.JobInfo;
+import com.google.common.collect.Lists;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -17,16 +16,16 @@ public class JobManagement {
     /**
      * 计划任务map
      */
-    private static Map<String, JobInfo> jobMap = new ConcurrentHashMap<>();
+    private static Map<String, ScheduleJob> jobMap = new ConcurrentHashMap<>();
 
     static {
         for (int i = 0; i < 5; i++) {
-            JobInfo job = new JobInfo();
+            ScheduleJob job = new ScheduleJob();
             job.setJobId("1001" + i);
-            job.setJobName("job-name-" + i);
-            job.setJobGroup("group-1");
+            job.setJobName("jobName-" + i);
+            job.setJobGroup("jobGroup-1");
             job.setJobStatus("1");
-            job.setCronExpression("0/5 * * * * ?");
+            job.setCronExpression("0/3 * * * * ?");
             job.setDesc("测试任务任务");
             addJob(job);
         }
@@ -37,12 +36,12 @@ public class JobManagement {
      *
      * @param scheduleJob
      */
-    public static void addJob(JobInfo scheduleJob) {
+    public static void addJob(ScheduleJob scheduleJob) {
         jobMap.put(scheduleJob.getJobGroup() + "_" + scheduleJob.getJobName(), scheduleJob);
     }
 
-    public static List<JobInfo> getAllJobs() {
-        Collection<JobInfo> collection = jobMap.values();
-        return new ArrayList<>(collection);
+    public static List<ScheduleJob> getAllJobs() {
+        Collection<ScheduleJob> collection = jobMap.values();
+        return Lists.newArrayList(collection);
     }
 }
