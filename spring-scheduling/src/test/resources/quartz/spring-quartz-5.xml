@@ -5,6 +5,8 @@
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--scheduler-->
-    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" />
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="configLocation" value="classpath:quartz.properties"/>
+    </bean>
 
 </beans>

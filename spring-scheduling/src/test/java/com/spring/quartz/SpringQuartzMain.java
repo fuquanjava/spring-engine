@@ -5,14 +5,21 @@ import com.spring.quartz.core.QuartzJobFactory;
 import com.spring.quartz.core.ScheduleJob;
 import org.quartz.*;
 import org.quartz.Trigger;
+import org.quartz.impl.matchers.GroupMatcher;
+import org.quartz.utils.DBConnectionManager;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.scheduling.*;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.util.CollectionUtils;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 /**
  * spring-engine 2016/2/25 22:52
@@ -20,33 +27,64 @@ import java.util.List;
  */
 public class SpringQuartzMain {
     public static void main(String[] args) throws SchedulerException {
-        testSpringQuartz();
-
-
-    }
-
-    public static void testAllJobs(Scheduler scheduler) throws SchedulerException{
-        List<JobExecutionContext> jobExecutionContextList =  scheduler.getCurrentlyExecutingJobs();
-        if(CollectionUtils.isEmpty(jobExecutionContextList)){
-            System.err.println("job list is empty");
-        }else{
-
-            for(JobExecutionContext jobExecutionContext : jobExecutionContextList ){
-                JobDetail jobDetail = jobExecutionContext.getJobDetail();
-                System.err.println("job key: "+jobDetail.getKey());
-                Trigger trigger = jobExecutionContext.getTrigger();
-                System.err.println("triger key :"+ trigger.getKey());
-            }
-        }
-
-    }
-
-    public static void testSpringQuartz() throws SchedulerException {
         AbstractApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
         context.start();
         System.err.println(" quartz 启动成功");
 
-        Scheduler scheduler = context.getBean(SchedulerFactoryBean.class).getScheduler();
+        SchedulerFactoryBean schedulerFactoryBean = context.getBean(SchedulerFactoryBean.class);
+        Scheduler scheduler = schedulerFactoryBean.getScheduler();
+        scheduler.start();
+
+        testSpringQuartz(scheduler);
+        getAllSchedulers(scheduler);
+
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        scheduler.shutdown();
+    }
+
+    public static void getAllJobs(Scheduler scheduler) throws SchedulerException {
+        Set<JobKey> jobKeys =  scheduler.getJobKeys(GroupMatcher.anyJobGroup());
+        if(org.apache.commons.collections.CollectionUtils.isEmpty(jobKeys)){
+
+        }
+
+
+    }
+    public static void getAllSchedulers(Scheduler scheduler) throws SchedulerException {
+        SchedulerContext schedulerContext = scheduler.getContext();
+        System.err.println("schedulerContext："+schedulerContext);
+        System.err.println("scheduler:" + scheduler);
+
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            connection = DBConnectionManager.getInstance().getConnection("quartz");
+
+            String sql = "SELECT SCHED_NAME FROM QRTZ_JOB_DETAILS GROUP BY SCHED_NAME";
+
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String schedulerName = rs.getString("SCHED_NAME");
+                System.err.println("schedulerName:" + schedulerName);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public static void testSpringQuartz(Scheduler scheduler) throws SchedulerException {
+
         List<ScheduleJob> jobInfoList = JobManagement.getAllJobs();
 
         for (ScheduleJob job : jobInfoList) {
@@ -65,6 +103,8 @@ public class SpringQuartzMain {
                         .getCronExpression());
                 //按新的cronExpression表达式构建一个新的trigger
                 trigger = TriggerBuilder.newTrigger().withIdentity(job.getJobName(), job.getJobGroup()).withSchedule(scheduleBuilder).build();
+
+                //开始调度job
                 scheduler.scheduleJob(jobDetail, trigger);
             } else {
                 System.err.println("trigger已存在，使用原来的trigger");
@@ -80,7 +120,5 @@ public class SpringQuartzMain {
                 scheduler.rescheduleJob(triggerKey, trigger);
             }
         }
-        scheduler.start();
-        testAllJobs(scheduler);
     }
 }

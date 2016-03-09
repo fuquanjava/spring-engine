@@ -19,7 +19,7 @@ public class JobManagement {
     private static Map<String, ScheduleJob> jobMap = new ConcurrentHashMap<>();
 
     static {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 1; i < 2; i++) {
             ScheduleJob job = new ScheduleJob();
             job.setJobId("1001" + i);
             job.setJobName("jobName-" + i);
