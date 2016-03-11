@@ -38,6 +38,7 @@ public class SpringQuartzMain {
         testSpringQuartz(scheduler);
         getAllSchedulers(scheduler);
 
+        getAllJobs(scheduler);
 
         try {
             Thread.sleep(5000);
@@ -48,16 +49,33 @@ public class SpringQuartzMain {
     }
 
     public static void getAllJobs(Scheduler scheduler) throws SchedulerException {
-        Set<JobKey> jobKeys =  scheduler.getJobKeys(GroupMatcher.anyJobGroup());
-        if(org.apache.commons.collections.CollectionUtils.isEmpty(jobKeys)){
+        Set<JobKey> jobKeys = scheduler.getJobKeys(GroupMatcher.anyJobGroup());
+        if (CollectionUtils.isEmpty(jobKeys)) {
+            System.err.println("没有job");
+            return;
+        }
+        for (JobKey jobKey : jobKeys) {
+            JobDetail jobDetail = scheduler.getJobDetail(jobKey);
+            System.err.println("jobName:" + jobKey.getName() + ",jobGroup:" + jobKey.getGroup() + ",jobClass:" + jobDetail.getJobClass().getSimpleName());
+
+            List<? extends Trigger> triggers = scheduler.getTriggersOfJob(jobKey);
+            if (!CollectionUtils.isEmpty(triggers)) {
+                for (Trigger trigger : triggers) {
+                    System.err.println("triger desc:" + trigger.getDescription());
+
+                    Trigger.TriggerState triggerState = scheduler.getTriggerState(trigger.getKey());
+                    System.err.println("triggerState:" + triggerState.name());
+                }
+            }
 
         }
 
 
     }
+
     public static void getAllSchedulers(Scheduler scheduler) throws SchedulerException {
         SchedulerContext schedulerContext = scheduler.getContext();
-        System.err.println("schedulerContext："+schedulerContext);
+        System.err.println("schedulerContext：" + schedulerContext);
         System.err.println("scheduler:" + scheduler);
 
         Connection connection = null;
@@ -102,7 +120,7 @@ public class SpringQuartzMain {
                 CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(job
                         .getCronExpression());
                 //按新的cronExpression表达式构建一个新的trigger
-                trigger = TriggerBuilder.newTrigger().withIdentity(job.getJobName(), job.getJobGroup()).withSchedule(scheduleBuilder).build();
+                trigger = TriggerBuilder.newTrigger().withDescription("开发测试triger").withIdentity(job.getJobName(), job.getJobGroup()).withSchedule(scheduleBuilder).build();
 
                 //开始调度job
                 scheduler.scheduleJob(jobDetail, trigger);
