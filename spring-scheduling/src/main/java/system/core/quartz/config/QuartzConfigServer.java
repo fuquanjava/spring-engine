@@ -27,7 +27,6 @@ public class QuartzConfigServer {
 
     private boolean autoStartup = true;
 
-
     public String getConfigServerKey() {
         return configServerKey;
     }

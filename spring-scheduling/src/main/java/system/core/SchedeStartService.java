@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import system.core.quartz.QuartzManager;
+import system.core.quartz.QuartzConfigServerManager;
 
 /**
  * fuquanemail@gmail.com 2016/3/11 15:32
@@ -15,7 +15,7 @@ import system.core.quartz.QuartzManager;
 public class SchedeStartService implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired
-    private QuartzManager quartzManager;
+    private QuartzConfigServerManager configServerManager;
 
     private volatile boolean initialFlag;
 
@@ -23,9 +23,9 @@ public class SchedeStartService implements ApplicationListener<ContextRefreshedE
     public synchronized void onApplicationEvent(ContextRefreshedEvent event) {
         if (event.getApplicationContext().getParent() == null && !initialFlag) {
             initialFlag = true;
-            if (null != quartzManager) {
+            if (null != configServerManager) {
 
-                quartzManager.initQuartz();
+                configServerManager.initQuartz();
             }
         }
     }

@@ -1,9 +1,11 @@
 package system.core.quartz;
 
 import org.quartz.Scheduler;
+import org.quartz.SchedulerContext;
 import org.quartz.impl.StdSchedulerFactory;
 import org.quartz.utils.ConnectionProvider;
 import org.quartz.utils.DBConnectionManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Component;
 import system.core.quartz.config.QuartzConfigServer;
@@ -25,6 +27,9 @@ import java.util.Set;
 public class SchedulerQuartz {
 
     private QuartzConfigServer quartzConfigServer;
+
+    @Autowired
+    private QuartzManager quartzManager;
 
     public void setQuartzConfigServer(QuartzConfigServer quartzConfigServer) {
         this.quartzConfigServer = quartzConfigServer;
@@ -84,11 +89,16 @@ public class SchedulerQuartz {
             quartzConfigServer.setStdSchedulerFactory(stdSchedulerFactory);
             if (quartzConfigServer.isAutoStartup()) {
                 Scheduler scheduler = stdSchedulerFactory.getScheduler();
+                scheduler.getContext().put("org.quartz.jobStore.dataSource", dataSourceKey);
                 scheduler.start();
+
+                SchedulerContext schedulerContext = scheduler.getContext();
+                System.err.println(schedulerContext);
+
                 System.err.println("Quartz [" + quartzConfigServer.getConfigServerKey() + "] 自动启动");
-
-
+                quartzManager.setScheduler(scheduler);
             }
+
         }
 
     }
