@@ -1,8 +1,13 @@
 package system.test;
 
+import org.quartz.SchedulerException;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.util.CollectionUtils;
 import system.core.quartz.QuartzManager;
+import system.core.quartz.config.QuartzParameter;
+
+import java.util.List;
 
 /**
  * fuquanemail@gmail.com 2016/3/11 15:37
@@ -10,13 +15,27 @@ import system.core.quartz.QuartzManager;
  * 1.0.0
  */
 public class QuartzTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SchedulerException {
         AbstractApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
         context.start();
         System.err.println(" quartz 启动成功");
 
+        testAllJobs(context);
 
 
+    }
+
+    public static void testAllJobs(AbstractApplicationContext context) throws SchedulerException {
+        QuartzManager quartzManager = context.getBean(QuartzManager.class);
+        List<QuartzParameter> quartzParameterList =  quartzManager.getAllJobs();
+        if(CollectionUtils.isEmpty(quartzParameterList)){
+            System.err.println(" not found job.");
+        }else {
+
+            for( QuartzParameter quartzParameter : quartzParameterList){
+                System.err.println(quartzParameter);
+            }
+        }
 
     }
 
