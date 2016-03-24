@@ -27,6 +27,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- 编译时的编码 -->
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <!--onejar plugin-->
+        <dep.onejar-maven-plugin>1.4.4</dep.onejar-maven-plugin>
 
         <spring.version>4.1.6.RELEASE</spring.version>
         <spring-security.version>4.0.0.RELEASE</spring-security.version>
@@ -413,15 +415,15 @@
             <!--logback-->
 
             <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${dev.logback.version}</version>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${dev.logback.version}</version>
             </dependency>
 
             <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${dev.logback.version}</version>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${dev.logback.version}</version>
             </dependency>
 
             <dependency>
@@ -516,27 +518,96 @@
 
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <!-- 设置resouce目录下的所有文件编码，否则如果配置xml文件中有中文字符，部署后可能会引起运行失败 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.6</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+                <!--指定编译文件的编码-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.5.1</version>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                        <encoding>utf-8</encoding>
+                    </configuration>
+                </plugin>
+
+                <!--全部的资源打包成一个可以 执行的 jar-->
+                <plugin>
+                    <groupId>com.jolira</groupId>
+                    <artifactId>onejar-maven-plugin</artifactId>
+                    <version>${dep.onejar-maven-plugin}</version>
+                    <executions>
+                        <execution>
+                            <configuration>
+                                <attachToBuild>true</attachToBuild>
+                                <classifier>onejar</classifier>
+                                <mainClass>system.core.DefaultContainer</mainClass>
+                            </configuration>
+                            <goals>
+                                <goal>one-jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!--"assembly"是把一组文件、目录、依赖元素组装成一个归档文件.-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.6</version>
+                    <!--执行器 mvn assembly:assembly-->
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id><!--名字任意 -->
+                            <phase>package</phase><!-- 绑定到package生命周期阶段上 -->
+                            <goals>
+                                <goal>single</goal><!-- 只运行一次 -->
+                            </goals>
+                        </execution>
+                    </executions>
+                    <!--描述文件路径-->
+                    <configuration>
+                        <descriptors>
+                            <descriptor>src/main/resources/assembly.xml</descriptor>
+                        </descriptors>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <!-- 设置resouce目录下的所有文件编码，否则如果配置xml文件中有中文字符，部署后可能会引起运行失败 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
             </plugin>
             <!--指定编译文件的编码-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                    <encoding>utf-8</encoding>
-                </configuration>
             </plugin>
+
+            <!--全部的资源打包成一个可以 执行的 jar-->
+            <plugin>
+                <groupId>com.jolira</groupId>
+                <artifactId>onejar-maven-plugin</artifactId>
+            </plugin>
+
+            <!--"assembly"是把一组文件、目录、依赖元素组装成一个归档文件.-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+            </plugin>
+
         </plugins>
     </build>
 </project>

@@ -42,16 +42,16 @@
         </profile>
     </profiles>
     <build>
-    <finalName>${project.artifactId}</finalName>
-    <filters>
-        <filter>src/main/resources/env/${env}-env.properties</filter>
-    </filters>
-    <resources>
-        <resource>
-            <directory>src/main/resources</directory>
-            <filtering>true</filtering>
-        </resource>
-    </resources>
+        <finalName>${project.artifactId}</finalName>
+        <filters>
+            <filter>src/main/resources/env/${env}-env.properties</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 
     <dependencies>
@@ -149,7 +149,5 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
         </dependency>
-
     </dependencies>
-
 </project>
