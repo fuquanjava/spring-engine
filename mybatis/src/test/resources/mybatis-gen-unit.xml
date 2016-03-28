@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
     <!-- 引入配置文件
     <properties resource="init.properties"/>-->
 
     <!-- 指定数据连接驱动jar地址 -->
-    <classPathEntry location="F:\maven\myRep\mysql\mysql-connector-java\5.1.26\mysql-connector-java-5.1.26.jar" />
+    <classPathEntry location="E:\maven\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar"/>
 
     <!-- 一个数据库一个context -->
     <context id="order">
         <!-- 注释 -->
-        <commentGenerator >
+        <commentGenerator>
             <property name="suppressAllComments" value="true"/><!-- 是否取消注释 -->
-            <property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳-->
+            <property name="suppressDate" value="true"/> <!-- 是否生成注释代时间戳-->
         </commentGenerator>
 
         <!-- jdbc连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://115.29.187.62:3306/56CityExpress?useUnicode=true&amp;characterEncoding=UTF-8"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&amp;characterEncoding=UTF-8"
                         userId="root"
-                        password="123root" />
+                        password="1234"/>
 
         <!-- 类型转换 -->
         <javaTypeResolver>
@@ -28,8 +30,8 @@
         </javaTypeResolver>
 
         <!-- 生成实体类地址 -->
-        <javaModelGenerator targetPackage="domain"
-                            targetProject="F:\github\Spring-Engine\src\main\java" >
+        <javaModelGenerator targetPackage="test.domain"
+                            targetProject="E:\github\Spring-Engine\mybatis\src\test\java\">
             <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
             <property name="enableSubPackages" value="false"/>
             <!-- 是否针对string类型的字段在set的时候进行trim调用 -->
@@ -37,31 +39,30 @@
         </javaModelGenerator>
 
         <!-- 生成mapxml文件 -->
-        <sqlMapGenerator targetPackage="domain"
-                         targetProject="F:\github\Spring-Engine\src\main\java" >
+        <sqlMapGenerator targetPackage="sqlmap"
+                         targetProject="E:\github\Spring-Engine\mybatis\src\test\resources\">
             <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
-            <property name="enableSubPackages" value="false" />
+            <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
-<!--        &lt;!&ndash; 生成mapxml对应client，也就是接口dao &ndash;&gt;
-        <javaClientGenerator targetPackage="com.oop.eksp.user.data"
-                             targetProject="${project}" type="XMLMAPPER" >
-            &lt;!&ndash; 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] &ndash;&gt;
-            <property name="enableSubPackages" value="false" />
-        </javaClientGenerator>-->
+        <!-- 生成mapxml对应client，也就是接口dao -->
+        <javaClientGenerator targetPackage="test.mybatis.mapper"
+                             targetProject="E:\github\Spring-Engine\mybatis\src\test\java\" type="XMLMAPPER">
+            <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
 
         <!-- 配置表信息 -->
-        <table schema="${jdbc_user}" tableName="buy_order_item"
-               domainObjectName="OrderItemDO" enableCountByExample="false"
+        <table schema="${jdbc_user}" tableName="resource"
+               domainObjectName="ResourceDO" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
             <!-- schema即为数据库名 tableName为对应的数据库表 domainObjectName是要生成的实体类 enable*ByExample
                 是否生成 example类   -->
-
             <!-- 忽略列，不生成bean 字段 -->
-            <ignoreColumn column="FRED" />
+            <ignoreColumn column="FRED"/>
             <!-- 指定列的java数据类型 -->
-            <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+            <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR"/>
         </table>
 
     </context>

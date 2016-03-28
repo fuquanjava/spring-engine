@@ -1,24 +1,28 @@
-package test.mapper;
+package test.mybatis;
 
-import domain.Dept;
-import mapper.DeptMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.List;
 
 /**
- * spring-demo 2015/6/6 21:41
+ * spring-demo 2015/6/6 16:59
  * fuquanemail@gmail.com
  */
-public class MybatisMapper {
+public class MybatisSqlSession {
+
+
+
+
+
     @Test
-    public void testFindAll() throws IOException {
+    public void testSqlSession() throws IOException {
+
         String conf = "SqlMapConfig.xml";
         Reader reader =
                 Resources.getResourceAsReader(conf);
@@ -28,15 +32,11 @@ public class MybatisMapper {
         SqlSessionFactory sf = sfb.build(reader);
         //创建Session
         SqlSession session = sf.openSession();
-        DeptMapper mapper =
-                session.getMapper(DeptMapper.class);
-        //调用findAll方法
-        List<Dept> list = mapper.findAll();
-        for (Dept dept : list) {
-            System.out.println(dept.getDeptno() + " "
-                    + dept.getDname() + " "
-                    + dept.getLoc());
-        }
+
+        System.out.println(session);
+
+        //关闭Session
         session.close();
+
     }
 }
