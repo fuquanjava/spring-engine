@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="mapper.UserDAOMapper">
+<mapper namespace="userDAO">
 
     <!--
   cache- 配置本定命名空间的缓存。
@@ -34,6 +34,7 @@
         <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
+
     </resultMap>
 
     <sql id="column_List">
@@ -85,6 +86,7 @@
         VALUES (#{username}, #{password} , #{realname},
         #{tel} ,#{status} ,#{locked}, #{createUser} , now() , #{remark} , #{lastLoginTime} )
     </insert>
+
     <update id="updateById" parameterType="domain.UserDO">
         update auth_user
         <set>
@@ -118,7 +120,25 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
+
     <select id="findById" resultMap="userDo">
-        SELECT <include refid="column_List"/> FROM auth_user u WHERE u.id = #{id}
+        SELECT
+        <include refid="column_List"/>
+        FROM auth_user u WHERE u.id = #{id}
     </select>
+
+    <!--==================================================================================-->
+    <!--动态 sql-->
+    <!--==================================================================================-->
+
+    <!--if -->
+    <select id="findById2" resultMap="userDo">
+        SELECT
+        <include refid="column_List"/>
+        FROM auth_user u WHERE u.status = 1
+        <if test="id != null">
+            AND u.id = #{id}
+        </if>
+    </select>
+
 </mapper>
