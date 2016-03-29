@@ -1,7 +1,7 @@
 package test.mybatis;
 
 import domain.UserDO;
-import mapper.UserDAOMapper;
+import dao.UserDAOMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.SqlSession;

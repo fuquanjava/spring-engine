@@ -1,0 +1,11 @@
+
+MyBatis提供了一种插件(plugin)的功能，虽然叫做插件，但其实这是拦截器功能。那么拦截器拦截MyBatis中的哪些内容呢？
+
+MyBatis 允许你在已映射语句执行过程中的某一点进行拦截调用。默认情况下，MyBatis允许使用插件来拦截的方法调用包括：
+
+Executor (update, query, flushStatements, commit, rollback, getTransaction, close, isClosed) 拦截执行器的方法
+ParameterHandler (getParameterObject, setParameters) 拦截参数的处理
+ResultSetHandler (handleResultSets, handleOutputParameters) 拦截结果集的处理
+StatementHandler (prepare, parameterize, batch, update, query) 拦截Sql语法构建的处理
+Mybatis采用责任链模式，通过动态代理组织多个拦截器（插件），通过这些拦截器可以改变Mybatis的默认行为（诸如SQL重写之类的），
+由于插件会深入到Mybatis的核心，因此在编写自己的插件前最好了解下它的原理，以便写出安全高效的插件。

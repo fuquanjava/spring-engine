@@ -1,7 +1,7 @@
 package test.mybatis;
 
 import domain.UserDO;
-import mapper.UserDAOMapper;
+import dao.UserDAOMapper;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
@@ -52,6 +52,14 @@ public class MybatisCURD extends MybatisBaseTest {
 
     }
 
+    @Test
+    public void testSql() {
+
+        SqlSession session = sqlSessionFactory.openSession();
+        UserDAOMapper mapper = session.getMapper(UserDAOMapper.class);
+        UserDO userDO = mapper.findById2(1);
+        System.err.println(userDO);
+    }
 
    /* @Test
     public void testInsert() throws IOException {

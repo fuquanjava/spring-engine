@@ -21,16 +21,6 @@
         <setting name="logImpl" value="LOG4J"/>
     </settings>
 
-    <!-- 配置别名 -->
-    <typeAliases>
-        <typeAlias type="domain.DeptDO" alias="dept"/>
-        <typeAlias type="domain.UserDO" alias="user"/>
-    </typeAliases>
-
-    <plugins>
-        <plugin interceptor="plugin.MyInterceptor" />
-    </plugins>
-
 
     <!-- 配置环境变量 -->
     <environments default="development">
@@ -40,7 +30,6 @@
       MANAGED–这个配置几乎没做什么。它从来不提交或回滚一个连接。而它会让容器来管理事务的整个生命周期（比如Spring或JEE应用服务器的上下文）。-->
 
             <dataSource type="POOLED">
-
                 <!--
 UNPOOLED–这个数据源的实现是每次被请求时简单打开和关闭连接
 POOLED–mybatis实现的简单的数据库连接池类型，它使得数据库连接可被复用，不必在每次请求时都去创建一个物理的连接。
@@ -53,26 +42,4 @@ JNDI – 通过jndi从tomcat之类的容器里获取数据源。-->
             </dataSource>
         </environment>
     </environments>
-
-    <mappers>
-
-        <!-- 第一种方式：通过resource指定 -->
-        <mapper resource="sqlmap/auth_user.xml" />
-        <mapper resource="sqlmap/auth_dept.xml" />
-
-        <!-- 第二种方式， 通过class指定接口，进而将接口与对应的xml文件形成映射关系
-             不过，使用这种方式必须保证 接口与mapper文件同名(不区分大小写)，
-             我这儿接口是UserDao,那么意味着mapper文件为UserDao.xml
-        <mapper class="com.dy.dao.UserDao"/>-->
-
-        <!-- 第三种方式，直接指定包，自动扫描，与方法二同理
-        <package name="com.dy.dao"/>
-        -->
-
-        <!-- 第四种方式：通过url指定mapper文件位置
-        <mapper url="file://........"/>
-        -->
-
-    </mappers>
-
 </configuration>

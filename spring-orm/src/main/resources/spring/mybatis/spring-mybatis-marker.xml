@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="../spring-mysql.xml"/>
+
+    <!--配置 Mybatis的sqlSessionFactory  -->
+    <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--configLocation属性指定mybatis的核心配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+
+        <!--mapperLocations：通过正则表达式，支持mybatis动态扫描添加mapper不用像ibatis，用一个还要蛋疼滴添加一个include-->
+        <property name="mapperLocations" value="classpath:sqlmap/auth_user.xml"/>
+
+        <!--failFast：开启后将在启动时检查设定的parameterMap,resultMap是否存在，是否合法。
+        个人建议设置为true,这样可以尽快定位解决问题。不然在调用过程中发现错误，会影响问题定位。-->
+        <property name="failFast" value="true"/>
+    </bean>
+
+
+    <!--    有时候我们指定的基包下面的并不全是我们定义的Mapper接口，为此MapperScannerConfigurer还为我们提供了另外两个可以缩小搜索和注册范围的属性。一个是annotationClass，另一个是markerInterface。
+
+        annotationClass：当指定了annotationClass的时候，MapperScannerConfigurer将只注册使用了annotationClass注解标记的接口。
+        markerInterface：markerInterface是用于指定一个接口的，当指定了markerInterface之后，MapperScannerConfigurer将只注册继承自markerInterface的接口。
+
+    annotationClass：自定义一个注解。需要暴露的都加上该注解即可。
+    markerInterface：自定一个接口，需要暴露的都 继承该接口。
+
+        -->
+
+</beans>

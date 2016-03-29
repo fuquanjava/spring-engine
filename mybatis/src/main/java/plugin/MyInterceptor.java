@@ -1,4 +1,4 @@
-package interceptor;
+package plugin;
 
 
 import org.apache.ibatis.executor.Executor;
@@ -9,6 +9,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
 import java.util.Properties;
 
 /**
@@ -33,15 +34,23 @@ public class MyInterceptor implements Interceptor {
         //intercept方法就是要进行拦截的时候要执行的方法
 
         Object result = invocation.proceed();
+        System.err.println("intercept args:" + Arrays.toString(invocation.getArgs()));
+        System.err.println("intercept method name:" + invocation.getMethod().getName());
+        System.err.println("intercept target:" + invocation.getTarget());
 
-        log.info(" intercept  .... result  = [{}]", result); //[10,testing,beijing, 20,saling,shanghai, 70,testing,beijing]
+
         return result;
     }
 
+    /**
+     * plugin方法中我们可以决定是否要进行拦截进而决定要返回一个什么样的目标对象.
+     * Plugin.wrap(target, this) : 会把 this包装成一个代理对象。
+     * @param target 目标对象
+     * @return
+     */
     @Override
     public Object plugin(Object target) {
-//        plugin方法中我们可以决定是否要进行拦截进而决定要返回一个什么样的目标对象
-        log.info(" plugin  .... target class name  = [{}]", target.getClass().getSimpleName());
+        System.err.println("target class name:"+target.getClass().getSimpleName());
         return Plugin.wrap(target, this);
     }
 

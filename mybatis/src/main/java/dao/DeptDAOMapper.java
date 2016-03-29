@@ -1,4 +1,4 @@
-package mapper;
+package dao;
 
 /**
  * fuquanemail@gmail.com 2016/3/28 13:00

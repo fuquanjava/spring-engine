@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="../spring-mysql.xml"/>
+
+    <context:component-scan base-package="spring.orm.mybatis.dao.template"/>
+
+
+    <!--配置 Mybatis的sqlSessionFactory  -->
+    <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--configLocation属性指定mybatis的核心配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+
+        <!--mapperLocations：通过正则表达式，支持mybatis动态扫描添加mapper不用像ibatis，用一个还要蛋疼滴添加一个include-->
+        <property name="mapperLocations" value="classpath:sqlmap/auth_user.xml"/>
+
+        <!--failFast：开启后将在启动时检查设定的parameterMap,resultMap是否存在，是否合法。
+        个人建议设置为true,这样可以尽快定位解决问题。不然在调用过程中发现错误，会影响问题定位。-->
+        <property name="failFast" value="true"/>
+    </bean>
+
+    <!--
+        Mybatis-Spring为我们提供了一个实现了SqlSession接口的SqlSessionTemplate类，它是线程安全的，可以被多个Dao同时使用。
+        同时它还跟Spring的事务进行了关联，确保当前被使用的SqlSession是一个已经和Spring的事务进行绑定了的。而且它还可以自己管理Session的提交和关闭。
+        当使用了Spring的事务管理机制后，SqlSession还可以跟着Spring的事务一起提交和回滚。
+
+        org.mybatis.spring.SqlSessionUtils.getSqlSession(org.apache.ibatis.session.SqlSessionFactory, org.apache.ibatis.session.ExecutorType, org.springframework.dao.support.PersistenceExceptionTranslator)
+        提供了一个线程安全的 sqlSession,　所以　sessionTemplate 也是线程安全的。
+
+        采用threadLocal的模式，保证线程安全
+    -->
+
+    <!--sqlSessionTemplate完成注解 -->
+    <bean name="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
+</beans>

@@ -1,4 +1,4 @@
-package com.spring.mybatis.annotation;
+package spring.orm.mybatis.dao.annotation;
 
 /**
  * spring-demo 2015/6/7 9:27

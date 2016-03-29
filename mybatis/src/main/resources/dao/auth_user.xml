@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.UserDAOMapper">
+
+    <!--
+  cache- 配置本定命名空间的缓存。
+      type- cache实现类，默认为PERPETUAL，可以使用自定义的cache实现类（别名或完整类名皆可）
+      eviction- 回收算法，默认为LRU，可选的算法有：
+          LRU– 最近最少使用的：移除最长时间不被使用的对象。
+          FIFO– 先进先出：按对象进入缓存的顺序来移除它们。
+          SOFT– 软引用：移除基于垃圾回收器状态和软引用规则的对象。
+          WEAK– 弱引用：更积极地移除基于垃圾收集器状态和弱引用规则的对象。
+      flushInterval- 刷新间隔，默认为1个小时，单位毫秒
+      size- 缓存大小，默认大小1024，单位为引用数
+      readOnly- 只读
+  -->
+
+    <cache type="PERPETUAL" eviction="LRU" flushInterval="60000"
+           size="512" readOnly="true"/>
+
+
+    <resultMap id="userDo" type="domain.UserDO">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="realname" property="realname" jdbcType="VARCHAR"/>
+        <result column="tel" property="tel" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="locked" property="locked" jdbcType="INTEGER"/>
+        <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP"/>
+        <result column="last_login_ip" property="lastLoginIp" jdbcType="VARCHAR"/>
+        <result column="create_user" property="createUser" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+    <sql id="column_List">
+    u.id, u.username, u.password, u.realname,  u.tel, u.status, u.locked , u.last_login_time, u.last_login_ip,
+    u.create_user, u.create_time, u.update_user, u.update_time,u.remark
+   </sql>
+
+
+    <!-- oracle等不支持id自增长的，可根据其id生成策略，先获取id
+           <selectKey resultType="int" order="BEFORE" keyProperty="id">
+                 select seq_user_id.nextval as id from dual
+           </selectKey>
+        -->
+    <insert id="save" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        <!-- 1. id （必须配置）
+                     id是命名空间中的唯一标识符，可被用来代表这条语句。一个命名空间（namespace） 对应一个dao接口,
+                     这个id也应该对应dao里面的某个方法（相当于方法的实现），因此id 应该与方法名一致 -->
+        <!-- 2. parameterType （可选配置, 默认为mybatis自动选择处理）
+           将要传入语句的参数的完全限定类名或别名， 如果不配置，mybatis会通过ParameterHandler 根据参数类型默认选择合适的typeHandler进行处理
+           parameterType 主要指定参数类型，可以是int, short, long, string等类型，也可以是复杂类型（如对象） -->
+
+        <!-- 3. flushCache （可选配置，默认配置为true）
+              将其设置为 true，任何时候只要语句被调用，都会导致本地缓存和二级缓存都会被清空，默认值：true（对应插入、更新和删除语句） -->
+
+        <!-- 4. statementType （可选配置，默认配置为PREPARED）
+           STATEMENT，PREPARED 或 CALLABLE 的一个。这会让 MyBatis 分别使用 Statement，PreparedStatement 或 CallableStatement，默认值：PREPARED。 -->
+
+        <!-- 5. keyProperty (可选配置， 默认为unset)
+            （仅对 insert 和 update 有用）唯一标记一个属性，MyBatis 会通过 getGeneratedKeys 的返回值或者通过 insert 语句的 selectKey 子元素设置它的键值，默认：unset。如果希望得到多个生成的列，也可以是逗号分隔的属性名称列表。 -->
+
+        <!-- 6. keyColumn     (可选配置)
+           （仅对 insert 和 update 有用）通过生成的键值设置表中的列名，这个设置仅在某些数据库（像 PostgreSQL）是必须的，当主键列不是表中的第一列的时候需要设置。如果希望得到多个生成的列，也可以是逗号分隔的属性名称列表。 -->
+
+        <!-- 7. useGeneratedKeys (可选配置， 默认为false)
+            （仅对 insert 和 update 有用）这会令 MyBatis 使用 JDBC 的 getGeneratedKeys 方法来取出由数据库内部生成的主键（比如：像 MySQL 和 SQL Server 这样的关系数据库管理系统的自动递增字段），默认值：false。  -->
+
+        <!-- 8. timeout  (可选配置， 默认为unset, 依赖驱动)
+              这个设置是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数。默认值为 unset（依赖驱动）。 -->
+
+
+        <!--
+        selectKey给了你一个简单的行为在你的数据库中来处理自动生成的主键，而不需要使你的Java代码变得复杂。
+        在上面的示例中，selectKey元素将会首先运行，userid会被设置，然后插入语句会被调用。
+        另外，selectKey节点生成的KeyGenerator优先级高于statement节点的useGeneratedKeys属性生成的KeyGenerator对象，
+        也就是说配置了SelectKey子节点就不需要再配置useGeneratedKeys属性了。-->
+
+        INSERT INTO auth_user(
+        username, password, realname, tel, status, locked, create_user, create_time , remark , last_login_time)
+        VALUES (#{username}, #{password} , #{realname},
+        #{tel} ,#{status} ,#{locked}, #{createUser} , now() , #{remark} , #{lastLoginTime} )
+    </insert>
+
+    <update id="updateById" parameterType="domain.UserDO">
+        update auth_user
+        <set>
+            <if test="password != null and password !='' ">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="realname != null and realname !=''">
+                realname = #{realname,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null and tel !=''">
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="locked != null and locked !=''">
+                locked = #{locked,jdbcType=INTEGER},
+            </if>
+            <if test="lastLoginTime != null and lastLoginTime !=''">
+                last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastLoginIp != null and lastLoginIp !=''">
+                last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUser != null and updateUser !=''">
+                update_user = #{updateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null and updateTime !='' ">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <select id="findById" resultMap="userDo">
+        SELECT
+        <include refid="column_List"/>
+        FROM auth_user u WHERE u.id = #{id}
+    </select>
+
+    <!--==================================================================================-->
+    <!--动态 sql-->
+    <!--==================================================================================-->
+
+    <!--if -->
+    <select id="findById2" resultMap="userDo">
+        SELECT
+        <include refid="column_List"/>
+        FROM auth_user u WHERE u.status = 1
+        <if test="id != null">
+            AND u.id = #{id}
+        </if>
+    </select>
+
+</mapper>
