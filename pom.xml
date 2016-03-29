@@ -46,7 +46,10 @@
         <druid.version>1.0.8</druid.version>
         <mysql.version>5.1.36</mysql.version>
         <mybatis.version>3.2.3</mybatis.version>
-        <spring.mybatis.version>1.2.2</spring.mybatis.version>
+
+<!-- 1.2.4 fix bug java.lang.UnsupportedOperationException: Manual close is not allowed over a Spring managed SqlSession-->
+        <spring.mybatis.version>1.2.4</spring.mybatis.version>
+
         <mybatis.pagehelper>3.7.4</mybatis.pagehelper>
 
         <!-- spring-nosql -->

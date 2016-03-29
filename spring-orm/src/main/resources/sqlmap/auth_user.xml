@@ -19,7 +19,7 @@
            size="512" readOnly="true"/>
 
 
-    <resultMap id="userDo" type="domain.UserDO">
+    <resultMap id="userDo" type="spring.orm.domain.UserDO">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
@@ -87,7 +87,7 @@
         #{tel} ,#{status} ,#{locked}, #{createUser} , now() , #{remark} , #{lastLoginTime} )
     </insert>
 
-    <update id="updateById" parameterType="domain.UserDO">
+    <update id="updateById" parameterType="spring.orm.domain.UserDO">
         update auth_user
         <set>
             <if test="password != null and password !='' ">

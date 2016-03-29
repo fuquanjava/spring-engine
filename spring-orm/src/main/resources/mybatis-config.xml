@@ -38,7 +38,7 @@ JNDI – 通过jndi从tomcat之类的容器里获取数据源。-->
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://127.0.0.1:3306/test?characterEncoding=GBK"/>
                 <property name="username" value="root"/>
-                <property name="password" value="1234"/>
+                <property name="password" value="4321"/>
             </dataSource>
         </environment>
     </environments>
