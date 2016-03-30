@@ -63,6 +63,28 @@
             <artifactId>slf4j-log4j12</artifactId>
         </dependency>
 
+        <!-- jotm -->
+        <dependency>
+            <groupId>org.ow2.jotm</groupId>
+            <artifactId>jotm-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.ow2.jotm</groupId>
+            <artifactId>jotm-datasource</artifactId>
+        </dependency>
+
+        <!-- xapool -->
+        <dependency>
+            <groupId>com.experlog</groupId>
+            <artifactId>xapool</artifactId>
+        </dependency>
+
+        <!-- javaee -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

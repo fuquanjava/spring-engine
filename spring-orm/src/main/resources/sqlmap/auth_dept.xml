@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DeptDAO">
+
+    <resultMap id="deptDO" type="spring.orm.domain.DeptDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="dept_name" jdbcType="VARCHAR" property="deptName"/>
+        <result column="level" jdbcType="INTEGER" property="level" />
+        <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
+        <result column="dept_desc" jdbcType="VARCHAR" property="deptDesc"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <sql id="column_List">
+    d.id,  d.dept_name, d.level, d.parent_id, d.dept_desc, d.status,
+    d.create_user,d.create_time, d.update_user, d.update_time
+  </sql>
+    <update id="update" parameterType="spring.orm.domain.DeptDO">
+        update auth_dept
+        <set>
+            <if test="deptName != null and deptName != '' ">
+                dept_name = #{deptName,jdbcType=VARCHAR},
+            </if>
+            <if test="level != null and level != ''">
+                level = #{level,jdbcType=INTEGER},
+            </if>
+            <if test="parentId != null and parentId != ''">
+                parent_id = #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="deptDesc != null and deptDesc != ''">
+                dept_desc = #{deptDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="updateUser != null and updateUser != ''">
+                update_user = #{updateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null and updateTime != ''">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <insert id="save"  keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into auth_dept ( dept_name, level,parent_id, dept_desc, status, create_user, create_time, update_user, update_time)
+        values (#{deptName,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},
+        #{parentId,jdbcType=BIGINT}, #{deptDesc,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+        #{createUser,jdbcType=VARCHAR}, now(), #{updateUser,jdbcType=VARCHAR},
+        now())
+    </insert>
+
+
+    <select id="findById" resultMap="deptDO">
+      SELECT <include refid="column_List"/> FROM auth_dept d where d.id = #{deptId}
+    </select>
+
+
+</mapper>

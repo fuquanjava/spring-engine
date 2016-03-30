@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+    <bean id="dataSource1" class="com.alibaba.druid.pool.DruidDataSource"
           init-method="init" destroy-method="close">
         <property name="url" value="jdbc:mysql://localhost:3306/test"/>
         <property name="username" value="root"/>
@@ -38,11 +38,11 @@
     </bean>
 
     <!--模拟从库 3307-->
-    <bean id="dataSourceSlave" class="com.alibaba.druid.pool.DruidDataSource"
+    <bean id="dataSource2" class="com.alibaba.druid.pool.DruidDataSource"
           init-method="init" destroy-method="close">
-        <property name="url" value="jdbc:mysql://localhost:3307/test"/>
-        <property name="username" value="root"/>
-        <property name="password" value="1234"/>
+        <property name="url" value="jdbc:mysql://10.2.50.36:3306/oms?useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="username" value="dev_write"/>
+        <property name="password" value="ite@007ka"/>
 
 
         <!-- 配置初始化大小、最小、最大 -->

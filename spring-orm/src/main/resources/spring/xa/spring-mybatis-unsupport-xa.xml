@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:cache="http://www.springframework.org/schema/cache" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/cache
+    	http://www.springframework.org/schema/cache/spring-cache.xsd
+    	http://www.springframework.org/schema/jdbc
+    	http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+    <import resource="../spring-mysql.xml"/>
+
+    <context:component-scan base-package="spring.orm.xa"/>
+
+    <!--配置 Mybatis的sqlSessionFactory  -->
+    <bean name="sqlSessionFactory1" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource1"/>
+        <!--configLocation属性指定mybatis的核心配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+
+        <!--mapperLocations：通过正则表达式，支持mybatis动态扫描添加mapper不用像ibatis，用一个还要蛋疼滴添加一个include-->
+        <property name="mapperLocations" value="classpath:sqlmap/auth_user.xml"/>
+
+        <!--failFast：开启后将在启动时检查设定的parameterMap,resultMap是否存在，是否合法。
+        个人建议设置为true,这样可以尽快定位解决问题。不然在调用过程中发现错误，会影响问题定位。-->
+        <property name="failFast" value="true"/>
+    </bean>
+
+    <!--配置 Mybatis的sqlSessionFactory  -->
+    <bean name="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource2"/>
+        <!--configLocation属性指定mybatis的核心配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+
+        <!--mapperLocations：通过正则表达式，支持mybatis动态扫描添加mapper不用像ibatis，用一个还要蛋疼滴添加一个include-->
+        <property name="mapperLocations" value="classpath:sqlmap/auth_dept.xml"/>
+
+        <!--failFast：开启后将在启动时检查设定的parameterMap,resultMap是否存在，是否合法。
+        个人建议设置为true,这样可以尽快定位解决问题。不然在调用过程中发现错误，会影响问题定位。-->
+        <property name="failFast" value="true"/>
+    </bean>
+
+
+    <!--sqlSessionTemplate完成注解 -->
+    <bean name="sqlSessionTemplateUser" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory1"/>
+    </bean>
+
+    <!--sqlSessionTemplate完成注解 -->
+    <bean name="sqlSessionTemplateDept" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory2"/>
+    </bean>
+
+    <!-- 事务注解驱动 -->
+    <tx:annotation-driven transaction-manager="userTransactionManager"/>
+
+    <tx:annotation-driven transaction-manager="deptTransactionManager"/>
+
+    <!-- 事务管理 -->
+    <bean id="userTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource1"/>
+    </bean>
+
+    <bean id="deptTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource2"/>
+    </bean>
+
+</beans>

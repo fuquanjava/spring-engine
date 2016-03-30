@@ -5,6 +5,6 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <import resource="spring/mybatis/spring-mybatis-template.xml"/>
+    <import resource="spring/xa/spring-mybatis-xapool.xml"/>
 
 </beans>

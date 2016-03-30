@@ -97,6 +97,11 @@
         <quartz.version>2.2.1</quartz.version>
         <tbschedule.version>3.2.18</tbschedule.version>
 
+        <jotm-core.version>2.3.1-M1</jotm-core.version>
+        <jotm-datasource.version>2.3.1-M1</jotm-datasource.version>
+        <xapool.version>1.5.0</xapool.version>
+        <javaee-api.version>7.0</javaee-api.version>
+
     </properties>
 
 
@@ -499,6 +504,33 @@
                 <artifactId>dubbo</artifactId>
                 <version>${dev.dubbo.version}</version>
             </dependency>
+
+            <!-- jotm -->
+            <dependency>
+                <groupId>org.ow2.jotm</groupId>
+                <artifactId>jotm-core</artifactId>
+                <version>${jotm-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ow2.jotm</groupId>
+                <artifactId>jotm-datasource</artifactId>
+                <version>${jotm-datasource.version}</version>
+            </dependency>
+
+            <!-- xapool -->
+            <dependency>
+                <groupId>com.experlog</groupId>
+                <artifactId>xapool</artifactId>
+                <version>${xapool.version}</version>
+            </dependency>
+
+            <!-- javaee -->
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${javaee-api.version}</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
