@@ -76,6 +76,7 @@ public class SchedulerQuartz {
                 @Override
                 public void shutdown() throws SQLException {
                     System.err.println("数据源 shutdown");
+
                 }
 
                 @Override

@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class AppMain {
     public static void main(String[] args) {
-        AbstractApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
+        AbstractApplicationContext context = new ClassPathXmlApplicationContext("spring-unit.xml");
         context.start();
         System.err.println(" quartz 启动成功");
 

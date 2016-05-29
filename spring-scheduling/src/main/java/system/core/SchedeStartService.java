@@ -11,7 +11,7 @@ import system.core.quartz.QuartzConfigServerManager;
  * description:
  * 1.0.0
  */
-@Component("schedeStartService")
+@Component
 public class SchedeStartService implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired
