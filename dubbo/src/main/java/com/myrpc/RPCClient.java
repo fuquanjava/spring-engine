@@ -27,6 +27,11 @@ public class RPCClient {
      */
     @SuppressWarnings("unchecked")
     public static <T> T reference(final Class<T> interfaceClass, final String host, final int port) throws Exception {
+
+        /**
+         * 参考 JDKProxyFactory
+         */
+
         return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class<?>[]{interfaceClass}, new InvocationHandler() {
             public Object invoke(Object proxy, Method method, Object[] arguments) throws Throwable {
                 Socket socket = new Socket(host, port);
@@ -55,6 +60,8 @@ public class RPCClient {
             }
         });
     }
+
+
 
     public static void main(String[] args) {
         try {

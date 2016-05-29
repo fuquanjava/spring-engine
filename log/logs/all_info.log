@@ -1,84 +1,77 @@
-2016-02-02 15:31:39,802 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:31:39,806 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:31:42,807 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:31:42,807 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:31:45,807 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:31:45,807 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:31:48,807 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:31:48,807 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:31:51,807 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:31:51,808 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:31:54,808 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:31:54,808 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:31:57,808 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:31:57,808 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:32:00,808 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:32:00,808 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:32:03,808 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:32:03,808 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:32:06,808 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:32:06,808 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:32:09,808 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:32:09,808 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:32:12,808 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:32:12,808 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:32:15,808 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:32:15,808 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:32:18,808 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:32:18,808 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:32:21,808 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:32:21,808 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:32:24,809 [main] INFO  com.info.InfoMain -   info main , info 
-2016-02-02 15:32:24,809 [main] ERROR com.info.InfoMain -  info main , error 
-2016-02-02 15:33:01,781 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:01,782 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:04,783 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:04,783 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:07,783 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:07,783 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:10,784 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:10,784 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:13,784 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:13,784 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:16,784 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:16,784 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:19,784 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:19,784 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:22,784 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:22,784 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:25,784 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:25,784 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:28,784 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:28,784 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:31,784 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:31,784 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:34,784 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:34,784 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:37,784 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:37,784 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:40,784 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:40,784 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:43,784 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:43,784 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:46,784 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:46,784 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:49,784 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:49,784 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:52,785 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:52,785 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:55,785 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:55,785 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:33:58,785 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:33:58,785 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:34:01,785 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:34:01,785 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:34:04,785 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:34:04,785 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:34:07,785 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:34:07,785 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:34:10,785 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:34:10,785 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:34:13,785 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:34:13,785 [main] ERROR com.debug.DebugMain -  debug main , error 
-2016-02-02 15:34:16,785 [main] INFO  com.debug.DebugMain -   debug main , info 
-2016-02-02 15:34:16,785 [main] ERROR com.debug.DebugMain -  debug main , error 
+2016-05-10 15:09:28,644 [main] ERROR com.debug.DebugMain - s = [null]
+2016-05-10 15:09:28,691 [main] ERROR com.debug.DebugMain - s = [{}]null
+2016-05-10 15:09:28,691 [main] ERROR com.debug.DebugMain - order no [112], new order no [1]
+2016-05-10 15:09:28,692 [main] INFO  com.debug.DebugMain -   debug main , info 
+2016-05-10 15:09:28,693 [main] ERROR com.debug.DebugMain -  debug main , error 
+2016-05-10 15:09:31,694 [main] ERROR com.debug.DebugMain - s = [null]
+2016-05-10 15:09:31,694 [main] ERROR com.debug.DebugMain - s = [{}]null
+2016-05-10 15:09:31,694 [main] ERROR com.debug.DebugMain - order no [112], new order no [1]
+2016-05-10 15:09:31,694 [main] INFO  com.debug.DebugMain -   debug main , info 
+2016-05-10 15:09:31,694 [main] ERROR com.debug.DebugMain -  debug main , error 
+2016-05-10 15:09:34,695 [main] ERROR com.debug.DebugMain - s = [null]
+2016-05-10 15:09:34,695 [main] ERROR com.debug.DebugMain - s = [{}]null
+2016-05-10 15:09:34,695 [main] ERROR com.debug.DebugMain - order no [112], new order no [1]
+2016-05-10 15:09:34,695 [main] INFO  com.debug.DebugMain -   debug main , info 
+2016-05-10 15:09:34,695 [main] ERROR com.debug.DebugMain -  debug main , error 
+2016-05-10 15:09:41,316 [main] ERROR com.debug.DebugMain - s = [null]
+2016-05-10 15:09:41,326 [main] ERROR com.debug.DebugMain - s = null
+2016-05-10 15:09:41,326 [main] ERROR com.debug.DebugMain - order no [112], new order no [1]
+2016-05-10 15:09:41,326 [main] INFO  com.debug.DebugMain -   debug main , info 
+2016-05-10 15:09:41,327 [main] ERROR com.debug.DebugMain -  debug main , error 
+2016-05-10 15:09:44,327 [main] ERROR com.debug.DebugMain - s = [null]
+2016-05-10 15:09:44,327 [main] ERROR com.debug.DebugMain - s = null
+2016-05-10 15:09:44,327 [main] ERROR com.debug.DebugMain - order no [112], new order no [1]
+2016-05-10 15:09:44,327 [main] INFO  com.debug.DebugMain -   debug main , info 
+2016-05-10 15:09:44,327 [main] ERROR com.debug.DebugMain -  debug main , error 
+2016-05-10 15:11:28,846 [main] ERROR com.debug.DebugMain - s = [null]
+2016-05-10 15:11:28,851 [main] ERROR com.debug.DebugMain - s = null
+2016-05-10 15:11:28,852 [main] ERROR com.debug.DebugMain - order no [112], new order no [1]
+2016-05-10 15:11:28,852 [main] INFO  com.debug.DebugMain -   debug main , info 
+2016-05-10 15:11:28,854 [main] ERROR com.debug.DebugMain -  debug main , error 
+2016-05-10 15:20:59,560 [main] ERROR com.debug.DebugMain - s = [null]
+2016-05-10 15:21:20,858 [main] ERROR com.debug.DebugMain - s = null
+2016-05-10 15:21:23,064 [main] ERROR com.debug.DebugMain - order no [112], new order no [1]
+2016-05-10 15:21:26,410 [main] INFO  com.debug.DebugMain -   debug main , info 
+2016-05-10 15:21:26,412 [main] ERROR com.debug.DebugMain -  debug main , error 
+2016-05-10 15:21:29,412 [main] ERROR com.debug.DebugMain - s = [null]
+2016-05-10 15:21:30,650 [main] ERROR com.debug.DebugMain - s = null
+2016-05-10 15:21:30,651 [main] ERROR com.debug.DebugMain - order no [112], new order no [1]
+2016-05-10 15:21:30,651 [main] INFO  com.debug.DebugMain -   debug main , info 
+2016-05-10 15:21:30,651 [main] ERROR com.debug.DebugMain -  debug main , error 
+2016-05-10 15:23:33,737 [main] INFO  com.debug.DebugMain - exception,java.lang.RuntimeException: 测试异常
+2016-05-10 15:23:50,240 [main] INFO  com.debug.DebugMain - exception,java.lang.RuntimeException: 测试异常
+2016-05-10 15:23:50,272 [main] INFO  com.debug.DebugMain - exception,
+java.lang.RuntimeException: 测试异常
+	at com.debug.DebugMain.testException(DebugMain.java:45) ~[classes/:na]
+	at com.debug.DebugMain.main(DebugMain.java:17) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.7.0_75]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57) ~[na:1.7.0_75]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.7.0_75]
+	at java.lang.reflect.Method.invoke(Method.java:606) ~[na:1.7.0_75]
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144) [idea_rt.jar:na]
+2016-05-10 15:24:22,076 [main] INFO  com.debug.DebugMain - exception,java.lang.RuntimeException: 测试异常
+2016-05-10 15:24:22,086 [main] INFO  com.debug.DebugMain - exception,
+java.lang.RuntimeException: 测试异常
+	at com.debug.DebugMain.testException(DebugMain.java:45) ~[classes/:na]
+	at com.debug.DebugMain.main(DebugMain.java:17) ~[classes/:na]
+2016-05-10 15:24:47,546 [main] INFO  com.debug.DebugMain - exception,java.lang.RuntimeException: 测试异常
+2016-05-10 15:24:47,558 [main] INFO  com.debug.DebugMain - exception 
+java.lang.RuntimeException: 测试异常
+	at com.debug.DebugMain.testException(DebugMain.java:45) ~[classes/:na]
+	at com.debug.DebugMain.main(DebugMain.java:17) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.7.0_75]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57) ~[na:1.7.0_75]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.7.0_75]
+	at java.lang.reflect.Method.invoke(Method.java:606) ~[na:1.7.0_75]
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144) [idea_rt.jar:na]
+2016-05-10 15:28:24,601 [main] INFO  com.debug.DebugMain - exception java.lang.RuntimeException: 测试异常
+2016-05-10 15:28:24,626 [main] INFO  com.debug.DebugMain - exception 
+java.lang.RuntimeException: 测试异常
+	at com.debug.DebugMain.testException(DebugMain.java:47) ~[classes/:na]
+	at com.debug.DebugMain.main(DebugMain.java:17) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.7.0_75]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57) ~[na:1.7.0_75]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.7.0_75]
+	at java.lang.reflect.Method.invoke(Method.java:606) ~[na:1.7.0_75]
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144) [idea_rt.jar:na]
+2016-05-10 15:28:24,627 [main] ERROR com.debug.DebugMain - 测试异常

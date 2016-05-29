@@ -8,5 +8,15 @@
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <import resource="spring/spring-rpc-server.xml"/>
+    <context:component-scan base-package="spring.rpc"/>
+
+    <bean id="serviceRegistry" class="spring.rpc.server.ServiceRegistry">
+        <constructor-arg name="registryAddress" value="127.0.0.1:2181"/>
+    </bean>
+
+    <bean id="rpcServer" class="spring.rpc.server.RpcServer">
+        <property name="serverAddress" value="127.0.0.1:8080"/>
+        <property name="serviceRegistry" ref="serviceRegistry"/>
+    </bean>
+
 </beans>
