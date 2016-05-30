@@ -8,7 +8,7 @@
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="spring.rpc"/>
+    <context:component-scan base-package="spring.rpc.server,spring.rpc.service"/>
 
     <bean id="serviceRegistry" class="spring.rpc.server.ServiceRegistry">
         <constructor-arg name="registryAddress" value="127.0.0.1:2181"/>

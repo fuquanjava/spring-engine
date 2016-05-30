@@ -1,6 +1,5 @@
 package spring.rpc.test;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -11,8 +10,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class ServerStart {
     public static void main(String[] args) {
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
-
+        ClassPathXmlApplicationContext context =
+                new ClassPathXmlApplicationContext("spring/spring-rpc-server.xml");
+        context.start();
 
 
     }

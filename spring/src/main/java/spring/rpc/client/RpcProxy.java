@@ -1,7 +1,5 @@
-package spring.rpc.server;
+package spring.rpc.client;
 
-import spring.rpc.client.RpcClient;
-import spring.rpc.client.ServiceDiscovery;
 import spring.rpc.domain.RpcRequest;
 import spring.rpc.domain.RpcResponse;
 

@@ -2,7 +2,7 @@ package spring.rpc.test;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import spring.rpc.server.RpcProxy;
+import spring.rpc.client.RpcProxy;
 import spring.rpc.service.HelloService;
 
 

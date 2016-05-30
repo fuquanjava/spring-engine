@@ -8,23 +8,14 @@
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="spring.rpc"/>
+    <context:component-scan base-package="spring.rpc.client"/>
 
     <bean id="serviceDiscovery" class="spring.rpc.client.ServiceDiscovery">
         <constructor-arg index="0" value="127.0.0.1:2181"/>
     </bean>
 
-    <bean id="rpcProxy" class="spring.rpc.server.RpcProxy">
+    <bean id="rpcProxy" class="spring.rpc.client.RpcProxy">
         <constructor-arg index="0" ref="serviceDiscovery"/>
-    </bean>
-
-    <bean id="serviceRegistry" class="spring.rpc.server.ServiceRegistry">
-        <constructor-arg name="registryAddress" value="127.0.0.1:2181"/>
-    </bean>
-
-    <bean id="rpcServer" class="spring.rpc.server.RpcServer">
-        <property name="serverAddress" value="127.0.0.1:8080"/>
-        <property name="serviceRegistry" ref="serviceRegistry"/>
     </bean>
 
 </beans>
