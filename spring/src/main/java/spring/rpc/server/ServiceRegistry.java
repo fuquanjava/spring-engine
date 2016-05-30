@@ -20,7 +20,7 @@ public class ServiceRegistry {
     public final static int ZK_SESSION_TIMEOUT = 5000;
 
     public final static String ZK_REGISTRY_PATH = "/myregistry";
-    public final static String ZK_DATA_PATH = ZK_REGISTRY_PATH+"/mydata";
+    public final static String ZK_DATA_PATH = ZK_REGISTRY_PATH + "/mydata";
 
 
     private CountDownLatch latch = new CountDownLatch(1);
@@ -43,6 +43,7 @@ public class ServiceRegistry {
 
     /**
      * 首先需要使用 ZooKeeper 客户端命令行创建/registry永久节点，用于存放所有的服务临时节点。
+     *
      * @return ZooKeeper
      */
     private ZooKeeper connectServer() {
@@ -65,13 +66,18 @@ public class ServiceRegistry {
 
     /**
      * 临时节点
+     *
      * @param zk
      * @param data
      */
     private void createNode(ZooKeeper zk, String data) {
         try {
             byte[] bytes = data.getBytes();
-            String path = zk.create(ZK_DATA_PATH, bytes, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
+
+            String path = zk.create(ZK_REGISTRY_PATH, null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+            LOG.info("path={}", path);
+
+            path = zk.create(ZK_DATA_PATH, bytes, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
 
             LOG.debug("create zookeeper node ({} => {})", path, data);
         } catch (KeeperException | InterruptedException e) {

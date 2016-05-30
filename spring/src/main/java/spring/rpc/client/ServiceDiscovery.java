@@ -25,10 +25,6 @@ public class ServiceDiscovery {
 
     private String registryAddress;
 
-    public void setRegistryAddress(String registryAddress) {
-        this.registryAddress = registryAddress;
-    }
-
     public ServiceDiscovery() {
     }
 

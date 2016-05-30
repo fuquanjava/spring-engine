@@ -39,11 +39,8 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
     private String serverAddress;
     private ServiceRegistry serviceRegistry;
 
-    public void setServerAddress(String serverAddress) {
+    public RpcServer(String serverAddress, ServiceRegistry serviceRegistry) {
         this.serverAddress = serverAddress;
-    }
-
-    public void setServiceRegistry(ServiceRegistry serviceRegistry) {
         this.serviceRegistry = serviceRegistry;
     }
 
