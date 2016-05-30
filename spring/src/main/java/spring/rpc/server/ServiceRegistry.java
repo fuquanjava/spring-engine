@@ -20,7 +20,7 @@ public class ServiceRegistry {
     public final static int ZK_SESSION_TIMEOUT = 5000;
 
     public final static String ZK_REGISTRY_PATH = "/myregistry";
-    public final static String ZK_DATA_PATH = ZK_REGISTRY_PATH + "/mydata";
+    public final static String ZK_DATA_PATH = ZK_REGISTRY_PATH+"/mydata";
 
 
     private CountDownLatch latch = new CountDownLatch(1);
@@ -71,13 +71,18 @@ public class ServiceRegistry {
     private void createNode(ZooKeeper zk, String data) {
         try {
             byte[] bytes = data.getBytes();
-
             String path = zk.create(ZK_DATA_PATH, bytes, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
 
             LOG.debug("create zookeeper node ({} => {})", path, data);
         } catch (KeeperException | InterruptedException e) {
             LOG.error("创建zookeeper节点异常", e);
         }
+    }
+
+    public static void main(String[] args) {
+
+        ServiceRegistry registry = new ServiceRegistry("127.0.0.1:2181");
+        registry.register("test");
     }
 
 }

@@ -1,8 +1,6 @@
 package nosql.redis.transactions;
 
-import dao.User;
 import nosql.BaseTest;
-import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

@@ -13,7 +13,7 @@ import spring.rpc.service.HelloService;
  */
 public class ClientStart {
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring/spring-rpc-client.xml");
         RpcProxy rpcProxy = context.getBean(RpcProxy.class);
         HelloService helloService = rpcProxy.create(HelloService.class);
         String result = helloService.sayHello("hihi");
