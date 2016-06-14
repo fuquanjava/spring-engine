@@ -7,7 +7,10 @@ import com.dubbo.domain.B;
  * fuquanemail@gmail.com
  */
 public interface HelloService {
+
     String sayHello(String name);
     
     B getB();
+
+    String testExp(boolean throwException);
 }

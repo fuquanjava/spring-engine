@@ -3,7 +3,6 @@ package com.dubbo.consumer;
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ReferenceConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
-import com.dubbo.domain.B;
 import com.dubbo.service.HelloService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -12,7 +11,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * fuquanemail@gmail.com
  */
 public class Consumer {
-    private static  ClassPathXmlApplicationContext context;
+    private static ClassPathXmlApplicationContext context;
+
     static {
         context =
                 new ClassPathXmlApplicationContext("consumer/service-consumer-unit.xml");
@@ -22,24 +22,29 @@ public class Consumer {
     public static void main(String[] args) {
         consumerBySpring();
     }
-    public static void consumerBySpring(){
+
+    public static void consumerBySpring() {
         HelloService helloService = (HelloService) context.getBean("helloService");
 
-        while (true){
-            String ss = helloService.sayHello("dubbo");
-            System.out.println(ss);
-
-            B b = helloService.getB();
-            System.err.println(b);
-
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        String result = null; // bug
+        try {
+            System.err.println("preinvoke");
+            result = helloService.testExp(true);
+            System.err.println("invoked");
+        } catch (Exception e) {
+            e.printStackTrace();
+            if(e instanceof RpcException){
+                RpcException rpcException = (RpcException) e;
+                System.err.println(rpcException.getCode());
+                System.err.println(rpcException.getMsg());
+            }else {
+                System.err.println("不是 BusinessException");
             }
         }
+
     }
-    public static void consumerByAPI(){
+
+    public static void consumerByAPI() {
         // 当前应用配置
         ApplicationConfig application = new ApplicationConfig();
         application.setName("helloService-consumer");
