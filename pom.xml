@@ -417,18 +417,17 @@
                 <version>${dev.log4j.version}</version>
             </dependency>
 
-          <!--  <dependency>
+            <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
                 <version>${dev.slf4j.log4j12.version}</version>
-            </dependency>-->
+            </dependency>
 
             <dependency>
                 <groupId>org.logback-extensions</groupId>
                 <artifactId>logback-ext-spring</artifactId>
                 <version>0.1.2</version>
             </dependency>
-
 
             <!--logback-->
 
@@ -450,6 +449,11 @@
                 <version>${dev.logback.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>1.1.1</version>
+            </dependency>
 
             <!--log end-->
 
@@ -711,6 +715,7 @@
             <artifactId>spring-security-core</artifactId>
         </dependency>
 
+        <!--
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
@@ -729,16 +734,15 @@
         <dependency>
             <groupId>org.logback-extensions</groupId>
             <artifactId>logback-ext-spring</artifactId>
-            <version>${logback-ext-spring.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
         </dependency>
 
-
+-->
     </dependencies>
-
 
     <build>
         <pluginManagement>

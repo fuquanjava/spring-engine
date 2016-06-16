@@ -16,7 +16,6 @@ public class AuthFilter implements Filter {
 
         System.err.println("context json:" + JSON.toJSONString(context, true));
 
-
         return invoker.invoke(invocation);
     }
 }

@@ -1,6 +1,6 @@
 package com.dubbo.service;
 
-import com.dubbo.domain.B;
+import java.io.IOException;
 
 /**
  * Spring-Engine 2015/9/20 17:31
@@ -9,8 +9,9 @@ import com.dubbo.domain.B;
 public interface HelloService {
 
     String sayHello(String name);
-    
-    B getB();
 
-    String testExp(boolean throwException);
+    String testRuntimeException(boolean throwException, String throwsType);
+
+    String testCheckedException(boolean throwException) throws IOException;
+
 }

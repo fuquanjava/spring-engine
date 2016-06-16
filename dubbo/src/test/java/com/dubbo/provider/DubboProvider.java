@@ -14,7 +14,7 @@ import java.io.IOException;
  * Spring-Engine 2015/9/20 18:25
  * fuquanemail@gmail.com
  */
-public class Provider {
+public class DubboProvider {
     public static void main(String[] args) throws Exception {
         dubboStartBySpring();
         //dubboStartByAPI();
@@ -23,7 +23,7 @@ public class Provider {
 
     public static void dubboStartBySpring() {
         ClassPathXmlApplicationContext context =
-                new ClassPathXmlApplicationContext("provider/service-provider-unit.xml");
+                new ClassPathXmlApplicationContext("provider/dubbo-provider-unit.xml");
         context.start();
         try {
             System.out.println("=======================dubbo 服务启动完毕======================");

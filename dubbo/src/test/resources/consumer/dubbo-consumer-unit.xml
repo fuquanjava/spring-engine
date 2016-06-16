@@ -11,7 +11,7 @@
     <dubbo:application name="dubbo-service-consumer"  />
 
     <!-- 使用 zookeeper 注册中心暴露发现服务地址 -->
-    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" file="${user.home}/dubbo/dubbo.cache"/>
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" file="./dubbo/dubbo.cache"/>
 
     <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
     <dubbo:reference id="helloService" interface="com.dubbo.service.HelloService" retries="2" version="1.0.0"/>

@@ -15,34 +15,14 @@ public class Consumer {
 
     static {
         context =
-                new ClassPathXmlApplicationContext("consumer/service-consumer-unit.xml");
+                new ClassPathXmlApplicationContext("consumer/dubbo-consumer-unit.xml");
         context.start();
     }
 
     public static void main(String[] args) {
-        consumerBySpring();
+        consumerByAPI();
     }
 
-    public static void consumerBySpring() {
-        HelloService helloService = (HelloService) context.getBean("helloService");
-
-        String result = null; // bug
-        try {
-            System.err.println("preinvoke");
-            result = helloService.testExp(true);
-            System.err.println("invoked");
-        } catch (Exception e) {
-            e.printStackTrace();
-            if(e instanceof RpcException){
-                RpcException rpcException = (RpcException) e;
-                System.err.println(rpcException.getCode());
-                System.err.println(rpcException.getMsg());
-            }else {
-                System.err.println("不是 BusinessException");
-            }
-        }
-
-    }
 
     public static void consumerByAPI() {
         // 当前应用配置

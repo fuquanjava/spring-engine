@@ -1,14 +1,17 @@
+/*
 package ext;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 
+*/
 /**
  * fuquanemail@gmail.com 2016/1/24 10:16
  * description:
  * 1.0.0
- */
+ *//*
+
 public class MyAppender extends AppenderBase<ILoggingEvent> {
     @Override
     protected void append(ILoggingEvent iLoggingEvent) {
@@ -27,3 +30,4 @@ public class MyAppender extends AppenderBase<ILoggingEvent> {
         System.err.println("ILoggingEvent: " +iLoggingEvent);
     }
 }
+*/
