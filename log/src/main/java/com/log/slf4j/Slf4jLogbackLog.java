@@ -13,6 +13,8 @@ import java.util.Enumeration;
  * 1.0.0
  */
 public class Slf4jLogbackLog {
+    private static Logger logger = LoggerFactory.getLogger(Slf4jLogbackLog.class);
+
     private static String STATIC_LOGGER_BINDER_PATH = "org/slf4j/impl/StaticLoggerBinder.class";
 
     public static void main(String[] args) {

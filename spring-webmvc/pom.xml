@@ -156,7 +156,20 @@
             <artifactId>aspectjweaver</artifactId>
         </dependency>
 
+        <!--<dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+        </dependency>-->
     </dependencies>
     <build>
         <finalName>spring-webmvc</finalName>
