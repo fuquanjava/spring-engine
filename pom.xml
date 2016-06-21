@@ -72,6 +72,7 @@
 
         <!--spring MQ-->
         <spring-rabbit.version>1.5.3.RELEASE</spring-rabbit.version>
+        <org.apache.kafka.version>0.10.0.0</org.apache.kafka.version>
 
         <!--log-->
         <dev.slf4j.api.versoin>1.6.1</dev.slf4j.api.versoin>
@@ -276,8 +277,8 @@
                 <version>${spring.version}</version>
                 <exclusions>
                     <exclusion>
-                            <groupId>commons-logging</groupId>
-                            <artifactId>commons-logging</artifactId>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -405,7 +406,7 @@
             </dependency>
 
             <!--log start-->
-          <dependency>
+            <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${dev.slf4j.api.versoin}</version>
@@ -417,7 +418,7 @@
                 <version>${dev.jcl.over.slf4j}</version>
             </dependency>
 
-           <dependency>
+            <dependency>
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
                 <version>${dev.log4j.version}</version>
@@ -603,6 +604,12 @@
                 <version>${org.objenesis.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka_2.11</artifactId>
+                <version>${org.apache.kafka.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -753,12 +760,52 @@
         </dependency>
 
 
-
     </dependencies>
 
     <build>
         <pluginManagement>
             <plugins>
+                <!--tomcat 7 plugin-->
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    <configuration>
+                        <!-- http port -->
+                        <port>9090</port>
+                        <!-- application path always starts with /-->
+                        <path>/</path>
+                        <!-- optional path to a context file -->
+                        <contextFile>${tomcatContextXml}</contextFile>
+                        <!-- optional system propoerties you want to add -->
+                        <systemProperties>
+                            <appserver.base>${project.build.directory}/appserver-base</appserver.base>
+                            <appserver.home>${project.build.directory}/appserver-home</appserver.home>
+                            <derby.system.home>${project.build.directory}/appserver-base/logs</derby.system.home>
+                            <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
+                        </systemProperties>
+                        <!-- if you want to use test dependencies rather than only runtime -->
+                        <useTestClasspath>false</useTestClasspath>
+                        <!-- optional if you want to add some extra directories into the classloader -->
+                        <additionalClasspathDirs>
+                            <additionalClasspathDir></additionalClasspathDir>
+                        </additionalClasspathDirs>
+                    </configuration>
+                    <!-- For any extra dependencies needed when running embedded Tomcat (not WAR dependencies) add them below -->
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.derby</groupId>
+                            <artifactId>derby</artifactId>
+                            <version>10.11.1.1</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>javax.mail</groupId>
+                            <artifactId>mail</artifactId>
+                            <version>1.4</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+
                 <!-- 设置resouce目录下的所有文件编码，否则如果配置xml文件中有中文字符，部署后可能会引起运行失败 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
