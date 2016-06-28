@@ -29,7 +29,7 @@ public class ProducerApiTest {
 
     @Before
     public void setUp() throws Exception {
-        testProducerConfig();
+        testInit();
     }
 
     @After
@@ -41,13 +41,13 @@ public class ProducerApiTest {
     }
 
     @Test
-    public void testProducerConfig() {
+    public void testInit() {
         //　初始化属性　ProducerConfig
         Properties props = new Properties();
-        //props.put("bootstrap.servers", "10.2.13.71:9091");
+        props.put("bootstrap.servers", KafkaConstant.KAFKA_BROKER_COMPANY);
 
         // 可以省略，kafka会自动选择 broker 上的 partition , leader .
-        props.put("metadata.broker.list", "192.168.1.71:9092,192.168.1.71:9092");
+        props.put("metadata.broker.list", KafkaConstant.KAFKA_BROKER_COMPANY);
 
         props.put("client.id", "DemoProducer");
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
@@ -96,12 +96,32 @@ public class ProducerApiTest {
     }
 
     @Test
+    public void sendBlocking(){
+        String key = "1";
+        String value = " sendBlocking ";
+
+        ProducerRecord<String, String> record =
+                new ProducerRecord<>(topic, partition, timestamp, key, value);
+
+        try {
+            RecordMetadata metadata = producer.send(record).get();
+            System.err.println("offset:"+metadata.offset());
+            System.err.println("partition:"+metadata.partition());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    @Test
     public void sendAndCallback() {
 
         String topic = "t2";
         Long timestamp = System.currentTimeMillis();
         String key = "1";
-        String value = " producer api test value ";
+        String value = " sendAndCallback ";
 
         //  The first is the type of the Partition key, the second the type of the message
         ProducerRecord<String, String> record =
@@ -118,22 +138,22 @@ public class ProducerApiTest {
             }
         });
 
-        // If you want to simulate a simple blocking call you can do the following:
+        System.err.println("send ok .."); // 比 offset 先执行
 
-//        producer.send(new ProducerRecord<byte[],byte[]>("the-topic", "key".getBytes(), "value".getBytes())).get();
+        // If you want to simulate a simple blocking call you can do the following:
 
     }
 
     @Test
     public void sendAndCallbackInOrder(){
-
+        // 同一个分区才有有序!!!!
 
         //  The first is the type of the Partition key, the second the type of the message
         ProducerRecord<String, String> record1 =
-                new ProducerRecord<>(topic, partition, timestamp, key, value);
+                new ProducerRecord<>(topic, 1, timestamp, "1", "sendAndCallbackInOrder 2");
 
         ProducerRecord<String, String> record2 =
-                new ProducerRecord<>(topic, partition, timestamp, key, value);
+                new ProducerRecord<>(topic, 1, timestamp, "2", "sendAndCallbackInOrder 2");
 
 //        Callbacks for records being sent to the same partition are guaranteed to execute in order.
 //       That is, in the following example callback1 is guaranteed to execute before callback2:
