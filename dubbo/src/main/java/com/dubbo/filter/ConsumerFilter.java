@@ -1,5 +1,7 @@
 package com.dubbo.filter;
 
+import com.alibaba.dubbo.common.Constants;
+import com.alibaba.dubbo.common.extension.Activate;
 import com.alibaba.dubbo.rpc.*;
 import com.alibaba.fastjson.JSON;
 
@@ -8,13 +10,16 @@ import com.alibaba.fastjson.JSON;
  * description:
  * 1.0.0
  */
-public class AuthFilter implements Filter {
+@Activate(group = Constants.CONSUMER,order = -10000)
+public class ConsumerFilter implements Filter {
+
+    public static final String EXTENSION_NAME = "consumerFilter";
 
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         RpcContext context = RpcContext.getContext();
 
-        System.err.println("context json:" + JSON.toJSONString(context, true));
+        System.err.println("ConsumerFilter context:" + JSON.toJSONString(context, true));
 
         return invoker.invoke(invocation);
     }
