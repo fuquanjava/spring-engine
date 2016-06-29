@@ -29,5 +29,5 @@
 
     <!--<dubbo:provider filter="authFilter"/>-->
 
-    <bean class="com.dubbo.extension.MyDubboExtensionLoader" />
+    <bean id="extensionLoader" class="com.dubbo.extension.DubboExtensionLoader" />
 </beans>

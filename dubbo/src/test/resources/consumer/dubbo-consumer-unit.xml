@@ -20,5 +20,5 @@
 <!--
     <dubbo:reference id="helloService" interface="com.dubbo.service.HelloService" url="dubbo://localhost:20880" />
 -->
-    <bean class="com.dubbo.extension.MyDubboExtensionLoader" />
+    <bean id="extensionLoader" class="com.dubbo.extension.DubboExtensionLoader" />
 </beans>
