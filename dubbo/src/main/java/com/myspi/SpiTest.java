@@ -8,6 +8,11 @@ import java.util.ServiceLoader;
  */
 public class SpiTest {
     public static void main(String[] args) {
+        /**
+         * public final class ServiceLoader<S> implements Iterable<S> {
+                    private static final String PREFIX = "META-INF/services/";
+         */
+
         ServiceLoader<Spi> serviceLoader = ServiceLoader.load(Spi.class);
         Iterator<Spi> iterator = serviceLoader.iterator();
         while (iterator.hasNext()){
