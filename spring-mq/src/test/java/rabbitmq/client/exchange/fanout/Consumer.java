@@ -1,13 +1,12 @@
 package rabbitmq.client.exchange.fanout;
 
-import com.rabbitmq.client.AMQP;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.QueueingConsumer;
+import com.rabbitmq.client.*;
 import rabbitmq.client.C;
 import rabbitmq.client.RabbitUtil;
 
 import java.io.IOException;
 import java.util.Random;
+import java.util.concurrent.TimeoutException;
 
 /**
  * spring-engine 2015/12/26 21:41
@@ -19,7 +18,16 @@ public class Consumer {
         int i = random.nextInt(10);
         String clientName = "client-" + i;
 
-        Channel channel = RabbitUtil.getChannel();
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("10.2.13.71");
+        Channel channel = null;
+        try {
+            Connection connection = factory.newConnection();
+            channel = connection.createChannel();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
+
         //申明交换器
         channel.exchangeDeclare(C.FANOUT_EXCHANGE,"fanout");
 
@@ -43,7 +51,7 @@ public class Consumer {
             String message = new String(delivery.getBody());
 
             System.out.println(clientName+ " Received :" + message + "");
-            Thread.sleep(1000);
+            Thread.sleep(3000);
         }
 
 

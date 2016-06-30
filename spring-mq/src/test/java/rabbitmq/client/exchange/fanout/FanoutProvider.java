@@ -22,7 +22,7 @@ public class FanoutProvider {
             System.err.println("declareOk: " +declareOk);
 
             int i = 0;
-            while (i< 100){
+            while (i< 1000000){
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {

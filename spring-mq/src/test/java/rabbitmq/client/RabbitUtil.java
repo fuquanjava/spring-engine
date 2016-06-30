@@ -15,7 +15,7 @@ public class RabbitUtil {
     public static Connection connection;
     static {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("127.0.0.1");
+        factory.setHost("10.2.13.54");
         try {
             connection  = factory.newConnection();
         } catch (IOException e) {
