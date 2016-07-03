@@ -57,6 +57,7 @@
         <xmemcached.version>2.0.0</xmemcached.version>
         <spring.data.redis.version>1.5.1.RELEASE</spring.data.redis.version>
         <redis.clients.version>2.7.2</redis.clients.version>
+        <mongo.java.driver.version>3.2.2</mongo.java.driver.version>
 
 
         <!-- spring webmvc -->
@@ -404,6 +405,14 @@
                 <artifactId>xmemcached</artifactId>
                 <version>${xmemcached.version}</version>
             </dependency>
+
+            <!--mongo db java client driver-->
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongo-java-driver</artifactId>
+                <version>${mongo.java.driver.version}</version>
+            </dependency>
+
 
             <!--log start-->
             <dependency>

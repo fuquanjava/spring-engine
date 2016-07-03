@@ -19,7 +19,11 @@ public class Consumer {
         String clientName = "client-" + i;
 
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("10.2.13.71");
+        //factory.setHost("10.2.13.54");
+        factory.setHost("192.168.1.128");
+        factory.setUsername("root");
+        factory.setPassword("root");
+
         Channel channel = null;
         try {
             Connection connection = factory.newConnection();
