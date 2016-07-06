@@ -36,8 +36,8 @@ public class TBScheduleManagerStatic extends TBScheduleManager {
 			public void run(){
 				try{
 					log.info("开始获取调度任务队列...... of " + currenScheduleServer.getUuid());
-					while (isRuntimeInfoInitial == false) {
-						if(isStopSchedule == true){
+					while (! isRuntimeInfoInitial ) {
+						if(isStopSchedule){
 							log.debug("外部命令终止调度,退出调度队列获取：" + currenScheduleServer.getUuid());
 							return;
 						}
@@ -179,7 +179,7 @@ public class TBScheduleManagerStatic extends TBScheduleManager {
 
 	public List<TaskItemDefine> getCurrentScheduleTaskItemList() {
 		try{
-			if (this.isNeedReloadTaskItem == true) {
+			if (this.isNeedReloadTaskItem) {
 				//特别注意：需要判断数据队列是否已经空了，否则可能在队列切换的时候导致数据重复处理
 				//主要是在线程不休眠就加载数据的时候一定需要这个判断
 				if (this.processor != null) {

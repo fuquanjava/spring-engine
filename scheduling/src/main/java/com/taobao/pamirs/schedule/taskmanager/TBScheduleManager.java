@@ -180,7 +180,7 @@ abstract class TBScheduleManager implements IStrategyTask {
 	public void rewriteScheduleInfo() throws Exception{
 		registerLock.lock();
 		try{
-			if (this.isStopSchedule == true) {
+			if (this.isStopSchedule) {
 				if(log.isDebugEnabled()){
 					log.debug("外部命令终止调度,不在注册调度服务，避免遗留垃圾数据：" + currenScheduleServer.getUuid());
 				}
@@ -301,7 +301,7 @@ abstract class TBScheduleManager implements IStrategyTask {
 	 * @throws Exception
 	 */
 	public void resume(String message) throws Exception{
-		if (this.isPauseSchedule == true) {
+		if (this.isPauseSchedule) {
 			if(log.isDebugEnabled()){
 				log.debug("恢复调度:" + this.currenScheduleServer.getUuid());
 			}

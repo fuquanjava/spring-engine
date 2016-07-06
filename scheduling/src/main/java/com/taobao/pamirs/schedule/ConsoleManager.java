@@ -47,13 +47,13 @@ public class ConsoleManager {
 		}
 	}
 	public static TBScheduleManagerFactory getScheduleManagerFactory() throws Exception {
-		if(isInitial() == false){
+		if(! isInitial()){
 			initial();
 		}
 		return scheduleManagerFactory;
 	}
 	public static IScheduleDataManager getScheduleDataManager() throws Exception{
-		if(isInitial() == false){
+		if(! isInitial()){
 			initial();
 		}
 		return scheduleManagerFactory.getScheduleDataManager();

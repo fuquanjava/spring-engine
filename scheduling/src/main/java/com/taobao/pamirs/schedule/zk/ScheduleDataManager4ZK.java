@@ -706,7 +706,9 @@ public class ScheduleDataManager4ZK implements IScheduleDataManager {
 		//此处必须增加UUID作为唯一性保障
 		String zkServerPath = zkPath + "/" + server.getTaskType() + "$"+ server.getIp() + "$"
 				+ (UUID.randomUUID().toString().replaceAll("-", "").toUpperCase())+"$";
+
 		realPath = this.getZooKeeper().create(zkServerPath, null, this.zkManager.getAcl(),CreateMode.PERSISTENT_SEQUENTIAL);
+
 		server.setUuid(realPath.substring(realPath.lastIndexOf("/") + 1));
 
 		Timestamp heartBeatTime = new Timestamp(this.getSystemTime());

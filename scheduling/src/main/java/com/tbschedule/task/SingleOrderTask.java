@@ -59,15 +59,23 @@ public class SingleOrderTask extends BaseTask implements IScheduleTaskDealSingle
         logger.error("taskItemList ={}", JSON.toJSONString(taskItemList));
         logger.error("eachFetchDataNum= {}", eachFetchDataNum);
 
-        List<Order> list1 = new ArrayList<Order>();
-        list1.add(new Order());
+        List<Order> list = new ArrayList<Order>();
+        for (int i = 0; i < eachFetchDataNum; i++) {
+            Order order = new Order();
+            order.setGdsName("gdsname-" + i);
+            order.setOrderNo("orderNo" + i);
+            order.setId(i);
+            list.add(order);
+
+        }
+
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        logger.error("#########selectTasks########### end   #########");
-        return list1;
+        logger.error("#####################selectTasks######### end #########");
+        return list;
     }
 
 
