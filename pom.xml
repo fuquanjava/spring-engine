@@ -19,6 +19,7 @@
         <module>spring-mq</module>
         <module>spring-scheduling</module>
         <module>spring-core</module>
+        <module>scheduling</module>
     </modules>
 
     <properties>
@@ -36,7 +37,6 @@
 
         <!--spring aop-->
         <aspectj.version>1.7.4</aspectj.version>
-        <org.aspectj.version>1.6.8</org.aspectj.version>
         <aopalliance.verison>1.0</aopalliance.verison>
 
         <!--spring 响应 json 会用到 -->
@@ -174,17 +174,12 @@
                 <version>${reflow.velocity.tools.version}</version>
             </dependency>
 
+            <!--commons-->
+
             <dependency>
                 <groupId>commons-digester</groupId>
                 <artifactId>commons-digester</artifactId>
                 <version>${commons.digester.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.11</version>
-                <scope>test</scope>
             </dependency>
 
             <dependency>
@@ -193,12 +188,12 @@
                 <version>1.3.1</version>
             </dependency>
 
-
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-pool2</artifactId>
                 <version>2.2</version>
             </dependency>
+
             <dependency>
                 <groupId>commons-lang</groupId>
                 <artifactId>commons-lang</artifactId>
@@ -223,6 +218,12 @@
                 <version>18.0</version>
             </dependency>
 
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.11</version>
+                <scope>test</scope>
+            </dependency>
 
             <!--aop-->
             <dependency>
@@ -230,11 +231,19 @@
                 <artifactId>cglib-nodep</artifactId>
                 <version>${cglib.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>
-                <version>${org.aspectj.version}</version>
+                <version>${aspectj.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>aopalliance</groupId>
                 <artifactId>aopalliance</artifactId>
@@ -315,16 +324,7 @@
                 <version>${spring.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjrt</artifactId>
-                <version>${aspectj.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjweaver</artifactId>
-                <version>${aspectj.version}</version>
-            </dependency>
+
 
             <dependency>
                 <groupId>org.springframework.amqp</groupId>
@@ -619,6 +619,24 @@
                 <version>${org.apache.kafka.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>jline</groupId>
+                <artifactId>jline</artifactId>
+                <version>2.12</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ognl</groupId>
+                <artifactId>ognl</artifactId>
+                <version>2.6.9</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.unitils</groupId>
+                <artifactId>unitils</artifactId>
+                <version>2.3</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -711,15 +729,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
         </dependency>
 
         <!--spring web security-->
