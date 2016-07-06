@@ -30,7 +30,7 @@ public class MultiOrderTask extends BaseTask implements IScheduleTaskDealMulti<O
         logger.error("tasks ={}", JSON.toJSONString(tasks));
 
         logger.error("******* OrderTask2 execute ******* end *******");
-        return false;
+        return true;
     }
 
     @Override

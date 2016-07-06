@@ -31,7 +31,7 @@ public class SingleOrderTask extends BaseTask implements IScheduleTaskDealSingle
     @Override
     public boolean execute(Order order, String ownSign) throws Exception {
         logger.info("execute ownSign = {}, order= {}", ownSign, JSON.toJSONString(order));
-        return false;
+        return true;
     }
 
     /**
