@@ -53,10 +53,9 @@
         <mybatis.pagehelper>3.7.4</mybatis.pagehelper>
 
         <!-- spring-nosql -->
-        <redis.clients.version>2.1.0</redis.clients.version>
+        <jedis.version>2.7.3</jedis.version>
         <xmemcached.version>2.0.0</xmemcached.version>
-        <spring.data.redis.version>1.5.1.RELEASE</spring.data.redis.version>
-        <redis.clients.version>2.7.2</redis.clients.version>
+        <spring.data.redis.version>1.5.0.RELEASE</spring.data.redis.version>
         <mongo.java.driver.version>3.2.2</mongo.java.driver.version>
 
 
@@ -396,7 +395,7 @@
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
-                <version>${redis.clients.version}</version>
+                <version>${jedis.version}</version>
             </dependency>
 
             <!--memcached 客户端-->

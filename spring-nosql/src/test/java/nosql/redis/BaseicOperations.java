@@ -1,4 +1,4 @@
-package nosql.redis.operations;
+package nosql.redis;
 
 import dao.User;
 import nosql.BaseTest;
@@ -16,7 +16,7 @@ import org.springframework.data.redis.core.ValueOperations;
  * Spring-demo
  * 2015/8/13 10:08
  */
-public class RedisKV extends BaseTest{
+public class BaseicOperations extends BaseTest{
 
     @Autowired
     RedisTemplate redisTemplate;
@@ -29,6 +29,20 @@ public class RedisKV extends BaseTest{
     @After
     public void tearDown(){
         logger.info("down ... down .. down .");
+
+    }
+    @Test
+    public void testConnection(){
+        redisTemplate.execute(new RedisCallback<Boolean>() {
+            @Override
+            public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
+                connection.set(redisTemplate.getKeySerializer().serialize("a"),redisTemplate.getValueSerializer().serialize("123"));
+                byte [] bytes = connection.get(redisTemplate.getKeySerializer().serialize("a"));
+                Object value = redisTemplate.getValueSerializer().deserialize(bytes);
+                System.out.println("value , "+ value);
+                return true;
+            }
+        });
 
     }
 
