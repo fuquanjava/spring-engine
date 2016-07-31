@@ -19,6 +19,9 @@ public class JedisClusterTest {
     private static final int DEFAULT_REDIRECTIONS = 3;
     private static final JedisPoolConfig DEFAULT_CONFIG = new JedisPoolConfig();
 
+
+
+
     @Test
     public void testDiscoverNodesAutomatically() throws Exception {
 
@@ -41,13 +44,6 @@ public class JedisClusterTest {
 
             System.out.println("key="+ key +", pool="+ pool);
         }
-
-        cluster.set("a","1234");
-
-
-        String value = cluster.get("a");
-
-        System.out.println(value);
 
     }
 }
