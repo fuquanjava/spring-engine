@@ -1,6 +1,5 @@
 package nosql.redis.jedis;
 
-import org.junit.Before;
 import org.junit.Test;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisShardInfo;
@@ -21,7 +20,7 @@ public class ShardedJedisTest {
 
     ShardedJedisPool jedisPool = null;
 
-    @Before
+
     public void init() {
         JedisShardInfo node1 = new JedisShardInfo("192.168.1.133", 7000);
         //JedisShardInfo node1slave = new JedisShardInfo("192.168.1.133", 7001);
@@ -45,6 +44,48 @@ public class ShardedJedisTest {
 
         String value = jedis.get("a");
         System.out.println("value:" + value);
+
+
+    }
+
+    private List<String> getKeysDifferentShard(ShardedJedis jedis) {
+        List<String> ret = new ArrayList<String>();
+        JedisShardInfo first = jedis.getShardInfo("a0");
+        ret.add("a0");
+        for (int i = 1; i < 100; ++i) {
+            JedisShardInfo actual = jedis.getShardInfo("a" + i);
+            if (actual != first) {
+                ret.add("a" + i);
+                break;
+
+            }
+
+        }
+        return ret;
+    }
+
+    /**
+     * 测试分片
+     */
+    @Test
+    public void checkSharding() {
+        List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
+        JedisShardInfo node1 = new JedisShardInfo("192.168.1.133", 7000);
+        JedisShardInfo node2 = new JedisShardInfo("192.168.1.133", 7002);
+        shards.add(node1);
+        shards.add(node2);
+
+        ShardedJedis jedis = new ShardedJedis(shards);
+
+        // 获取不同分片的两个key
+        List<String> keys = getKeysDifferentShard(jedis);
+
+        // 根据key的分片结果 查询分片信息
+        JedisShardInfo s1 = jedis.getShardInfo(keys.get(0));
+        JedisShardInfo s2 = jedis.getShardInfo(keys.get(1));
+
+        System.out.println(s1);
+        System.out.println(s2);
     }
 
 
@@ -73,7 +114,7 @@ public class ShardedJedisTest {
     }
 
     @Test
-    public void t2(){
+    public void t2() {
         shardedJedisPool();
 
         ShardedJedis jedis1 = jedisPool.getResource();
