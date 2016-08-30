@@ -6,33 +6,31 @@ import org.slf4j.LoggerFactory;
 import spring.mq.rabbitmq.RabbitMQConnection;
 
 import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * fuquanemail@gmail.com
  */
 
 /**
- * 任何发送到Direct Exchange的消息都会被转发到RouteKey中指定的Queue。
+ 任何发送到Topic Exchange的消息都会被转发到所有关心RouteKey中指定话题的Queue上
 
- 1.一般情况可以使用rabbitMQ自带的Exchange：”"(该Exchange的名字为空字符串，下文称其为default Exchange)。
+ 1.这种模式较为复杂，简单来说，就是每个队列都有其关心的主题，所有的消息都带有一个“标题”(RouteKey)，Exchange会将消息转发到所有关注主题能与RouteKey模糊匹配的队列。
 
- 2.这种模式下不需要将Exchange进行任何绑定(binding)操作
+ 2.这种模式需要RouteKey，也许要提前绑定Exchange与Queue。
 
- 3.消息传递时需要一个“RouteKey”，可以简单的理解为要发送到的队列名字。
+ 3.在进行绑定时，要提供一个该队列关心的主题，如“#.log.#”表示该队列关心所有涉及log的消息(一个RouteKey为”MQ.log.error”的消息会被转发到该队列)。
 
- 4.如果vhost中不存在RouteKey中指定的队列名，则该消息会被抛弃。
+ 4.“#”表示0个或若干个关键字，“*”表示一个关键字。如“log.*”能与“log.warn”匹配，无法与“log.warn.timeout”匹配；但是“log.#”能与上述两者匹配。
 
- 默认rabbit将队列中的消息均分成n份分发给n个consumer, eg: 消息 m1,m3,m3. 消费 c1,c2. 有可能的情况就是 c1 消费 m1，c2消费m2,m3.
+ 5.同样，如果Exchange没有发现能够与RouteKey匹配的Queue，则会抛弃此消息。
  */
-public class DirectExchange {
+public class TopicExchange {
 
-    private Logger log = LoggerFactory.getLogger(DirectExchange.class);
+    private Logger log = LoggerFactory.getLogger(TopicExchange.class);
 
-    static final String direct_exchange_name = "direct.exchange";
-    static final String direct_queue_name = "direct.queue";
-    static final String direct_routing_key="direct_routing_key";
+    static final String direct_exchange_name = "topic.exchange";
+    static final String direct_queue_name = "topic.queue";
+    static final String direct_routing_key="#.topic.info.#";
 
     public void sender() throws IOException {
 
@@ -40,7 +38,7 @@ public class DirectExchange {
         Channel channel = connection.createChannel();
 
         //声明交换机
-        channel.exchangeDeclare(direct_exchange_name, "direct");
+        channel.exchangeDeclare(direct_exchange_name, "topic");
 
         //定义队列类型，这是一个幂等的操作，它只有在该queue不存在的时候才起作用。无论在生产和消费都要定义，而且生产和消费的定义需要一致.
         //参数1队列名，参数2是否支持持久化，参数3是否为excluse队列（仅连接者可见且一旦断开就自动删除），参数4是否自动删除（没有任何消费者的话便队列便删除），参数5其他属性
@@ -53,12 +51,9 @@ public class DirectExchange {
 
         while (true) {
 
-            String message = messageId + "-hello";
+            String message = messageId + "-hello topic.";
 
             channel.basicPublish(direct_exchange_name, direct_routing_key, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
-
-            // 如果 routing_key不匹配，则丢失消息.
-            //channel.basicPublish(direct_exchange_name, "abc", MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
 
             log.info("send msg = {}", message);
 
