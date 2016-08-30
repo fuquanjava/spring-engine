@@ -31,4 +31,11 @@ public class MyExtensionTest {
         MyExtension myFirstExtension = (MyExtension) extensionLoader.getAdaptiveExtension();
         System.out.println(myFirstExtension.sayHello("man", MyExtension.OTHER_TYPE));
     }
+
+    @Test
+    public void testCompiler(){
+
+
+    }
+
 }
