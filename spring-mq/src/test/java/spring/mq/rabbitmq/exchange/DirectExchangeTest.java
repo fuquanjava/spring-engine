@@ -1,11 +1,9 @@
-package spring.mq.rabbitmq.routing;
+package spring.mq.rabbitmq.exchange;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-
-import static org.junit.Assert.*;
 
 /**
  * fuquanemail@gmail.com 2016/8/30 16:17

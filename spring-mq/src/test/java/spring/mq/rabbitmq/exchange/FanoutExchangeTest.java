@@ -1,4 +1,4 @@
-package spring.mq.rabbitmq.routing;
+package spring.mq.rabbitmq.exchange;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,13 +9,12 @@ import java.io.IOException;
  * fuquanemail@gmail.com 2016/8/30 17:20
  * description:
  */
-public class TopicExchangeTest {
-
-    TopicExchange topicExchange = null;
+public class FanoutExchangeTest {
+    FanoutExchange fanoutExchange = null;
 
     @Before
     public void setUp() throws Exception {
-        topicExchange = new TopicExchange();
+        fanoutExchange = new FanoutExchange();
     }
 
     @Test
@@ -24,7 +23,7 @@ public class TopicExchangeTest {
             @Override
             public void run() {
                 try {
-                    topicExchange.sender();
+                    fanoutExchange.sender();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -40,7 +39,7 @@ public class TopicExchangeTest {
             @Override
             public void run() {
                 try {
-                    topicExchange.consumer("c1");
+                    fanoutExchange.consumer("c1");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -51,7 +50,7 @@ public class TopicExchangeTest {
             @Override
             public void run() {
                 try {
-                    topicExchange.consumer("c2");
+                    fanoutExchange.consumer("c2");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

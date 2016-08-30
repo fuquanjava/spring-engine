@@ -19,7 +19,7 @@ public class Producer {
         AmqpTemplate template = context.getBean(AmqpTemplate.class);
         //direct模式：接收routing-key=queue_one_key的消息
         //template.convertAndSend("queue_one_key", "hello!");
-        //topic模式：以foo.* routing-key为模版接收消息
+        //topic模式：以foo.* exchange-key为模版接收消息
         // template.convertAndSend("foo.bar", "hello!");
 
         while (true) {
