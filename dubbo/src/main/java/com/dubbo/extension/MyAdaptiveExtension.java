@@ -15,8 +15,6 @@ public class MyAdaptiveExtension implements MyExtension {
         ExtensionLoader extensionLoader =
                 ExtensionLoader.getExtensionLoader(MyExtension.class);
 
-        System.out.println("extensionLoader:" + JSON.toJSONString(extensionLoader));
-
         MyExtension myExtension;
 
         switch (type) {
