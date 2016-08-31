@@ -16,7 +16,7 @@ import java.io.IOException;
 
  1.可以理解为路由表的模式
 
- 2.这种模式不需要RouteKey
+ 2.这种模式不需要RoutingKey
 
  3.这种模式需要提前将Exchange与Queue进行绑定，一个Exchange可以绑定多个Queue，一个Queue可以同多个Exchange进行绑定。
 

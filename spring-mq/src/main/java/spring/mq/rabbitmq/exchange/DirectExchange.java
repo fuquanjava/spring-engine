@@ -37,15 +37,15 @@ public class DirectExchange {
         Connection connection = RabbitMQConnection.connection;
         Channel channel = connection.createChannel();
 
-        //声明交换机
-        channel.exchangeDeclare(direct_exchange_name, "direct");
+        //声明交换机(默认就是 direct 类型.
+        //channel.exchangeDeclare(direct_exchange_name, "direct");
 
         //定义队列类型，这是一个幂等的操作，它只有在该queue不存在的时候才起作用。无论在生产和消费都要定义，而且生产和消费的定义需要一致.
         //参数1队列名，参数2是否支持持久化，参数3是否为excluse队列（仅连接者可见且一旦断开就自动删除），参数4是否自动删除（没有任何消费者的话便队列便删除），参数5其他属性
-        //channel.queueDeclare(direct_queue_name, false, false, false, null);
+        channel.queueDeclare(direct_queue_name, true, false, false, null);
 
         // 交换机 队列绑定
-        channel.queueBind(direct_queue_name, direct_exchange_name, direct_routing_key);
+        //channel.queueBind(direct_queue_name, direct_exchange_name, direct_routing_key);
 
         int messageId = 1;
 
@@ -53,7 +53,7 @@ public class DirectExchange {
 
             String message = messageId + "-hello";
 
-            channel.basicPublish(direct_exchange_name, direct_routing_key, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
+            channel.basicPublish("", direct_queue_name, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
 
             // 如果 routing_key不匹配，则丢失消息.
             //channel.basicPublish(direct_exchange_name, "abc", MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
