@@ -16,7 +16,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
  */
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-nosql-unit.xml"})
+@ContextConfiguration(locations = {"classpath:spring-nosql.xml"})
 @WebAppConfiguration
 public class BaseTest {
     public Logger logger = LoggerFactory.getLogger(this.getClass());
