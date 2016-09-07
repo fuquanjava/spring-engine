@@ -9,7 +9,7 @@
         </filter>
         <File>D:/logs/all_error.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logback.file.path}/all_error.%d{yyyy-MM-dd}.log
+            <FileNamePattern>D:/logs/all_error.%d{yyyy-MM-dd}.log
             </FileNamePattern>
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>
@@ -24,7 +24,7 @@
         </filter>
         <File>D:/logs/all_warn.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logback.file.path}/all_warn.%d{yyyy-MM-dd}.log
+            <FileNamePattern>D:/logs/all_warn.%d{yyyy-MM-dd}.log
             </FileNamePattern>
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>
@@ -32,14 +32,10 @@
             <Pattern>%date [%thread] %-5level %logger{80} - %msg%n</Pattern>
         </layout>
     </appender>
-    <appender name="all_info"
-              class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
-        </filter>
-        <File>D:/logs/all_info.log</File>
+    <appender name="all_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>./all_info.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logback.file.path}/all_info.%d{yyyy-MM-dd}.log
+            <FileNamePattern>./all_info.%d{yyyy-MM-dd}.log
             </FileNamePattern>
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>
@@ -47,36 +43,25 @@
             <Pattern>%date [%thread] %-5level %logger{80} - %msg%n</Pattern>
         </layout>
     </appender>
-    <appender name="all_debug"
+
+   <appender name="all_debug"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>DEBUG</level>
-        </filter>
         <File>D:/logs/all_debug.log</File>
+
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logback.file.path}/all_debug.%d{yyyy-MM-dd}.log
-            </FileNamePattern>
-            <MaxHistory>30</MaxHistory>
+            <FileNamePattern>D:/logs/all_debug.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>1MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
+
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>%date [%thread] %-5level %logger{80} - %msg%n</Pattern>
         </layout>
     </appender>
-    <appender name="sql"
-              class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
-        </filter>
-        <File>D:/logs/sql.log</File>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logback.file.path}/sql.%d{yyyy-MM-dd}.log
-            </FileNamePattern>
-            <MaxHistory>30</MaxHistory>
-        </rollingPolicy>
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern>%date [%thread] %-5level %logger{80} - %msg%n</Pattern>
-        </layout>
-    </appender>
+
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>DEBUG</level>
@@ -86,8 +71,7 @@
         </encoder>
     </appender>
 
-    <root level="${logback.root.level}">
-        <appender-ref ref="console" />
-        <appender-ref ref="${logback.appender.name}" />
+    <root level="DEBUG">
+        <appender-ref ref="all_debug" />
     </root>
 </configuration>

@@ -31,18 +31,33 @@
         </encoder>
     </appender>
 
-    <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>30</maxHistory>
-        </rollingPolicy>
+
+    <!-- 按日期和大小区分的滚动日志 -->
+    <appender name="SizeAndTimeBasedFNATP" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>D:/logs/SizeAndTimeBasedFNATP.log</file>
+
         <encoder>
-            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%class:%line] - %m%n</pattern>
         </encoder>
 
-        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <maxFileSize>10</maxFileSize>
-        </triggeringPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>debug-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>1MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+
+        </rollingPolicy>
+
     </appender>
 
 
@@ -74,6 +89,21 @@
         </appender>-->
 
 
+    <appender name="all_info"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <File>./all_info.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>./all_info.%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%date [%thread] %-5level %logger{80} - %msg%n</Pattern>
+        </layout>
+    </appender>
     <!-- 将控制com包下的所有类的日志的打印，但是并没用设置打印级别，所以继承他的上级<root>的日志级别 DEBUG -->
     <!--没有设置addtivity，默认为true，将此loger的打印信息向上级传递；
     没有设置appender，此loger本身不打印任何信息, 打印的信息 是传递给 root 的 appender 打印-->
@@ -87,6 +117,7 @@
 
     <root level="debug"><!--也是<loger>元素，但是它是根loger。只有一个level属性，应为已经被命名为"root".-->
         <appender-ref ref="STDOUT"/> <!--<appender-ref>元素，标识这个appender将会添加到这个loger-->
+        <appender-ref ref="all_info"/>
     </root>
 
 </configuration>
