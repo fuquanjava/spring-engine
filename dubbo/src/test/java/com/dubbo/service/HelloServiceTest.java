@@ -36,11 +36,10 @@ public class HelloServiceTest {
 
     @Test
     public void testSayHello() throws Exception {
-        while (true){
+        while (true) {
             System.err.println("loopi start-->");
             int i = helloService.loopI(5);
-            System.err.println("loopi done: "+i);
-
+            System.err.println("loopi done-->" + i);
             Thread.sleep(6000);
         }
     }
@@ -74,12 +73,12 @@ public class HelloServiceTest {
     }
 
     @Test
-    public void testTestCheckedException()  {
+    public void testTestCheckedException() {
         try {
             helloService.testCheckedException(true);
         } catch (IOException e) {
             e.printStackTrace();
-            if(e instanceof  IOException){
+            if (e instanceof IOException) {
                 System.err.println("----------IOException------------");
                 System.err.println(JSON.toJSONString(e, true));
             }

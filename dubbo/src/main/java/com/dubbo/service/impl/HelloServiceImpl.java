@@ -23,14 +23,13 @@ public class HelloServiceImpl implements HelloService {
         int k = 0;
         for (int i = 0; i < times; i++) {
 
-            System.err.println("save ....." + i);
+            System.err.println("start save:" + i);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.err.println("done ....." + i);
-
+            System.err.println("save done:" + i);
             k++;
         }
 
