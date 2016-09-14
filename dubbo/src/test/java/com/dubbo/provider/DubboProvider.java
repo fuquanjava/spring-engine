@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.ServiceConfig;
+import com.alibaba.dubbo.container.Main;
 import com.dubbo.service.HelloService;
 import com.dubbo.service.impl.HelloServiceImpl;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -16,8 +17,10 @@ import java.io.IOException;
  */
 public class DubboProvider {
     public static void main(String[] args) throws Exception {
-        dubboStartBySpring();
+        //dubboStartBySpring();
         //dubboStartByAPI();
+
+        Main.main(null);
 
     }
 
@@ -31,6 +34,7 @@ public class DubboProvider {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public static void dubboStartByAPI() {

@@ -14,11 +14,10 @@
     <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" file="./dubbo/dubbo.cache"/>
 
     <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
-    <dubbo:reference id="helloService" interface="com.dubbo.service.HelloService" retries="2" version="1.0.0"/>
+    <dubbo:reference id="helloService" interface="com.dubbo.service.HelloService"  timeout="45000000" version="1.0.0"/>
 
     <!--服务直连，测试过程使用-->
 <!--
     <dubbo:reference id="helloService" interface="com.dubbo.service.HelloService" url="dubbo://localhost:20880" />
 -->
-    <bean id="extensionLoader" class="com.dubbo.extension.DubboExtensionLoader" />
 </beans>

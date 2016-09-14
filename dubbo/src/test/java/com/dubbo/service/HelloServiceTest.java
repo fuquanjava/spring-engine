@@ -36,8 +36,13 @@ public class HelloServiceTest {
 
     @Test
     public void testSayHello() throws Exception {
-        String result = helloService.sayHello("tom");
-        System.err.println(result);
+        while (true){
+            System.err.println("loopi start-->");
+            int i = helloService.loopI(5);
+            System.err.println("loopi done: "+i);
+
+            Thread.sleep(6000);
+        }
     }
 
     @Test

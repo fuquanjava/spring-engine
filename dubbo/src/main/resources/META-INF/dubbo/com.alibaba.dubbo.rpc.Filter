@@ -1,2 +1,0 @@
-ConsumerFilter=com.dubbo.filter.ConsumerFilter
-ProviderFilter=com.dubbo.filter.ProviderFilter

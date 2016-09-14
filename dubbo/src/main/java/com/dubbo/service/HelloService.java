@@ -10,6 +10,8 @@ public interface HelloService {
 
     String sayHello(String name);
 
+    int loopI(int times);
+
     String testRuntimeException(boolean throwException, String throwsType);
 
     String testCheckedException(boolean throwException) throws IOException;
