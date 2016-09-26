@@ -1,6 +1,6 @@
 package org.springframework.aop;
 
-import com.spring.BaseTest;
+import spring.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.aop.service.UserService;

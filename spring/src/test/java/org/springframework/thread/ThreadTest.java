@@ -1,6 +1,6 @@
 package org.springframework.thread;
 
-import com.spring.BaseTest;
+import spring.BaseTest;
 import org.junit.Test;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 

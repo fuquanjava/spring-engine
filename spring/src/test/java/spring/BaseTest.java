@@ -1,4 +1,4 @@
-package com.spring;
+package spring;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,7 +10,9 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Spring-demo
@@ -18,18 +20,17 @@ import org.springframework.test.context.web.WebAppConfiguration;
  */
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath*:spring-config.xml" })
+@WebAppConfiguration
 public class BaseTest {
     public Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    protected AbstractApplicationContext context = null;
-
     @Before
     public void setUp() throws Exception {
-        context = new ClassPathXmlApplicationContext("classpath:spring-config.xml");
     }
 
     @After
     public void tearDown() throws Exception {
-        context.destroy();
+
     }
 }
