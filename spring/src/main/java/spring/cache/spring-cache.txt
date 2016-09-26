@@ -1,0 +1,23 @@
+
+
+自Spring 3.1起，提供了类似于@Transactional注解事务的注解Cache支持，且提供了Cache抽象；在此之前一般通过AOP实现；使用Spring Cache的好处：
+提供基本的Cache抽象，方便切换各种底层Cache；
+通过注解Cache可以实现类似于事务一样，缓存逻辑透明的应用到我们的业务代码上，且只需要更少的代码就可以完成；
+提供事务回滚时也自动回滚缓存；
+支持比较复杂的缓存逻辑；
+
+对于Spring Cache抽象，主要从以下几个方面学习：
+
+1.Cache API及默认提供的实现
+2.Cache注解
+3.实现复杂的Cache逻辑
+
+
+Cache : 缓存的基本方法抽象(get/put/clear/evict)
+
+CacheManager: 在应用中并不是使用一个Cache，而是多个，因此Spring还提供了CacheManager抽象，用于缓存的管理.
+
+CompositeCacheManager:用于组合CacheManager，即可以从多个CacheManager中轮询得到相应的Cache
+
+
+Spring不进行Cache的缓存策略的维护，这些都是由底层Cache自己实现，Spring只是提供了一个Wrapper，提供一套对外一致的API。

@@ -48,7 +48,8 @@ public class UserServiceTest {
         user = (User) userCache.get(id).get();
         log.error("user:"+ user);
         Assert.assertNotNull(user);
-        userService.findById(id);
+        User user1 = userService.findById(id);
+        log.error("user1:"+ user1);
     }
 
 }
