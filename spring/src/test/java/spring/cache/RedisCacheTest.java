@@ -20,6 +20,12 @@ public class RedisCacheTest extends BaseTest{
         Long id = 1L;
         User user = new User(id, "zhang", "zhang@gmail.com");
         userService.save(user);
+
+        userService.save(user);
+
+        user = new User(2L, "zhang", "zhang@gmail.com");
+        userService.save(user);
+
     }
 
     @Test

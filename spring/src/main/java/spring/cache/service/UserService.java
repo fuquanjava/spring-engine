@@ -1,6 +1,8 @@
 package spring.cache.service;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -14,6 +16,8 @@ import java.util.Set;
 @Service
 public class UserService {
 
+    static Logger log = LoggerFactory.getLogger(UserService.class);
+
     Set<User> users = new HashSet<User>();
 
     /**
@@ -23,7 +27,13 @@ public class UserService {
      */
     @CachePut(value = "user", key = "#user.id")
     public User save(User user) {
-        users.add(user);
+
+        User u = findById(user.getId());
+        if(u != null){
+            log.error("user exists, {}" , user.toString());
+        }else {
+            users.add(user);
+        }
         return user;
     }
 
