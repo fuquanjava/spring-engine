@@ -3,8 +3,8 @@ package spring.cache;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import spring.BaseTest;
+import spring.cache.common.AccountService;
 import spring.cache.domain.Account;
-import spring.cache.service.AccountService;
 
 
 /**

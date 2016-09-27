@@ -1,4 +1,4 @@
-package spring.cache.service;
+package spring.cache.common;
 
 import com.google.common.collect.Maps;
 import org.springframework.stereotype.Component;

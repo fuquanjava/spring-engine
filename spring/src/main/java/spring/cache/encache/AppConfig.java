@@ -1,4 +1,4 @@
-package spring.cache.service;
+package spring.cache.encache;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

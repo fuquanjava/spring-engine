@@ -13,20 +13,23 @@
     <!--    注意这个 spring 配置文件有一个关键的支持缓存的配置项：-->
     <cache:annotation-driven/>
 
-    <context:component-scan base-package="spring.cache.service" />
+    <context:component-scan base-package="spring.cache.service"/>
 
-    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" >
-        <property name="usePool" value="false" />
-        <property name="hostName" value="127.0.0.1" />
-        <property name="port" value="6379" />
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="usePool" value="false"/>
+        <property name="hostName" value="127.0.0.1"/>
+        <property name="port" value="6379"/>
     </bean>
 
-    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate" >
-        <property name="connectionFactory" ref="jedisConnectionFactory" />
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="jedisConnectionFactory"/>
     </bean>
 
-    <bean class="org.springframework.data.redis.cache.RedisCacheManager" >
-        <constructor-arg index="0" ref="redisTemplate" />
+    <!--cacheManager 这个名字不能变，spring根据这个名字查找-->
+    <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+        <constructor-arg index="0" ref="redisTemplate"/>
+        <property name="transactionAware" value="true"/>
     </bean>
+
 
 </beans>

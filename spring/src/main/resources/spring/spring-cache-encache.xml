@@ -14,6 +14,7 @@
         <property name="configLocation" value="classpath:ehcache.xml"/>
     </bean>
 
+<!--    transactionAware表示是否事务环绕的，如果true，则如果事务回滚，缓存也回滚，默认false。-->
     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
         <property name="cacheManager" ref="ehcacheManager"/>
         <property name="transactionAware" value="true"/>

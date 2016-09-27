@@ -12,7 +12,7 @@ import org.springframework.cache.CacheManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import spring.cache.domain.User;
-import spring.cache.service.AppConfig;
+import spring.cache.encache.AppConfig;
 import spring.cache.service.UserService;
 
 /**
@@ -22,20 +22,20 @@ import spring.cache.service.UserService;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AppConfig.class)
-public class UserServiceTest {
-    private static Logger log = LoggerFactory.getLogger(UserServiceTest.class);
-
+public class EncacheTest {
+    private static Logger log = LoggerFactory.getLogger(EncacheTest.class);
 
     @Autowired
     private UserService userService;
 
-    @Autowired
+    @Autowired(required = false)
     private CacheManager cacheManager;
 
     private Cache userCache;
 
     @Before
     public void setUp() {
+        // 对应 encache.xml 配置的里面的 user
         userCache = cacheManager.getCache("user");
     }
 
