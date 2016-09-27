@@ -6,6 +6,8 @@ import spring.BaseTest;
 import spring.cache.domain.User;
 import spring.cache.service.UserService;
 
+import java.util.Set;
+
 /**
  * fuquanemail@gmail.com 2016/9/27 11:25
  * description:
@@ -32,5 +34,15 @@ public class RedisCacheTest extends BaseTest{
     public void testFindById() throws Exception {
         User user = userService.findById(1L);
         logger.info(user.toString());
+    }
+
+    @Test
+    public void testFindAll() throws Exception {
+        Set<User> users =  userService.findAll();
+
+        users =  userService.findAll();
+
+        logger.info(users.toString());
+        logger.info(users.toString());
     }
 }

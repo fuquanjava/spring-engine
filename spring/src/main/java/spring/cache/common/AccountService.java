@@ -50,6 +50,11 @@ public class AccountService {
     /**
      * 使用了一个缓存名叫 accountCache,
      * 方法内部实现不考虑缓存逻辑，直接实现业务
+     *
+     * 即 @Cacheable(value=”accountCache”)，这个注释的意思是，当调用这个方法的时候，会从一个名叫 accountCache 的缓存中查询，
+     * 如果没有，则执行实际的方法（即查询数据库），并将执行的结果存入缓存中，否则返回缓存中的对象。
+     * 这里的缓存中的 key 就是参数 userName，value 就是 Account 对象。“accountCache”缓存是在 spring*.xml 中定义的名称。
+     *
      */
     @Cacheable(value = "accountCache")
     public Account getAccountByName2(String accountName) {
@@ -72,9 +77,6 @@ public class AccountService {
     public void reload() {
         logger.info("reload cache");
     }
-
-
-
 
 
     private void updateDB(Account account) {

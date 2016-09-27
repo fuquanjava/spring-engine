@@ -22,6 +22,7 @@ public class UserService {
 
     /**
      * CachePut: 即应用到移除数据的方法上，如删除方法，调用方法时会从缓存中移除相应的数据：
+     *
      * @param user
      * @return
      */
@@ -29,9 +30,9 @@ public class UserService {
     public User save(User user) {
 
         User u = findById(user.getId());
-        if(u != null){
-            log.error("user exists, {}" , user.toString());
-        }else {
+        if (u != null) {
+            log.error("user exists, {}", user.toString());
+        } else {
             users.add(user);
         }
         return user;
@@ -40,16 +41,14 @@ public class UserService {
     /**
      * CachePut 必须要有返回值才能缓存
      * org.springframework.cache.interceptor.CacheAspectSupport 357
-     *
+     * <p>
      * cachePutRequest.apply(result.get());
      *
-     *
-    @CachePut(value = "user", key = "#user.id")
-    public void save(User user) {
-        users.add(user);
-    }
-
-    */
+     * @CachePut(value = "user", key = "#user.id")
+     * public void save(User user) {
+     * users.add(user);
+     * }
+     */
 
     @CachePut(value = "user", key = "#user.id")
     public User update(User user) {
@@ -71,6 +70,7 @@ public class UserService {
 
     /**
      * Cacheable:应用到读取数据的方法上，即可缓存的方法，如查找方法：先从缓存中读取，如果没有再调用方法获取数据，然后把数据添加到缓存中：
+     *
      * @param id
      * @return
      */
@@ -83,6 +83,23 @@ public class UserService {
             }
         }
         return null;
+    }
+
+    @Cacheable(value = "user", key = "100")
+    public Set<User> findAll() {
+        System.out.println("find all 111!");
+
+        if (users == null || users.size() == 0) {
+            System.out.println("find all");
+            users.add(new User(3L, "zs", "zs@123.com"));
+        } else {
+
+            System.out.println("find all 22!");
+
+            return users;
+        }
+
+        return users;
     }
 
 }
