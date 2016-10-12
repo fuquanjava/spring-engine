@@ -10,27 +10,33 @@
         </filter>
         <File>D:/logs/all_error.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>D:/logs/all_error.%d{yyyy-MM-dd}.log
-            </FileNamePattern>
+            <FileNamePattern>D:/logs/all_error.%d{yyyy-MM-dd}.log</FileNamePattern>
             <MaxHistory>30</MaxHistory>
-        </rollingPolicy>
+        </rollingPolicy>s
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>%date [%thread] %-5level %logger{80} - %msg%n</Pattern>
         </layout>
     </appender>
 
-
-    <appender name="all_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!--按照文件大小生成日志文件-->
+    <appender name="all_info"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
         <File>D:/logs/all_info.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>D:/logs/all_info.%d{yyyy-MM-dd}.log
-            </FileNamePattern>
-            <MaxHistory>30</MaxHistory>
+            <FileNamePattern>D:/logs/all_info.%d{yyyy-MM-dd-HH}.%i.log</FileNamePattern>
+            <maxHistory>30</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>1MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>%date [%thread] %-5level %logger{80} - %msg%n</Pattern>
         </layout>
     </appender>
+
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -59,9 +65,9 @@
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
-            <fileNamePattern>D:/logs/logFile.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+            <fileNamePattern>D:/logs/logFile.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxHistory>30</maxHistory>
-            <totalSizeCap>3GB</totalSizeCap>
+            <totalSizeCap>1M</totalSizeCap>
         </rollingPolicy>
 
         <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
@@ -80,7 +86,7 @@
 
 
     <root level="DEBUG">
-        <appender-ref ref="FILE"/>
+        <appender-ref ref="all_info"/>
         <appender-ref ref="CONSOLE"/>
     </root>
 </configuration>

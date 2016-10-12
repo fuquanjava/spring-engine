@@ -19,5 +19,4 @@ CacheManager: 在应用中并不是使用一个Cache，而是多个，因此Spri
 
 CompositeCacheManager:用于组合CacheManager，即可以从多个CacheManager中轮询得到相应的Cache
 
-
 Spring不进行Cache的缓存策略的维护，这些都是由底层Cache自己实现，Spring只是提供了一个Wrapper，提供一套对外一致的API。
