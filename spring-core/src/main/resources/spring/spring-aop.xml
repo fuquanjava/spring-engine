@@ -1,11 +1,3 @@
-Spring Classic Code
-============================================================================================================================
-日积月累，滴水穿石.
-
-这是一个spring的demo工程，包含这种框架以及spring-xx 的集成操作.
-
-
-
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -22,5 +14,6 @@ Spring Classic Code
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-
+    <aop:aspectj-autoproxy />
+    <context:component-scan base-package="com.spring.core.aop" />
 </beans>

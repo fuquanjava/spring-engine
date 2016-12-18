@@ -13,7 +13,6 @@
         <module>mybatis</module>
         <module>spring-webmvc</module>
         <module>spring-nosql</module>
-        <module>spring</module>
         <module>dubbo</module>
         <module>log</module>
         <module>spring-mq</module>
@@ -644,6 +643,13 @@
                 <version>2.3</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.16.12</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -783,6 +789,10 @@
             <artifactId>logback-ext-spring</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
 
     </dependencies>
 
